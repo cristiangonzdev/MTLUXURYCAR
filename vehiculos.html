@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehículos — MT Lux Cars</title>
+  <meta name="description" content="Explora nuestra colección de vehículos de lujo: BMW, Porsche, Mercedes, Aston Martin, Lamborghini y más.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #060606;
+      --black-soft: #0F0F0F;
+      --black-card: #141414;
+      --gold: #C9A84C;
+      --gold-light: #E4C97A;
+      --cream: #F0EAD6;
+      --cream-soft: #D4CCBA;
+      --gray: #888880;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Raleway', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ══════════ CURSOR ══════════ */
+    .cursor-dot, .cursor-ring {
+      display: none; position: fixed; top: 0; left: 0;
+      border-radius: 50%; pointer-events: none; z-index: 99999;
+      transform: translate(-50%, -50%);
+    }
+    @media (pointer: fine) {
+      .cursor-dot, .cursor-ring { display: block; }
+      .cursor-dot { width: 8px; height: 8px; background: var(--gold); }
+      .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--gold); opacity: .5; transition: width .15s ease-out, height .15s ease-out; }
+      body, body a, body button { cursor: none; }
+    }
+
+    /* ══════════ NAV ══════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s ease, backdrop-filter .4s ease, padding .4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(6,6,6,.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: .9rem 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .nav-logo .mt { color: var(--cream); }
+    .nav-logo .lux { color: var(--gold); }
+    .nav-logo .cars { color: var(--cream); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-weight: 400; font-size: .82rem;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--cream-soft);
+      position: relative; padding-bottom: 3px; transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .35s ease-out;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 6px;
+      background: none; border: none; padding: 8px; z-index: 1100;
+      min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px; background: var(--cream);
+      transition: transform .35s ease, opacity .25s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(6,6,6,.97);
+      z-index: 1050; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility .4s ease;
+    }
+    .mobile-overlay.open { opacity: 1; visibility: visible; }
+    .mobile-overlay a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 2.2rem; font-weight: 300; color: var(--cream);
+      letter-spacing: .06em; transition: color .3s ease;
+    }
+    .mobile-overlay a:hover { color: var(--gold); }
+    .mobile-overlay a.active { color: var(--gold); }
+    .mobile-overlay a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ══════════ CTA BTN ══════════ */
+    .cta-btn {
+      display: inline-block; position: relative;
+      padding: .95rem 2.4rem; border: 1px solid var(--gold);
+      color: var(--gold); font-family: var(--font-body); font-weight: 400;
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      background: transparent; overflow: hidden; transition: color .4s ease;
+      min-height: 44px;
+    }
+    .cta-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-101%);
+      transition: transform .4s ease; z-index: -1;
+    }
+    .cta-btn:hover { color: var(--black); }
+    .cta-btn:hover::before { transform: translateX(0); }
+    .cta-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+
+    /* ══════════ REVEAL ══════════ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease-out, transform .7s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-interior .hero-bg { animation: none !important; }
+    }
+
+    /* ══════════ HERO INTERIOR ══════════ */
+    .hero-interior {
+      position: relative; height: 60vh; min-height: 380px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-interior .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85') center/cover no-repeat;
+      animation: kenburns 20s ease-in-out infinite alternate;
+    }
+    @keyframes kenburns {
+      0% { transform: scale(1) translate(0,0); }
+      100% { transform: scale(1.12) translate(-1%,-1%); }
+    }
+    .hero-interior .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(6,6,6,.5) 0%, rgba(6,6,6,.7) 100%);
+    }
+    .hero-interior .hero-content {
+      position: relative; z-index: 2; text-align: center;
+    }
+    .hero-interior .hero-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--cream);
+    }
+
+    /* ══════════ FILTROS ══════════ */
+    .filters {
+      padding: 2.5rem 2rem;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem;
+      background: var(--black-soft);
+    }
+    .filter-btn {
+      padding: .6rem 1.6rem;
+      border: 1px solid rgba(201,168,76,.35);
+      background: transparent;
+      color: var(--cream-soft);
+      font-family: var(--font-body); font-weight: 400;
+      font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
+      min-height: 44px;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gold); color: var(--black);
+      border-color: var(--gold);
+    }
+    .filter-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+
+    /* ══════════ GRID VEHÍCULOS ══════════ */
+    .vehicles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+    @media (max-width: 900px) {
+      .vehicles-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .vehicles-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 2rem 1rem 4rem; }
+    }
+
+    .v-card {
+      background: var(--black-card);
+      border: 1px solid rgba(201,168,76,.08);
+      overflow: hidden;
+      transition: border-color .3s ease, transform .3s ease;
+    }
+    .v-card:hover {
+      border-color: rgba(201,168,76,.25);
+      transform: translateY(-4px);
+    }
+    .v-card-img {
+      position: relative; overflow: hidden; aspect-ratio: 16/10;
+    }
+    .v-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .v-card:hover .v-card-img img { transform: scale(1.07); }
+    .v-card-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(6,6,6,.75);
+      backdrop-filter: blur(6px);
+      padding: .3rem .8rem;
+      font-size: .65rem; font-weight: 400; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,168,76,.2);
+    }
+    .v-card-body { padding: 1.5rem; }
+    .v-card-name {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.35rem; color: var(--cream); margin-bottom: .5rem;
+    }
+    .v-card-specs {
+      font-size: .78rem; color: var(--gray); margin-bottom: .6rem; line-height: 1.5;
+    }
+    .v-card-price {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 1.15rem; color: var(--gold); margin-bottom: 1.2rem;
+    }
+    .v-card .cta-btn { font-size: .72rem; padding: .7rem 1.6rem; }
+
+    @media (max-width: 540px) {
+      .v-card-body { padding: 1rem; }
+      .v-card-name { font-size: 1.1rem; }
+      .v-card .cta-btn { font-size: .68rem; padding: .6rem 1.2rem; }
+    }
+
+    /* ══════════ FOOTER ══════════ */
+    .footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,.15);
+      padding: 3.5rem 2rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-logo .mt { color: var(--cream); }
+    .footer-logo .lux { color: var(--gold); }
+    .footer-logo .cars { color: var(--cream); }
+    .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
+    .footer-tagline {
+      font-family: var(--font-body); font-weight: 200; font-size: .85rem;
+      color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
+    }
+    .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
+    .footer-info span { margin: 0 .5rem; }
+    .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="MT Lux Cars - Inicio">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="vehiculos.html" class="active">Vehículos</a></li>
+      <li><a href="asesoramiento.html">Asesoramiento</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-overlay" aria-hidden="true">
+    <a href="index.html">Inicio</a>
+    <a href="vehiculos.html" class="active">Vehículos</a>
+    <a href="asesoramiento.html">Asesoramiento</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <!-- HERO INTERIOR -->
+  <section class="hero-interior">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Nuestra Colección</h1>
+    </div>
+  </section>
+
+  <!-- FILTROS -->
+  <div class="filters" role="toolbar" aria-label="Filtrar vehículos por categoría">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="sedan">Sedán</button>
+    <button class="filter-btn" data-filter="suv">SUV</button>
+    <button class="filter-btn" data-filter="sport">Sport</button>
+    <button class="filter-btn" data-filter="gt">Gran Turismo</button>
+  </div>
+
+  <!-- GRID -->
+  <section class="vehicles-grid" aria-label="Catálogo de vehículos">
+
+    <article class="v-card reveal" data-category="sedan">
+      <div class="v-card-img">
+        <span class="v-card-badge">Sedán</span>
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80"
+             alt="BMW M5 Competition negro" loading="lazy" width="600" height="375">
+      </div>
+      <div class="v-card-body">
+        <h2 class="v-card-name">BMW M5 Competition</h2>
+        <p class="v-card-specs">4.4L V8 · 625 CV · 0-100 en 3.3s</p>
+        <p class="v-card-price">desde 148.900 €</p>
+        <a href="contacto.html" class="cta-btn">Solicitar información</a>
+      </div>
+    </article>
+
+    <article class="v-card reveal" data-category="sport">
+      <div class="v-card-img">
+        <span class="v-card-badge">Sport</span>
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80"
+             alt="Porsche 911 GT3 RS blanco" loading="lazy" width="600" height="375">
+      </div>
+      <div class="v-card-body">
+        <h2 class="v-card-name">Porsche 911 GT3 RS</h2>
+        <p class="v-card-specs">4.0L Boxer · 525 CV · Tracción trasera</p>
+        <p class="v-card-price">desde 229.500 €</p>
+        <a href="contacto.html" class="cta-btn">Solicitar información</a>
+      </div>
+    </article>
+
+    <article class="v-card reveal" data-category="gt">
+      <div class="v-card-img">
+        <span class="v-card-badge">Gran Turismo</span>
+        <img src="https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=600&q=80"
+             alt="Mercedes AMG GT 63 gris" loading="lazy" width="600" height="375">
+      </div>
+      <div class="v-card-body">
+        <h2 class="v-card-name">Mercedes AMG GT 63</h2>
+        <p class="v-card-specs">4.0L V8 Biturbo · 639 CV · 4MATIC+</p>
+        <p class="v-card-price">desde 196.000 €</p>
+        <a href="contacto.html" class="cta-btn">Solicitar información</a>
+      </div>
+    </article>
+
+    <article class="v-card reveal" data-category="gt">
+      <div class="v-card-img">
+        <span class="v-card-badge">Gran Turismo</span>
+        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80"
+             alt="Aston Martin DB11 Volante descapotable" loading="lazy" width="600" height="375">
+      </div>
+      <div class="v-card-body">
+        <h2 class="v-card-name">Aston Martin DB11 Volante</h2>
+        <p class="v-card-specs">5.2L V12 · 630 CV · Descapotable</p>
+        <p class="v-card-price">desde 272.000 €</p>
+        <a href="contacto.html" class="cta-btn">Solicitar información</a>
+      </div>
+    </article>
+
+    <article class="v-card reveal" data-category="suv">
+      <div class="v-card-img">
+        <span class="v-card-badge">SUV</span>
+        <img src="https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?w=600&q=80"
+             alt="Lamborghini Urus Performante" loading="lazy" width="600" height="375">
+      </div>
+      <div class="v-card-body">
+        <h2 class="v-card-name">Lamborghini Urus Performante</h2>
+        <p class="v-card-specs">4.0L V8 · 666 CV · AWD</p>
+        <p class="v-card-price">desde 289.000 €</p>
+        <a href="contacto.html" class="cta-btn">Solicitar información</a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </div>
+    <div class="footer-line" aria-hidden="true"></div>
+    <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
+    <p class="footer-info">
+      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Lanzarote, Canarias
+    </p>
+    <p class="footer-copy">© 2024 MT Lux Cars. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    /* ── Scroll navbar ── */
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Hamburger ── */
+    const hamburger = document.querySelector('.hamburger');
+    const overlay = document.querySelector('.mobile-overlay');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      overlay.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      overlay.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    /* ── Filtros ── */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.v-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(card => {
+          if (f === 'all' || card.dataset.category === f) {
+            card.style.display = '';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(16px)';
+            requestAnimationFrame(() => {
+              card.style.transition = 'opacity .4s ease-out, transform .4s ease-out';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* ── Reveal ── */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+
+    /* ── Cursor ── */
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const dot = document.querySelector('.cursor-dot');
+      const ring = document.querySelector('.cursor-ring');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      (function loop() {
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+        rx += (mx - rx) * .15; ry += (my - ry) * .15;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+    }
+  </script>
+</body>
+</html>

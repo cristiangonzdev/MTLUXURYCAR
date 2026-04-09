@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesoramiento — MT Lux Cars</title>
+  <meta name="description" content="Asesoramiento personalizado para la compra de tu vehículo de lujo. Financiación, importación y gestión completa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #060606;
+      --black-soft: #0F0F0F;
+      --black-card: #141414;
+      --gold: #C9A84C;
+      --gold-light: #E4C97A;
+      --cream: #F0EAD6;
+      --cream-soft: #D4CCBA;
+      --gray: #888880;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Raleway', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ══════════ CURSOR ══════════ */
+    .cursor-dot, .cursor-ring {
+      display: none; position: fixed; top: 0; left: 0;
+      border-radius: 50%; pointer-events: none; z-index: 99999;
+      transform: translate(-50%, -50%);
+    }
+    @media (pointer: fine) {
+      .cursor-dot, .cursor-ring { display: block; }
+      .cursor-dot { width: 8px; height: 8px; background: var(--gold); }
+      .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--gold); opacity: .5; transition: width .15s ease-out, height .15s ease-out; }
+      body, body a, body button { cursor: none; }
+    }
+
+    /* ══════════ NAV ══════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s ease, backdrop-filter .4s ease, padding .4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(6,6,6,.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: .9rem 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .nav-logo .mt { color: var(--cream); }
+    .nav-logo .lux { color: var(--gold); }
+    .nav-logo .cars { color: var(--cream); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-weight: 400; font-size: .82rem;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--cream-soft);
+      position: relative; padding-bottom: 3px; transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .35s ease-out;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 6px;
+      background: none; border: none; padding: 8px; z-index: 1100;
+      min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px; background: var(--cream);
+      transition: transform .35s ease, opacity .25s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(6,6,6,.97);
+      z-index: 1050; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility .4s ease;
+    }
+    .mobile-overlay.open { opacity: 1; visibility: visible; }
+    .mobile-overlay a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 2.2rem; font-weight: 300; color: var(--cream);
+      letter-spacing: .06em; transition: color .3s ease;
+    }
+    .mobile-overlay a:hover { color: var(--gold); }
+    .mobile-overlay a.active { color: var(--gold); }
+    .mobile-overlay a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ══════════ CTA BTN ══════════ */
+    .cta-btn {
+      display: inline-block; position: relative;
+      padding: .95rem 2.4rem; border: 1px solid var(--gold);
+      color: var(--gold); font-family: var(--font-body); font-weight: 400;
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      background: transparent; overflow: hidden; transition: color .4s ease;
+      min-height: 44px;
+    }
+    .cta-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-101%);
+      transition: transform .4s ease; z-index: -1;
+    }
+    .cta-btn:hover { color: var(--black); }
+    .cta-btn:hover::before { transform: translateX(0); }
+    .cta-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+
+    /* ══════════ REVEAL ══════════ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease-out, transform .7s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-interior .hero-bg { animation: none !important; }
+    }
+
+    /* ══════════ HERO INTERIOR ══════════ */
+    .hero-interior {
+      position: relative; height: 60vh; min-height: 380px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-interior .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=85') center/cover no-repeat;
+      animation: kenburns 20s ease-in-out infinite alternate;
+    }
+    @keyframes kenburns {
+      0% { transform: scale(1) translate(0,0); }
+      100% { transform: scale(1.12) translate(-1%,-1%); }
+    }
+    .hero-interior .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(6,6,6,.5) 0%, rgba(6,6,6,.7) 100%);
+    }
+    .hero-interior .hero-content {
+      position: relative; z-index: 2; text-align: center;
+    }
+    .hero-interior .hero-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--cream);
+      margin-bottom: .4rem;
+    }
+    .hero-interior .hero-sub {
+      font-family: var(--font-display); font-style: italic; font-weight: 300;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--gold-light);
+    }
+
+    /* ══════════ PROCESO ══════════ */
+    .proceso {
+      padding: 6rem 2rem;
+      background: var(--black-soft);
+    }
+    .proceso-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .proceso-item {
+      display: flex;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-left: 2px solid rgba(201,168,76,.15);
+      padding-left: 2.5rem;
+      position: relative;
+      transition: border-color .4s ease;
+    }
+    .proceso-item:hover {
+      border-left-color: var(--gold);
+    }
+    .proceso-item + .proceso-item {
+      border-top: none;
+    }
+    .proceso-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      color: var(--gold);
+      opacity: .2;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 70px;
+    }
+    .proceso-text h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin-bottom: .5rem;
+    }
+    .proceso-text p {
+      font-size: .92rem;
+      color: var(--cream-soft);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .proceso-item { flex-direction: column; gap: 1rem; padding-left: 1.5rem; }
+      .proceso-num { min-width: auto; }
+    }
+
+    /* ══════════ SERVICIOS ══════════ */
+    .servicios {
+      padding: 6rem 2rem;
+      background: var(--black);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-label {
+      font-family: var(--font-body); font-weight: 400; font-size: .72rem;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: .7rem;
+    }
+    .section-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3rem); color: var(--cream);
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) {
+      .servicios-grid { grid-template-columns: 1fr; }
+    }
+
+    .serv-card {
+      background: var(--black-card);
+      border: 1px solid rgba(201,168,76,.08);
+      padding: 2.2rem;
+      transition: border-color .3s ease, transform .3s ease;
+    }
+    .serv-card:hover {
+      border-color: rgba(201,168,76,.25);
+      transform: translateY(-3px);
+    }
+    .serv-icon {
+      width: 40px; height: 40px;
+      margin-bottom: 1.2rem;
+      color: var(--gold);
+    }
+    .serv-icon svg { width: 100%; height: 100%; }
+    .serv-card h3 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.25rem; color: var(--cream); margin-bottom: .5rem;
+    }
+    .serv-card p {
+      font-size: .85rem; color: var(--cream-soft); line-height: 1.7;
+    }
+
+    /* ══════════ BANNER CTA ══════════ */
+    .banner-cta {
+      background: var(--gold);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .banner-cta h2 {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      color: var(--black);
+      margin-bottom: 1.8rem;
+    }
+    .banner-cta .cta-btn-dark {
+      display: inline-block; position: relative;
+      padding: .95rem 2.4rem;
+      border: 1px solid var(--black);
+      color: var(--black);
+      font-family: var(--font-body); font-weight: 400;
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      background: transparent; overflow: hidden;
+      transition: color .4s ease; min-height: 44px;
+    }
+    .banner-cta .cta-btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--black); transform: translateX(-101%);
+      transition: transform .4s ease; z-index: -1;
+    }
+    .banner-cta .cta-btn-dark:hover { color: var(--gold); }
+    .banner-cta .cta-btn-dark:hover::before { transform: translateX(0); }
+    .banner-cta .cta-btn-dark:focus-visible { outline: 2px solid var(--black); outline-offset: 4px; }
+
+    /* ══════════ FOOTER ══════════ */
+    .footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,.15);
+      padding: 3.5rem 2rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-logo .mt { color: var(--cream); }
+    .footer-logo .lux { color: var(--gold); }
+    .footer-logo .cars { color: var(--cream); }
+    .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
+    .footer-tagline {
+      font-family: var(--font-body); font-weight: 200; font-size: .85rem;
+      color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
+    }
+    .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
+    .footer-info span { margin: 0 .5rem; }
+    .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="MT Lux Cars - Inicio">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="vehiculos.html">Vehículos</a></li>
+      <li><a href="asesoramiento.html" class="active">Asesoramiento</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-overlay" aria-hidden="true">
+    <a href="index.html">Inicio</a>
+    <a href="vehiculos.html">Vehículos</a>
+    <a href="asesoramiento.html" class="active">Asesoramiento</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <!-- HERO INTERIOR -->
+  <section class="hero-interior">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Asesoramiento</h1>
+      <p class="hero-sub">A tu medida</p>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso">
+    <div class="proceso-inner">
+      <div class="proceso-item reveal">
+        <div class="proceso-num">01</div>
+        <div class="proceso-text">
+          <h3>Consulta inicial</h3>
+          <p>Escuchamos tus necesidades sin presión ni agenda comercial. Queremos entender qué buscas, cómo conduces y qué esperas de tu próximo vehículo.</p>
+        </div>
+      </div>
+      <div class="proceso-item reveal">
+        <div class="proceso-num">02</div>
+        <div class="proceso-text">
+          <h3>Selección personalizada</h3>
+          <p>Acceso a toda la gama europea y mundial. Localizamos el vehículo exacto con las especificaciones que deseas, en cualquier mercado.</p>
+        </div>
+      </div>
+      <div class="proceso-item reveal">
+        <div class="proceso-num">03</div>
+        <div class="proceso-text">
+          <h3>Financiación exclusiva</h3>
+          <p>Condiciones preferenciales con bancos de primer nivel. Diseñamos un plan financiero que se adapta a tu situación, sin letra pequeña.</p>
+        </div>
+      </div>
+      <div class="proceso-item reveal">
+        <div class="proceso-num">04</div>
+        <div class="proceso-text">
+          <h3>Entrega y posventa</h3>
+          <p>Acompañamiento total tras la compra. Gestión de matrícula, seguros, mantenimiento y cualquier necesidad que surja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS ADICIONALES -->
+  <section class="servicios">
+    <div class="section-header reveal">
+      <p class="section-label">Servicios adicionales</p>
+      <h2 class="section-title">Todo lo que necesitas</h2>
+    </div>
+    <div class="servicios-grid">
+
+      <div class="serv-card reveal">
+        <div class="serv-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h3>Importación internacional</h3>
+        <p>Localizamos y traemos tu vehículo desde cualquier país europeo con total garantía legal y logística.</p>
+      </div>
+
+      <div class="serv-card reveal">
+        <div class="serv-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h3>Tasación y permuta</h3>
+        <p>Valoramos tu vehículo actual de forma justa y transparente. Facilita el cambio a tu nuevo coche de lujo.</p>
+      </div>
+
+      <div class="serv-card reveal">
+        <div class="serv-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3>Gestión de documentación</h3>
+        <p>Nos encargamos de todo el papeleo: transferencias, matrículas, impuestos y trámites aduaneros.</p>
+      </div>
+
+      <div class="serv-card reveal">
+        <div class="serv-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Seguro premium</h3>
+        <p>Acceso a pólizas especializadas para vehículos de alta gama con coberturas completas y asistencia 24h.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BANNER CTA -->
+  <section class="banner-cta reveal">
+    <h2>¿Listo para encontrar tu vehículo ideal?</h2>
+    <a href="contacto.html" class="cta-btn-dark">Contactar ahora</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </div>
+    <div class="footer-line" aria-hidden="true"></div>
+    <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
+    <p class="footer-info">
+      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Lanzarote, Canarias
+    </p>
+    <p class="footer-copy">© 2024 MT Lux Cars. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    /* ── Scroll navbar ── */
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Hamburger ── */
+    const hamburger = document.querySelector('.hamburger');
+    const overlay = document.querySelector('.mobile-overlay');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      overlay.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      overlay.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    /* ── Reveal ── */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+
+    /* ── Cursor ── */
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const dot = document.querySelector('.cursor-dot');
+      const ring = document.querySelector('.cursor-ring');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      (function loop() {
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+        rx += (mx - rx) * .15; ry += (my - ry) * .15;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+    }
+  </script>
+</body>
+</html>
