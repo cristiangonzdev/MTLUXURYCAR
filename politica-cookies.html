@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies — MT Lux Cars</title>
+  <meta name="description" content="Política de cookies de MT Lux Cars conforme a la LSSI y al RGPD.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #060606;
+      --black-soft: #0F0F0F;
+      --black-card: #141414;
+      --gold: #C9A84C;
+      --gold-light: #E4C97A;
+      --cream: #F0EAD6;
+      --cream-soft: #D4CCBA;
+      --gray: #888880;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(6,6,6,.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: padding .4s ease;
+    }
+    .nav.scrolled { padding: .9rem 2rem; }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .nav-logo .mt { color: var(--cream); }
+    .nav-logo .lux { color: var(--gold); }
+    .nav-logo .cars { color: var(--cream); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-weight: 500; font-size: .82rem;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--cream-soft);
+      position: relative; padding-bottom: 3px; transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .35s ease-out;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 6px;
+      background: none; border: none; padding: 8px; z-index: 1100;
+      min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px; background: var(--cream);
+      transition: transform .35s ease, opacity .25s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(6,6,6,.97);
+      z-index: 1050; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility .4s ease;
+    }
+    .mobile-overlay.open { opacity: 1; visibility: visible; }
+    .mobile-overlay a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 2.2rem; font-weight: 400; color: var(--cream);
+      letter-spacing: .06em; transition: color .3s ease;
+    }
+    .mobile-overlay a:hover { color: var(--gold); }
+    .mobile-overlay a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    .legal-header {
+      padding: 9rem 1.5rem 3rem;
+      text-align: center;
+      background: var(--black-soft);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .legal-header .eyebrow {
+      font-family: var(--font-body); font-weight: 500;
+      font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .8rem;
+    }
+    .legal-header h1 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.2rem); color: var(--cream); line-height: 1.1;
+    }
+    .legal-line { width: 60px; height: 1px; background: var(--gold); margin: 1.4rem auto 0; }
+
+    .legal-content {
+      max-width: 760px; margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+    .legal-content h2 {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+      color: var(--cream); margin: 2.8rem 0 1rem; line-height: 1.25;
+    }
+    .legal-content h2:first-child { margin-top: 0; }
+    .legal-content p {
+      font-size: .98rem; color: var(--cream-soft);
+      margin-bottom: 1.1rem; line-height: 1.8;
+    }
+    .legal-content ul {
+      margin: 0 0 1.4rem 1.2rem; color: var(--cream-soft);
+    }
+    .legal-content ul li {
+      font-size: .96rem; line-height: 1.8;
+      margin-bottom: .4rem; padding-left: .4rem;
+    }
+    .legal-content ul li::marker { color: var(--gold); }
+    .legal-content strong { color: var(--cream); font-weight: 600; }
+    .legal-content a {
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,.4);
+      transition: color .3s ease, border-color .3s ease;
+      word-break: break-word;
+    }
+    .legal-content a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+    .legal-content .updated {
+      margin-top: 3.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,168,76,.15);
+      font-size: .8rem; color: var(--gray);
+      text-align: center; letter-spacing: .04em;
+    }
+
+    /* Tabla de cookies */
+    .cookies-table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0 1.8rem;
+      border: 1px solid rgba(201,168,76,.18);
+      background: var(--black-card);
+    }
+    .cookies-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      color: var(--cream-soft);
+      min-width: 540px;
+    }
+    .cookies-table th, .cookies-table td {
+      padding: .9rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(201,168,76,.12);
+      vertical-align: top;
+    }
+    .cookies-table th {
+      background: rgba(201,168,76,.06);
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .cookies-table tr:last-child td { border-bottom: none; }
+    .cookies-table td strong { color: var(--cream); font-weight: 600; }
+
+    .footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,.15);
+      padding: 3.5rem 2rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-logo .mt { color: var(--cream); }
+    .footer-logo .lux { color: var(--gold); }
+    .footer-logo .cars { color: var(--cream); }
+    .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
+    .footer-tagline {
+      font-family: var(--font-body); font-weight: 400; font-size: .85rem;
+      color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
+    }
+    .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
+    .footer-info span { margin: 0 .5rem; }
+    .footer-legal {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 1rem 1.4rem; margin: 0 auto 1.5rem; max-width: 700px;
+    }
+    .footer-legal a {
+      font-size: .72rem; color: var(--cream-soft);
+      letter-spacing: .06em; transition: color .3s ease;
+      padding: .25rem .15rem; border-bottom: 1px solid transparent;
+    }
+    .footer-legal a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .footer-legal a.active { color: var(--gold); }
+    .footer-legal a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+    .footer-credit {
+      display: inline-block; margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,.12);
+      text-align: center; transition: opacity .3s ease;
+    }
+    .footer-credit:hover { opacity: .85; }
+    .footer-credit-text {
+      display: block; font-size: .88rem;
+      color: var(--cream-soft); letter-spacing: .04em; font-weight: 400;
+    }
+    .footer-credit-text strong { color: var(--gold); font-weight: 600; margin-left: .25rem; }
+    .footer-credit-sub {
+      display: block; font-size: .68rem; color: var(--gray);
+      letter-spacing: .08em; margin-top: .35rem; font-style: italic;
+    }
+    .footer-credit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="MT Lux Cars - Inicio">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="vehiculos.html">Vehículos</a></li>
+      <li><a href="asesoramiento.html">Asesoramiento</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-overlay" aria-hidden="true">
+    <a href="index.html">Inicio</a>
+    <a href="vehiculos.html">Vehículos</a>
+    <a href="asesoramiento.html">Asesoramiento</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <header class="legal-header">
+    <p class="eyebrow">Información legal</p>
+    <h1>Política de Cookies</h1>
+    <div class="legal-line"></div>
+  </header>
+
+  <main class="legal-content">
+
+    <h2>1. ¿Qué son las cookies?</h2>
+    <p>Las cookies son pequeños archivos de texto que los sitios web envían al navegador del usuario y que se almacenan en su dispositivo (ordenador, móvil o tablet). Sirven para que el sitio web recuerde información sobre la visita, como el idioma preferido o ciertos datos de navegación, con el fin de facilitar la próxima visita y hacer que el sitio resulte más útil.</p>
+
+    <h2>2. Cookies utilizadas en este sitio web</h2>
+    <p>Este sitio web <strong>no instala cookies propias</strong> de seguimiento, análisis ni publicidad. No utilizamos herramientas de medición como Google Analytics, Meta Pixel ni similares.</p>
+    <p>Sin embargo, este sitio web integra un servicio de <strong>Google Maps</strong> en la página de contacto para mostrar la ubicación del establecimiento. Google, como proveedor del servicio, puede instalar cookies propias necesarias para el correcto funcionamiento del mapa, sobre las cuales el titular de este sitio web no tiene control directo.</p>
+
+    <div class="cookies-table-wrap">
+      <table class="cookies-table">
+        <thead>
+          <tr>
+            <th>Servicio</th>
+            <th>Tipo</th>
+            <th>Finalidad</th>
+            <th>Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Google Maps</strong></td>
+            <td>Terceros</td>
+            <td>Funcionamiento del mapa interactivo en la página de contacto.</td>
+            <td>Variable según Google</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Puedes consultar la política de cookies y privacidad de Google en los siguientes enlaces:</p>
+    <ul>
+      <li><a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">Política de cookies de Google</a></li>
+      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Google</a></li>
+    </ul>
+
+    <h2>3. ¿Cómo gestionar o desactivar las cookies?</h2>
+    <p>Puedes permitir, bloquear o eliminar las cookies instaladas en tu equipo configurando las opciones de privacidad de tu navegador. A continuación se indican los enlaces oficiales para los principales navegadores:</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+      <li><a href="https://support.mozilla.org/es/kb/Borrar%20cookies" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+      <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Apple Safari</a></li>
+      <li><a href="https://support.microsoft.com/es-es/microsoft-edge" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+    </ul>
+    <p>Ten en cuenta que la desactivación de cookies puede afectar al correcto funcionamiento de algunos servicios del sitio web, como la visualización del mapa de ubicación.</p>
+
+    <h2>4. Modificaciones</h2>
+    <p>El titular se reserva el derecho a modificar la presente política de cookies para adaptarla a nuevas exigencias legales o cambios en los servicios prestados. Cuando se produzcan cambios significativos, se notificará a los usuarios mediante un aviso visible en el sitio web.</p>
+
+    <p class="updated">Última actualización: abril de 2026</p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </div>
+    <div class="footer-line" aria-hidden="true"></div>
+    <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
+    <p class="footer-info">
+      +34 622 017 410<span>·</span>info@mansionarcos.com<span>·</span>Arrecife, Lanzarote
+    </p>
+    <nav class="footer-legal" aria-label="Enlaces legales">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+      <a href="politica-cookies.html" class="active">Cookies</a>
+      <a href="terminos-condiciones.html">Términos y condiciones</a>
+    </nav>
+    <p class="footer-copy">© 2026 MT Lux Cars. Todos los derechos reservados.</p>
+    <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
+      <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
+      <span class="footer-credit-sub">(pincha para visitar web)</span>
+    </a>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const overlay = document.querySelector('.mobile-overlay');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      overlay.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      overlay.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  </script>
+  <script src="cookies.js" defer></script>
+</body>
+</html>

@@ -567,6 +567,24 @@
       color: var(--gray);
       opacity: .6;
     }
+    .footer-legal {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem 1.4rem;
+      margin: 0 auto 1.5rem;
+      max-width: 700px;
+    }
+    .footer-legal a {
+      font-size: .72rem;
+      color: var(--cream-soft);
+      letter-spacing: .06em;
+      transition: color .3s ease;
+      padding: .25rem .15rem;
+      border-bottom: 1px solid transparent;
+    }
+    .footer-legal a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .footer-legal a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
     .footer-credit {
       display: inline-block;
       margin-top: 1.4rem;
@@ -729,9 +747,15 @@
     <div class="footer-line" aria-hidden="true"></div>
     <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
     <p class="footer-info">
-      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Arrecife, Lanzarote
+      +34 622 017 410<span>·</span>info@mansionarcos.com<span>·</span>Arrecife, Lanzarote
     </p>
-    <p class="footer-copy">© 2024 MT Lux Cars. Todos los derechos reservados.</p>
+    <nav class="footer-legal" aria-label="Enlaces legales">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+      <a href="politica-cookies.html">Cookies</a>
+      <a href="terminos-condiciones.html">Términos y condiciones</a>
+    </nav>
+    <p class="footer-copy">© 2026 MT Lux Cars. Todos los derechos reservados.</p>
     <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
       <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
       <span class="footer-credit-sub">(pincha para visitar web)</span>
@@ -802,5 +826,6 @@
       })();
     }
   </script>
+  <script src="cookies.js" defer></script>
 </body>
 </html>

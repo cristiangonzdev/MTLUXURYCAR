@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos y Condiciones — MT Lux Cars</title>
+  <meta name="description" content="Términos y condiciones de uso del sitio web MT Lux Cars.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #060606;
+      --black-soft: #0F0F0F;
+      --black-card: #141414;
+      --gold: #C9A84C;
+      --gold-light: #E4C97A;
+      --cream: #F0EAD6;
+      --cream-soft: #D4CCBA;
+      --gray: #888880;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(6,6,6,.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: padding .4s ease;
+    }
+    .nav.scrolled { padding: .9rem 2rem; }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .nav-logo .mt { color: var(--cream); }
+    .nav-logo .lux { color: var(--gold); }
+    .nav-logo .cars { color: var(--cream); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-weight: 500; font-size: .82rem;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--cream-soft);
+      position: relative; padding-bottom: 3px; transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .35s ease-out;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 6px;
+      background: none; border: none; padding: 8px; z-index: 1100;
+      min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px; background: var(--cream);
+      transition: transform .35s ease, opacity .25s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(6,6,6,.97);
+      z-index: 1050; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility .4s ease;
+    }
+    .mobile-overlay.open { opacity: 1; visibility: visible; }
+    .mobile-overlay a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 2.2rem; font-weight: 400; color: var(--cream);
+      letter-spacing: .06em; transition: color .3s ease;
+    }
+    .mobile-overlay a:hover { color: var(--gold); }
+    .mobile-overlay a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    .legal-header {
+      padding: 9rem 1.5rem 3rem;
+      text-align: center;
+      background: var(--black-soft);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .legal-header .eyebrow {
+      font-family: var(--font-body); font-weight: 500;
+      font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .8rem;
+    }
+    .legal-header h1 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.2rem); color: var(--cream); line-height: 1.1;
+    }
+    .legal-line { width: 60px; height: 1px; background: var(--gold); margin: 1.4rem auto 0; }
+
+    .legal-content {
+      max-width: 760px; margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+    .legal-content h2 {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+      color: var(--cream); margin: 2.8rem 0 1rem; line-height: 1.25;
+    }
+    .legal-content h2:first-child { margin-top: 0; }
+    .legal-content p {
+      font-size: .98rem; color: var(--cream-soft);
+      margin-bottom: 1.1rem; line-height: 1.8;
+    }
+    .legal-content ul {
+      margin: 0 0 1.4rem 1.2rem; color: var(--cream-soft);
+    }
+    .legal-content ul li {
+      font-size: .96rem; line-height: 1.8;
+      margin-bottom: .4rem; padding-left: .4rem;
+    }
+    .legal-content ul li::marker { color: var(--gold); }
+    .legal-content strong { color: var(--cream); font-weight: 600; }
+    .legal-content a {
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,.4);
+      transition: color .3s ease, border-color .3s ease;
+    }
+    .legal-content a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+    .legal-content .updated {
+      margin-top: 3.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,168,76,.15);
+      font-size: .8rem; color: var(--gray);
+      text-align: center; letter-spacing: .04em;
+    }
+
+    .footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,.15);
+      padding: 3.5rem 2rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-logo .mt { color: var(--cream); }
+    .footer-logo .lux { color: var(--gold); }
+    .footer-logo .cars { color: var(--cream); }
+    .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
+    .footer-tagline {
+      font-family: var(--font-body); font-weight: 400; font-size: .85rem;
+      color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
+    }
+    .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
+    .footer-info span { margin: 0 .5rem; }
+    .footer-legal {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 1rem 1.4rem; margin: 0 auto 1.5rem; max-width: 700px;
+    }
+    .footer-legal a {
+      font-size: .72rem; color: var(--cream-soft);
+      letter-spacing: .06em; transition: color .3s ease;
+      padding: .25rem .15rem; border-bottom: 1px solid transparent;
+    }
+    .footer-legal a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .footer-legal a.active { color: var(--gold); }
+    .footer-legal a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+    .footer-credit {
+      display: inline-block; margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,.12);
+      text-align: center; transition: opacity .3s ease;
+    }
+    .footer-credit:hover { opacity: .85; }
+    .footer-credit-text {
+      display: block; font-size: .88rem;
+      color: var(--cream-soft); letter-spacing: .04em; font-weight: 400;
+    }
+    .footer-credit-text strong { color: var(--gold); font-weight: 600; margin-left: .25rem; }
+    .footer-credit-sub {
+      display: block; font-size: .68rem; color: var(--gray);
+      letter-spacing: .08em; margin-top: .35rem; font-style: italic;
+    }
+    .footer-credit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="MT Lux Cars - Inicio">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="vehiculos.html">Vehículos</a></li>
+      <li><a href="asesoramiento.html">Asesoramiento</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-overlay" aria-hidden="true">
+    <a href="index.html">Inicio</a>
+    <a href="vehiculos.html">Vehículos</a>
+    <a href="asesoramiento.html">Asesoramiento</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <header class="legal-header">
+    <p class="eyebrow">Información legal</p>
+    <h1>Términos y Condiciones</h1>
+    <div class="legal-line"></div>
+  </header>
+
+  <main class="legal-content">
+
+    <h2>1. Información general</h2>
+    <p>El presente documento regula los términos y condiciones de uso del sitio web MT Lux Cars (en adelante, "el Sitio Web"), titularidad de <strong>María Teresa Sanvicens De la Rosa</strong>, con NIF 78589660V y domicilio en Calle Manolo Millares, 88, 35500 Arrecife, Las Palmas (Lanzarote).</p>
+    <p>El uso del Sitio Web atribuye al visitante la condición de Usuario e implica la aceptación expresa y plena de los presentes términos y condiciones.</p>
+
+    <h2>2. Naturaleza del Sitio Web</h2>
+    <p>Este sitio web tiene <strong>carácter exclusivamente informativo y de escaparate</strong>. A través del mismo no se realizan ventas online ni se formalizan contratos de compraventa.</p>
+    <p>Los vehículos mostrados son una selección de la oferta disponible y están sujetos a disponibilidad real. La compraventa final se formaliza siempre <strong>en persona</strong>, en el establecimiento del titular o mediante los canales acordados, con la documentación legal correspondiente.</p>
+
+    <h2>3. Información sobre los vehículos</h2>
+    <p>La información mostrada sobre cada vehículo (características técnicas, equipamientos, fotografías y precios cuando aplique) se proporciona con la mayor exactitud posible. No obstante, pueden existir errores tipográficos, datos no actualizados o cambios en las especificaciones que no se hayan reflejado todavía en el Sitio Web.</p>
+    <p>Antes de tomar cualquier decisión de compra, recomendamos al usuario contactar directamente con el titular para confirmar:</p>
+    <ul>
+      <li>La disponibilidad real del vehículo.</li>
+      <li>El precio definitivo y las condiciones de venta.</li>
+      <li>Las características técnicas y el equipamiento concreto.</li>
+      <li>El estado del vehículo y, en su caso, el kilometraje y la documentación.</li>
+    </ul>
+    <p>Los precios indicados en el Sitio Web, cuando los hubiera, son <strong>orientativos</strong> y no constituyen oferta vinculante. La oferta definitiva se realizará en el momento de la consulta personalizada.</p>
+
+    <h2>4. Proceso de contacto y compra</h2>
+    <p>El usuario interesado en cualquiera de los vehículos mostrados puede ponerse en contacto a través de los siguientes canales habilitados en el Sitio Web:</p>
+    <ul>
+      <li>Teléfono: +34 622 017 410</li>
+      <li>WhatsApp: a través del botón habilitado en la web</li>
+      <li>Email: info@mansionarcos.com</li>
+    </ul>
+    <p>El proceso de compra es totalmente personalizado y comprende, con carácter orientativo, las siguientes fases:</p>
+    <ul>
+      <li>Consulta inicial y atención de la solicitud.</li>
+      <li>Visita al establecimiento o envío de información detallada.</li>
+      <li>Negociación de las condiciones económicas y, en su caso, financiación.</li>
+      <li>Formalización del contrato de compraventa.</li>
+      <li>Trámites administrativos y entrega del vehículo.</li>
+    </ul>
+
+    <h2>5. Garantías</h2>
+    <p>Los vehículos comercializados cuentan con las garantías legales establecidas por la normativa española vigente en materia de consumidores y usuarios. Las condiciones específicas de garantía de cada vehículo se detallarán por escrito en el contrato de compraventa correspondiente.</p>
+
+    <h2>6. Responsabilidad del usuario</h2>
+    <p>El usuario se compromete a hacer un uso lícito y diligente del Sitio Web, así como de la información que en él se ofrece, respetando la legalidad vigente y los presentes términos y condiciones. El usuario es el único responsable del uso que haga de la información obtenida a través del Sitio Web.</p>
+
+    <h2>7. Limitación de responsabilidad</h2>
+    <p>El titular no será responsable de los daños o perjuicios de cualquier naturaleza que pudieran derivarse de la falta de exactitud, integridad, actualización o veracidad de la información contenida en el Sitio Web, ni de las decisiones que el usuario pueda tomar basándose exclusivamente en dicha información sin haber confirmado los datos directamente con el titular.</p>
+
+    <h2>8. Propiedad intelectual</h2>
+    <p>Todos los contenidos del Sitio Web (textos, imágenes, fotografías, marcas, logotipos, etc.) son propiedad del titular o de terceros que han autorizado su uso. Su reproducción, distribución o uso sin autorización está expresamente prohibida.</p>
+
+    <h2>9. Modificaciones</h2>
+    <p>El titular se reserva el derecho a modificar, en cualquier momento y sin previo aviso, los presentes términos y condiciones, así como cualquier contenido del Sitio Web. Las modificaciones tendrán efecto desde el momento de su publicación en el Sitio Web.</p>
+
+    <h2>10. Legislación y jurisdicción</h2>
+    <p>Los presentes términos y condiciones se rigen por la legislación española vigente. Para la resolución de cualquier controversia derivada del uso del Sitio Web o de las relaciones comerciales que pudieran iniciarse a través del mismo, ambas partes se someten expresamente a la jurisdicción de los <strong>Juzgados y Tribunales de Arrecife (Lanzarote)</strong>, con renuncia a cualquier otro fuero que pudiera corresponderles.</p>
+
+    <p class="updated">Última actualización: abril de 2026</p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </div>
+    <div class="footer-line" aria-hidden="true"></div>
+    <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
+    <p class="footer-info">
+      +34 622 017 410<span>·</span>info@mansionarcos.com<span>·</span>Arrecife, Lanzarote
+    </p>
+    <nav class="footer-legal" aria-label="Enlaces legales">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+      <a href="politica-cookies.html">Cookies</a>
+      <a href="terminos-condiciones.html" class="active">Términos y condiciones</a>
+    </nav>
+    <p class="footer-copy">© 2026 MT Lux Cars. Todos los derechos reservados.</p>
+    <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
+      <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
+      <span class="footer-credit-sub">(pincha para visitar web)</span>
+    </a>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const overlay = document.querySelector('.mobile-overlay');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      overlay.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      overlay.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  </script>
+  <script src="cookies.js" defer></script>
+</body>
+</html>

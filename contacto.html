@@ -336,6 +336,17 @@
     .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
     .footer-info span { margin: 0 .5rem; }
     .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+    .footer-legal {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 1rem 1.4rem; margin: 0 auto 1.5rem; max-width: 700px;
+    }
+    .footer-legal a {
+      font-size: .72rem; color: var(--cream-soft);
+      letter-spacing: .06em; transition: color .3s ease;
+      padding: .25rem .15rem; border-bottom: 1px solid transparent;
+    }
+    .footer-legal a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .footer-legal a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
     .footer-credit {
       display: inline-block;
       margin-top: 1.4rem;
@@ -416,13 +427,10 @@
         <p class="map-desc">
           Te esperamos en nuestro showroom de Lanzarote. Concierta tu visita y descubre en persona toda nuestra colección de vehículos exclusivos.
         </p>
-        <div class="map-embed">
-          <iframe
-            src="https://maps.google.com/maps?q=Calle+Manolo+Millares+88,+35500+Arrecife,+Lanzarote,+Las+Palmas&z=17&output=embed"
-            title="Ubicación MT Lux Cars - Calle Manolo Millares 88, Arrecife"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
+        <div class="map-embed"
+             data-cc-map
+             data-cc-map-src="https://maps.google.com/maps?q=Calle+Manolo+Millares+88,+35500+Arrecife,+Lanzarote,+Las+Palmas&z=17&output=embed"
+             data-cc-map-title="Ubicación MT Lux Cars - Calle Manolo Millares 88, Arrecife">
         </div>
         <a href="https://www.google.com/maps/search/?api=1&query=Calle+Manolo+Millares+88,+35500+Arrecife,+Lanzarote,+Las+Palmas"
            class="cta-btn map-cta" target="_blank" rel="noopener noreferrer">
@@ -443,7 +451,7 @@
             </div>
             <div>
               <p class="info-label">Teléfono</p>
-              <p class="info-value">+34 928 000 000</p>
+              <p class="info-value">+34 622 017 410</p>
             </div>
           </div>
 
@@ -456,7 +464,7 @@
             </div>
             <div>
               <p class="info-label">Email</p>
-              <p class="info-value">info@mtluxcars.com</p>
+              <p class="info-value">info@mansionarcos.com</p>
             </div>
           </div>
 
@@ -493,7 +501,7 @@
   </section>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/34928000000?text=Hola%2C%20me%20interesa%20un%20veh%C3%ADculo%20de%20MT%20Lux%20Cars"
+  <a href="https://wa.me/34622017410?text=Hola%2C%20me%20interesa%20un%20veh%C3%ADculo%20de%20MT%20Lux%20Cars"
      class="whatsapp-float" target="_blank" rel="noopener noreferrer"
      aria-label="Contactar por WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -509,9 +517,15 @@
     <div class="footer-line" aria-hidden="true"></div>
     <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
     <p class="footer-info">
-      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Arrecife, Lanzarote
+      +34 622 017 410<span>·</span>info@mansionarcos.com<span>·</span>Arrecife, Lanzarote
     </p>
-    <p class="footer-copy">© 2024 MT Lux Cars. Todos los derechos reservados.</p>
+    <nav class="footer-legal" aria-label="Enlaces legales">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+      <a href="politica-cookies.html">Cookies</a>
+      <a href="terminos-condiciones.html">Términos y condiciones</a>
+    </nav>
+    <p class="footer-copy">© 2026 MT Lux Cars. Todos los derechos reservados.</p>
     <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
       <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
       <span class="footer-credit-sub">(pincha para visitar web)</span>
@@ -562,5 +576,6 @@
       })();
     }
   </script>
+  <script src="cookies.js" defer></script>
 </body>
 </html>

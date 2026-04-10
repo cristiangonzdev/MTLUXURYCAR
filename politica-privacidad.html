@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — MT Lux Cars</title>
+  <meta name="description" content="Política de privacidad de MT Lux Cars conforme al RGPD y la LOPDGDD.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #060606;
+      --black-soft: #0F0F0F;
+      --black-card: #141414;
+      --gold: #C9A84C;
+      --gold-light: #E4C97A;
+      --cream: #F0EAD6;
+      --cream-soft: #D4CCBA;
+      --gray: #888880;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(6,6,6,.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: padding .4s ease;
+    }
+    .nav.scrolled { padding: .9rem 2rem; }
+    .nav-logo {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .nav-logo .mt { color: var(--cream); }
+    .nav-logo .lux { color: var(--gold); }
+    .nav-logo .cars { color: var(--cream); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-weight: 500; font-size: .82rem;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--cream-soft);
+      position: relative; padding-bottom: 3px; transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .35s ease-out;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 6px;
+      background: none; border: none; padding: 8px; z-index: 1100;
+      min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px; background: var(--cream);
+      transition: transform .35s ease, opacity .25s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(6,6,6,.97);
+      z-index: 1050; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; visibility: hidden; transition: opacity .4s ease, visibility .4s ease;
+    }
+    .mobile-overlay.open { opacity: 1; visibility: visible; }
+    .mobile-overlay a {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 2.2rem; font-weight: 400; color: var(--cream);
+      letter-spacing: .06em; transition: color .3s ease;
+    }
+    .mobile-overlay a:hover { color: var(--gold); }
+    .mobile-overlay a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    .legal-header {
+      padding: 9rem 1.5rem 3rem;
+      text-align: center;
+      background: var(--black-soft);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .legal-header .eyebrow {
+      font-family: var(--font-body); font-weight: 500;
+      font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .8rem;
+    }
+    .legal-header h1 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.2rem); color: var(--cream); line-height: 1.1;
+    }
+    .legal-line { width: 60px; height: 1px; background: var(--gold); margin: 1.4rem auto 0; }
+
+    .legal-content {
+      max-width: 760px; margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+    .legal-content h2 {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+      color: var(--cream); margin: 2.8rem 0 1rem; line-height: 1.25;
+    }
+    .legal-content h2:first-child { margin-top: 0; }
+    .legal-content h3 {
+      font-family: var(--font-display); font-weight: 500; font-size: 1.15rem;
+      color: var(--gold-light); margin: 1.8rem 0 .7rem;
+    }
+    .legal-content p {
+      font-size: .98rem; color: var(--cream-soft);
+      margin-bottom: 1.1rem; line-height: 1.8;
+    }
+    .legal-content ul {
+      margin: 0 0 1.4rem 1.2rem; color: var(--cream-soft);
+    }
+    .legal-content ul li {
+      font-size: .96rem; line-height: 1.8;
+      margin-bottom: .4rem; padding-left: .4rem;
+    }
+    .legal-content ul li::marker { color: var(--gold); }
+    .legal-content strong { color: var(--cream); font-weight: 600; }
+    .legal-content a {
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,.4);
+      transition: color .3s ease, border-color .3s ease;
+    }
+    .legal-content a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+    .legal-content .data-block {
+      background: var(--black-card);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 1.6rem;
+      margin: 1.4rem 0;
+    }
+    .legal-content .data-block p { margin-bottom: .4rem; font-size: .94rem; }
+    .legal-content .data-block p:last-child { margin-bottom: 0; }
+    .legal-content .updated {
+      margin-top: 3.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,168,76,.15);
+      font-size: .8rem; color: var(--gray);
+      text-align: center; letter-spacing: .04em;
+    }
+
+    .footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,.15);
+      padding: 3.5rem 2rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-logo .mt { color: var(--cream); }
+    .footer-logo .lux { color: var(--gold); }
+    .footer-logo .cars { color: var(--cream); }
+    .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
+    .footer-tagline {
+      font-family: var(--font-body); font-weight: 400; font-size: .85rem;
+      color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
+    }
+    .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
+    .footer-info span { margin: 0 .5rem; }
+    .footer-legal {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 1rem 1.4rem; margin: 0 auto 1.5rem; max-width: 700px;
+    }
+    .footer-legal a {
+      font-size: .72rem; color: var(--cream-soft);
+      letter-spacing: .06em; transition: color .3s ease;
+      padding: .25rem .15rem; border-bottom: 1px solid transparent;
+    }
+    .footer-legal a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .footer-legal a.active { color: var(--gold); }
+    .footer-legal a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+    .footer-credit {
+      display: inline-block; margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,.12);
+      text-align: center; transition: opacity .3s ease;
+    }
+    .footer-credit:hover { opacity: .85; }
+    .footer-credit-text {
+      display: block; font-size: .88rem;
+      color: var(--cream-soft); letter-spacing: .04em; font-weight: 400;
+    }
+    .footer-credit-text strong { color: var(--gold); font-weight: 600; margin-left: .25rem; }
+    .footer-credit-sub {
+      display: block; font-size: .68rem; color: var(--gray);
+      letter-spacing: .08em; margin-top: .35rem; font-style: italic;
+    }
+    .footer-credit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="MT Lux Cars - Inicio">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="vehiculos.html">Vehículos</a></li>
+      <li><a href="asesoramiento.html">Asesoramiento</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-overlay" aria-hidden="true">
+    <a href="index.html">Inicio</a>
+    <a href="vehiculos.html">Vehículos</a>
+    <a href="asesoramiento.html">Asesoramiento</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <header class="legal-header">
+    <p class="eyebrow">Información legal</p>
+    <h1>Política de Privacidad</h1>
+    <div class="legal-line"></div>
+  </header>
+
+  <main class="legal-content">
+
+    <h2>1. Responsable del tratamiento</h2>
+    <p>De conformidad con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), informamos sobre el tratamiento de los datos personales de los usuarios que visiten o contacten a través de este sitio web.</p>
+    <div class="data-block">
+      <p><strong>Responsable:</strong> María Teresa Sanvicens De la Rosa</p>
+      <p><strong>NIF:</strong> 78589660V</p>
+      <p><strong>Domicilio:</strong> Calle Manolo Millares, 88 — 35500 Arrecife, Las Palmas (Lanzarote)</p>
+      <p><strong>Email de contacto:</strong> info@mansionarcos.com</p>
+      <p><strong>Teléfono:</strong> +34 622 017 410</p>
+    </div>
+
+    <h2>2. Datos personales que recabamos</h2>
+    <p>Este sitio web <strong>no dispone de formularios de contacto</strong> que recopilen datos automáticamente. Los datos personales solo se recogen cuando el usuario decide voluntariamente ponerse en contacto a través de los siguientes canales:</p>
+    <ul>
+      <li>Llamada telefónica</li>
+      <li>Mensaje de WhatsApp</li>
+      <li>Correo electrónico</li>
+    </ul>
+    <p>En estos casos, los datos que pueden ser tratados son:</p>
+    <ul>
+      <li>Nombre y apellidos</li>
+      <li>Número de teléfono</li>
+      <li>Dirección de correo electrónico</li>
+      <li>Información sobre el vehículo de interés</li>
+      <li>Cualquier otra información que el usuario facilite voluntariamente</li>
+    </ul>
+
+    <h2>3. Finalidad del tratamiento</h2>
+    <p>Los datos personales recabados serán tratados con las siguientes finalidades:</p>
+    <ul>
+      <li>Atender consultas, dudas y peticiones de información sobre los vehículos disponibles.</li>
+      <li>Gestionar la posible compraventa de un vehículo y todas las gestiones derivadas.</li>
+      <li>Mantener el contacto comercial cuando el usuario así lo solicite o cuando exista un interés legítimo en dicha relación.</li>
+    </ul>
+    <p>Los datos no serán utilizados para fines distintos de los aquí descritos sin recabar previamente el consentimiento expreso del interesado.</p>
+
+    <h2>4. Base legal del tratamiento</h2>
+    <p>La base jurídica que legitima el tratamiento de los datos es:</p>
+    <ul>
+      <li><strong>El consentimiento del interesado</strong> al ponerse en contacto voluntariamente.</li>
+      <li><strong>La ejecución de un contrato</strong> o la aplicación de medidas precontractuales solicitadas por el interesado.</li>
+      <li><strong>El interés legítimo del responsable</strong> para responder a las consultas planteadas y mantener una relación comercial cuando proceda.</li>
+    </ul>
+
+    <h2>5. Plazo de conservación</h2>
+    <p>Los datos personales se conservarán durante el tiempo necesario para atender la consulta o gestión planteada. Una vez finalizada esta, los datos se conservarán durante un período máximo de <strong>2 años</strong> tras el último contacto, salvo que exista una obligación legal que exija su conservación durante un plazo superior (por ejemplo, normativa fiscal o mercantil).</p>
+
+    <h2>6. Destinatarios de los datos</h2>
+    <p>Los datos personales no se cederán a terceros salvo en los siguientes casos:</p>
+    <ul>
+      <li>Cuando exista una obligación legal que así lo requiera.</li>
+      <li>Cuando sea estrictamente necesario para la ejecución del servicio (por ejemplo, gestoría administrativa, entidades financieras en caso de financiación, o aseguradoras).</li>
+    </ul>
+    <p>No se realizan transferencias internacionales de datos fuera del Espacio Económico Europeo.</p>
+
+    <h2>7. Derechos del usuario</h2>
+    <p>Como titular de los datos personales, tienes los siguientes derechos:</p>
+    <ul>
+      <li><strong>Acceso:</strong> conocer qué datos personales tuyos estamos tratando.</li>
+      <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos o incompletos.</li>
+      <li><strong>Supresión ("derecho al olvido"):</strong> solicitar la eliminación de tus datos cuando ya no sean necesarios.</li>
+      <li><strong>Limitación del tratamiento:</strong> solicitar que se limite el tratamiento en determinados casos.</li>
+      <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos.</li>
+      <li><strong>Portabilidad:</strong> recibir tus datos en un formato estructurado y de uso común.</li>
+      <li><strong>Revocación del consentimiento:</strong> retirar el consentimiento prestado en cualquier momento.</li>
+    </ul>
+    <p>Puedes ejercer estos derechos enviando un correo electrónico a <a href="mailto:info@mansionarcos.com">info@mansionarcos.com</a>, indicando claramente el derecho que deseas ejercer y adjuntando una copia de tu DNI o documento equivalente que acredite tu identidad.</p>
+    <p>Si consideras que tus derechos no han sido atendidos correctamente, tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).</p>
+
+    <h2>8. Medidas de seguridad</h2>
+    <p>Hemos adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad y la confidencialidad de los datos personales tratados, evitando su alteración, pérdida, tratamiento o acceso no autorizado, teniendo en cuenta el estado de la tecnología, la naturaleza de los datos y los riesgos a los que están expuestos.</p>
+
+    <h2>9. Modificaciones</h2>
+    <p>El responsable se reserva el derecho a modificar la presente política de privacidad para adaptarla a novedades legislativas o jurisprudenciales. En estos supuestos, se anunciarán los cambios indicando claramente y con la suficiente antelación las modificaciones realizadas.</p>
+
+    <p class="updated">Última actualización: abril de 2026</p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="mt">MT </span><span class="lux">LUX </span><span class="cars">CARS</span>
+    </div>
+    <div class="footer-line" aria-hidden="true"></div>
+    <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
+    <p class="footer-info">
+      +34 622 017 410<span>·</span>info@mansionarcos.com<span>·</span>Arrecife, Lanzarote
+    </p>
+    <nav class="footer-legal" aria-label="Enlaces legales">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="politica-privacidad.html" class="active">Privacidad</a>
+      <a href="politica-cookies.html">Cookies</a>
+      <a href="terminos-condiciones.html">Términos y condiciones</a>
+    </nav>
+    <p class="footer-copy">© 2026 MT Lux Cars. Todos los derechos reservados.</p>
+    <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
+      <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
+      <span class="footer-credit-sub">(pincha para visitar web)</span>
+    </a>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const overlay = document.querySelector('.mobile-overlay');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      overlay.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      overlay.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  </script>
+  <script src="cookies.js" defer></script>
+</body>
+</html>
