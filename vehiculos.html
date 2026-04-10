@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vehículos — MT Lux Cars</title>
-  <meta name="description" content="Explora nuestra colección de vehículos de lujo: BMW, Porsche, Mercedes, Aston Martin, Lamborghini y más.">
+  <meta name="description" content="Colección de vehículos de lujo en Lanzarote: BMW X5, Mercedes-Benz G63, S63, GLE, GLC, Porsche Cayenne, Panamera y más.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -20,8 +20,8 @@
       --cream: #F0EAD6;
       --cream-soft: #D4CCBA;
       --gray: #888880;
-      --font-display: 'Cormorant Garamond', serif;
-      --font-body: 'Raleway', sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -29,7 +29,7 @@
       background: var(--black);
       color: var(--cream);
       font-family: var(--font-body);
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -64,7 +64,7 @@
       padding: .9rem 2rem;
     }
     .nav-logo {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
     }
     .nav-logo .mt { color: var(--cream); }
@@ -108,7 +108,7 @@
     .mobile-overlay.open { opacity: 1; visibility: visible; }
     .mobile-overlay a {
       font-family: var(--font-display); font-style: italic;
-      font-size: 2.2rem; font-weight: 300; color: var(--cream);
+      font-size: 2.2rem; font-weight: 400; color: var(--cream);
       letter-spacing: .06em; transition: color .3s ease;
     }
     .mobile-overlay a:hover { color: var(--gold); }
@@ -138,6 +138,24 @@
     .cta-btn:hover::before { transform: translateX(0); }
     .cta-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
 
+    /* WhatsApp variant */
+    .wa-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: .6rem;
+      padding: .95rem 1.8rem;
+      background: #25D366;
+      color: #fff;
+      border: 1px solid #25D366;
+      font-family: var(--font-body); font-weight: 500;
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+      transition: background .3s ease, transform .3s ease;
+      min-height: 44px;
+      cursor: pointer;
+    }
+    .wa-btn:hover { background: #1ebe57; transform: translateY(-2px); }
+    .wa-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .wa-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
     /* ══════════ REVEAL ══════════ */
     .reveal {
       opacity: 0; transform: translateY(28px);
@@ -156,7 +174,7 @@
     }
     .hero-interior .hero-bg {
       position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85') center/cover no-repeat;
+      background: url('images/mercedesbenzg63front.webp') center/cover no-repeat;
       animation: kenburns 20s ease-in-out infinite alternate;
     }
     @keyframes kenburns {
@@ -165,13 +183,19 @@
     }
     .hero-interior .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(6,6,6,.5) 0%, rgba(6,6,6,.7) 100%);
+      background: linear-gradient(180deg, rgba(6,6,6,.55) 0%, rgba(6,6,6,.78) 100%);
     }
     .hero-interior .hero-content {
-      position: relative; z-index: 2; text-align: center;
+      position: relative; z-index: 2; text-align: center; padding: 0 1rem;
+    }
+    .hero-interior .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 400; font-size: .78rem;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
     }
     .hero-interior .hero-title {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--cream);
     }
 
@@ -201,63 +225,341 @@
     .vehicles-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-      max-width: 1200px;
+      gap: 2rem;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 3rem 2rem 6rem;
+      padding: 3.5rem 2rem 6rem;
     }
-    @media (max-width: 900px) {
-      .vehicles-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 1000px) {
+      .vehicles-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     }
-    @media (max-width: 540px) {
-      .vehicles-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 2rem 1rem 4rem; }
+    @media (max-width: 600px) {
+      .vehicles-grid { grid-template-columns: 1fr; max-width: 460px; padding: 2rem 1rem 4rem; }
     }
 
     .v-card {
       background: var(--black-card);
       border: 1px solid rgba(201,168,76,.08);
       overflow: hidden;
-      transition: border-color .3s ease, transform .3s ease;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .7s ease-out, transform .7s ease-out, border-color .35s ease;
     }
+    .v-card.card-visible { opacity: 1; transform: translateY(0); }
     .v-card:hover {
-      border-color: rgba(201,168,76,.25);
-      transform: translateY(-4px);
+      border-color: rgba(201,168,76,.35);
     }
     .v-card-img {
       position: relative; overflow: hidden; aspect-ratio: 16/10;
+      cursor: pointer;
+      background: #000;
     }
     .v-card-img img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform .6s ease;
+      transition: transform .8s ease;
     }
-    .v-card:hover .v-card-img img { transform: scale(1.07); }
+    .v-card:hover .v-card-img img { transform: scale(1.06); }
+    .v-card-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(6,6,6,.6) 100%);
+      pointer-events: none;
+      opacity: .8;
+    }
     .v-card-badge {
-      position: absolute; top: 12px; left: 12px;
-      background: rgba(6,6,6,.75);
-      backdrop-filter: blur(6px);
-      padding: .3rem .8rem;
-      font-size: .65rem; font-weight: 400; letter-spacing: .12em;
+      position: absolute; top: 14px; left: 14px;
+      background: rgba(6,6,6,.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: .35rem .9rem;
+      font-size: .65rem; font-weight: 400; letter-spacing: .14em;
       text-transform: uppercase; color: var(--gold);
-      border: 1px solid rgba(201,168,76,.2);
+      border: 1px solid rgba(201,168,76,.25);
+      z-index: 2;
     }
-    .v-card-body { padding: 1.5rem; }
+    .v-card-count {
+      position: absolute; bottom: 14px; right: 14px;
+      background: rgba(6,6,6,.7);
+      backdrop-filter: blur(8px);
+      padding: .3rem .7rem;
+      font-size: .68rem; color: var(--cream); letter-spacing: .08em;
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; gap: .35rem;
+      z-index: 2;
+    }
+    .v-card-count svg { width: 12px; height: 12px; fill: var(--gold); }
+
+    .v-card-body {
+      padding: 1.6rem 1.5rem 1.7rem;
+      display: flex; flex-direction: column; flex: 1;
+    }
     .v-card-name {
       font-family: var(--font-display); font-weight: 400;
-      font-size: 1.35rem; color: var(--cream); margin-bottom: .5rem;
+      font-size: 1.45rem; color: var(--cream); margin-bottom: .35rem;
+      line-height: 1.2;
     }
-    .v-card-specs {
-      font-size: .78rem; color: var(--gray); margin-bottom: .6rem; line-height: 1.5;
+    .v-card-desc {
+      font-size: .85rem; color: var(--cream-soft); line-height: 1.6;
+      margin-bottom: 1rem; flex: 1;
     }
     .v-card-price {
       font-family: var(--font-display); font-weight: 600;
-      font-size: 1.15rem; color: var(--gold); margin-bottom: 1.2rem;
+      font-size: 1rem; color: var(--gold); margin-bottom: 1.2rem;
+      letter-spacing: .02em;
     }
-    .v-card .cta-btn { font-size: .72rem; padding: .7rem 1.6rem; }
+    .v-card-actions {
+      display: flex; gap: .6rem; flex-wrap: wrap;
+    }
+    .v-card-actions .cta-btn,
+    .v-card-actions .wa-btn {
+      flex: 1; min-width: 0;
+      padding: .75rem .8rem;
+      font-size: .68rem;
+      letter-spacing: .1em;
+    }
 
-    @media (max-width: 540px) {
-      .v-card-body { padding: 1rem; }
-      .v-card-name { font-size: 1.1rem; }
-      .v-card .cta-btn { font-size: .68rem; padding: .6rem 1.2rem; }
+    /* ══════════ MODAL FULLSCREEN ══════════ */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 2000;
+      display: none;
+      overflow: hidden;
+    }
+    .modal.open {
+      display: block;
+      animation: modalFade .35s ease-out;
+    }
+    @keyframes modalFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      width: 100%;
+      height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      background: #000;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .modal-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+      }
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 1.2rem; right: 1.2rem;
+      width: 48px; height: 48px;
+      background: rgba(6,6,6,.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,168,76,.3);
+      color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+      transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+    }
+    .modal-close:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      transform: rotate(90deg);
+    }
+    .modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    /* Galería del modal */
+    .modal-gallery {
+      position: relative;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .gallery-main {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .gallery-main img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+    .gallery-main img.active { opacity: 1; }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px; height: 52px;
+      background: rgba(6,6,6,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,168,76,.3);
+      color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
+      z-index: 5;
+    }
+    .gallery-arrow:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+    .gallery-arrow:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .gallery-arrow.prev { left: 1.2rem; }
+    .gallery-arrow.next { right: 1.2rem; }
+
+    .gallery-counter {
+      position: absolute;
+      top: 1.2rem; left: 1.2rem;
+      background: rgba(6,6,6,.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: .5rem 1rem;
+      font-family: var(--font-body);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      color: var(--cream);
+      border: 1px solid rgba(201,168,76,.25);
+      z-index: 5;
+    }
+    .gallery-counter strong { color: var(--gold); font-weight: 500; }
+
+    .gallery-thumbs {
+      display: flex;
+      gap: .5rem;
+      padding: .7rem;
+      background: rgba(6,6,6,.92);
+      backdrop-filter: blur(10px);
+      overflow-x: auto;
+      flex-shrink: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+      border-top: 1px solid rgba(201,168,76,.12);
+    }
+    .gallery-thumbs::-webkit-scrollbar { height: 6px; }
+    .gallery-thumbs::-webkit-scrollbar-track { background: transparent; }
+    .gallery-thumbs::-webkit-scrollbar-thumb { background: rgba(201,168,76,.4); border-radius: 3px; }
+    .gallery-thumbs button {
+      flex-shrink: 0;
+      width: 72px; height: 50px;
+      border: 1px solid transparent;
+      background: #0a0a0a;
+      padding: 0;
+      overflow: hidden;
+      opacity: .5;
+      transition: opacity .3s ease, border-color .3s ease, transform .3s ease;
+    }
+    .gallery-thumbs button img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .gallery-thumbs button:hover { opacity: .85; }
+    .gallery-thumbs button.active {
+      opacity: 1;
+      border-color: var(--gold);
+      transform: scale(1.05);
+    }
+    .gallery-thumbs button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    /* Info del modal */
+    .modal-info {
+      background: var(--black-soft);
+      border-left: 1px solid rgba(201,168,76,.15);
+      padding: 3.5rem 2.2rem 2rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201,168,76,.3) transparent;
+    }
+    .modal-info::-webkit-scrollbar { width: 6px; }
+    .modal-info::-webkit-scrollbar-track { background: transparent; }
+    .modal-info::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 3px; }
+
+    .modal-cat {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .modal-line {
+      width: 50px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+    .modal-desc {
+      font-size: .92rem;
+      color: var(--cream-soft);
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+    }
+    .modal-price {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      letter-spacing: .02em;
+    }
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      margin-top: auto;
+    }
+    .modal-actions .wa-btn,
+    .modal-actions .cta-btn {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      font-size: .78rem;
+    }
+
+    @media (max-width: 900px) {
+      .modal-info {
+        border-left: none;
+        border-top: 1px solid rgba(201,168,76,.15);
+        padding: 1.4rem 1.2rem 1.2rem;
+        max-height: 42dvh;
+      }
+      .modal-title { font-size: 1.5rem; margin-bottom: .8rem; }
+      .modal-line { margin-bottom: 1rem; }
+      .modal-desc { font-size: .85rem; margin-bottom: 1.2rem; line-height: 1.6; }
+      .modal-price { font-size: 1.15rem; margin-bottom: 1.2rem; }
+      .modal-actions { gap: .6rem; }
+      .modal-actions .wa-btn,
+      .modal-actions .cta-btn { padding: .85rem 1rem; font-size: .72rem; }
+
+      .gallery-arrow { width: 44px; height: 44px; }
+      .gallery-arrow.prev { left: .6rem; }
+      .gallery-arrow.next { right: .6rem; }
+      .gallery-counter { top: .8rem; left: .8rem; padding: .35rem .8rem; font-size: .7rem; }
+      .modal-close { top: .8rem; right: .8rem; width: 44px; height: 44px; }
+      .gallery-thumbs { padding: .5rem; }
+      .gallery-thumbs button { width: 60px; height: 42px; }
     }
 
     /* ══════════ FOOTER ══════════ */
@@ -267,7 +569,7 @@
       padding: 3.5rem 2rem 2rem; text-align: center;
     }
     .footer-logo {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
       margin-bottom: 1rem;
     }
@@ -276,12 +578,42 @@
     .footer-logo .cars { color: var(--cream); }
     .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
     .footer-tagline {
-      font-family: var(--font-body); font-weight: 200; font-size: .85rem;
+      font-family: var(--font-body); font-weight: 400; font-size: .85rem;
       color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
     }
     .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
     .footer-info span { margin: 0 .5rem; }
     .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+    .footer-credit {
+      display: inline-block;
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,.12);
+      text-align: center;
+      transition: opacity .3s ease;
+    }
+    .footer-credit:hover { opacity: .85; }
+    .footer-credit-text {
+      display: block;
+      font-size: .88rem;
+      color: var(--cream-soft);
+      letter-spacing: .04em;
+      font-weight: 400;
+    }
+    .footer-credit-text strong {
+      color: var(--gold);
+      font-weight: 600;
+      margin-left: .25rem;
+    }
+    .footer-credit-sub {
+      display: block;
+      font-size: .68rem;
+      color: var(--gray);
+      letter-spacing: .08em;
+      margin-top: .35rem;
+      font-style: italic;
+    }
+    .footer-credit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
   </style>
 </head>
 <body>
@@ -316,6 +648,7 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
+      <p class="hero-eyebrow">Stock disponible</p>
       <h1 class="hero-title">Nuestra Colección</h1>
     </div>
   </section>
@@ -325,84 +658,57 @@
     <button class="filter-btn active" data-filter="all">Todos</button>
     <button class="filter-btn" data-filter="sedan">Sedán</button>
     <button class="filter-btn" data-filter="suv">SUV</button>
-    <button class="filter-btn" data-filter="sport">Sport</button>
     <button class="filter-btn" data-filter="gt">Gran Turismo</button>
   </div>
 
   <!-- GRID -->
-  <section class="vehicles-grid" aria-label="Catálogo de vehículos">
+  <section class="vehicles-grid" id="vehiclesGrid" aria-label="Catálogo de vehículos"></section>
 
-    <article class="v-card reveal" data-category="sedan">
-      <div class="v-card-img">
-        <span class="v-card-badge">Sedán</span>
-        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80"
-             alt="BMW M5 Competition negro" loading="lazy" width="600" height="375">
-      </div>
-      <div class="v-card-body">
-        <h2 class="v-card-name">BMW M5 Competition</h2>
-        <p class="v-card-specs">4.4L V8 · 625 CV · 0-100 en 3.3s</p>
-        <p class="v-card-price">desde 148.900 €</p>
-        <a href="contacto.html" class="cta-btn">Solicitar información</a>
-      </div>
-    </article>
+  <!-- MODAL GALERÍA -->
+  <div class="modal" id="vehicleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar galería">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="6" y1="18" x2="18" y2="6"/>
+        </svg>
+      </button>
 
-    <article class="v-card reveal" data-category="sport">
-      <div class="v-card-img">
-        <span class="v-card-badge">Sport</span>
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80"
-             alt="Porsche 911 GT3 RS blanco" loading="lazy" width="600" height="375">
+      <div class="modal-gallery">
+        <div class="gallery-main" id="galleryMain">
+          <button class="gallery-arrow prev" id="galleryPrev" aria-label="Imagen anterior">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <button class="gallery-arrow next" id="galleryNext" aria-label="Imagen siguiente">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+          <div class="gallery-counter" id="galleryCounter"><strong>1</strong> / 1</div>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
       </div>
-      <div class="v-card-body">
-        <h2 class="v-card-name">Porsche 911 GT3 RS</h2>
-        <p class="v-card-specs">4.0L Boxer · 525 CV · Tracción trasera</p>
-        <p class="v-card-price">desde 229.500 €</p>
-        <a href="contacto.html" class="cta-btn">Solicitar información</a>
-      </div>
-    </article>
 
-    <article class="v-card reveal" data-category="gt">
-      <div class="v-card-img">
-        <span class="v-card-badge">Gran Turismo</span>
-        <img src="https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=600&q=80"
-             alt="Mercedes AMG GT 63 gris" loading="lazy" width="600" height="375">
+      <div class="modal-info">
+        <p class="modal-cat" id="modalCat">SUV</p>
+        <h2 class="modal-title" id="modalTitle">Vehículo</h2>
+        <div class="modal-line"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+        <p class="modal-price" id="modalPrice"></p>
+        <div class="modal-actions">
+          <a class="wa-btn" id="modalWa" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Contactar por WhatsApp
+          </a>
+          <a href="contacto.html" class="cta-btn">Solicitar información</a>
+        </div>
       </div>
-      <div class="v-card-body">
-        <h2 class="v-card-name">Mercedes AMG GT 63</h2>
-        <p class="v-card-specs">4.0L V8 Biturbo · 639 CV · 4MATIC+</p>
-        <p class="v-card-price">desde 196.000 €</p>
-        <a href="contacto.html" class="cta-btn">Solicitar información</a>
-      </div>
-    </article>
-
-    <article class="v-card reveal" data-category="gt">
-      <div class="v-card-img">
-        <span class="v-card-badge">Gran Turismo</span>
-        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80"
-             alt="Aston Martin DB11 Volante descapotable" loading="lazy" width="600" height="375">
-      </div>
-      <div class="v-card-body">
-        <h2 class="v-card-name">Aston Martin DB11 Volante</h2>
-        <p class="v-card-specs">5.2L V12 · 630 CV · Descapotable</p>
-        <p class="v-card-price">desde 272.000 €</p>
-        <a href="contacto.html" class="cta-btn">Solicitar información</a>
-      </div>
-    </article>
-
-    <article class="v-card reveal" data-category="suv">
-      <div class="v-card-img">
-        <span class="v-card-badge">SUV</span>
-        <img src="https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?w=600&q=80"
-             alt="Lamborghini Urus Performante" loading="lazy" width="600" height="375">
-      </div>
-      <div class="v-card-body">
-        <h2 class="v-card-name">Lamborghini Urus Performante</h2>
-        <p class="v-card-specs">4.0L V8 · 666 CV · AWD</p>
-        <p class="v-card-price">desde 289.000 €</p>
-        <a href="contacto.html" class="cta-btn">Solicitar información</a>
-      </div>
-    </article>
-
-  </section>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -412,19 +718,401 @@
     <div class="footer-line" aria-hidden="true"></div>
     <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
     <p class="footer-info">
-      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Lanzarote, Canarias
+      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Arrecife, Lanzarote
     </p>
     <p class="footer-copy">© 2024 MT Lux Cars. Todos los derechos reservados.</p>
+    <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
+      <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
+      <span class="footer-credit-sub">(pincha para visitar web)</span>
+    </a>
   </footer>
 
   <script>
-    /* ── Scroll navbar ── */
+    /* ══════════ DATOS DE VEHÍCULOS ══════════ */
+    const WA_PHONE = '34928000000';
+
+    const cars = [
+      {
+        id: 'bmw-x5',
+        name: 'BMW X5',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'SUV deportivo de lujo. Tecnología BMW de última generación, potencia y refinamiento.',
+        description: 'El BMW X5 representa la cumbre del SAV (Sports Activity Vehicle) de la marca alemana. Combina una conducción dinámica heredada del ADN BMW con un confort excepcional, espacio interior generoso y materiales premium en cada detalle. Equipamiento completo, asistencias avanzadas a la conducción y un acabado impecable.',
+        price: 'Precio a consultar',
+        images: [
+          'bmwx5.webp',
+          'bmwx5lateral.webp',
+          'bmwx5traserolateral.webp',
+          'bmwx5trasero.webp',
+          'bmwx5rueda.webp',
+          'bmwx5interior.webp',
+          'bmwx5interiorentero.webp',
+          'bmwx5volante.webp'
+        ]
+      },
+      {
+        id: 'mb-cla-250',
+        name: 'Mercedes Benz CLA 250',
+        category: 'sedan',
+        categoryLabel: 'Sedán',
+        short: 'Coupé compacto con la elegancia atemporal de la estrella de tres puntas.',
+        description: 'El CLA 250 redefine el sedán deportivo compacto con líneas fluidas tipo coupé, una motorización refinada y un interior tecnológico que mantiene puro el ADN de Mercedes-Benz. Pantallas digitales, MBUX, acabados premium y la conducción ágil propia de la gama compacta de la estrella.',
+        price: 'Precio a consultar',
+        images: [
+          'mercedesbenzcla.webp',
+          'mercedesbenzcla2.webp',
+          'mercedesbenzcla3.webp',
+          'mercedesbenzcla4.webp',
+          'mercedesbenzcla5.webp'
+        ]
+      },
+      {
+        id: 'mb-g63',
+        name: 'Mercedes Benz G63',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'El icono off-road con corazón AMG. Lujo bruto y presencia inigualable.',
+        description: 'El G 63 AMG combina la herencia todoterreno legendaria del Clase G con la potencia bestial del 4.0L V8 biturbo de AMG. 585 CV de pura emoción, interior artesanal en cuero Nappa, sonido inconfundible de los escapes laterales y una presencia que detiene el tráfico en cualquier ciudad del mundo. Una pieza de coleccionismo moderna.',
+        price: 'Precio a consultar',
+        images: [
+          'mercedesbenzg63morro.webp',
+          'mercedesbenzg63.webp',
+          'mercedesbenzg63front.webp',
+          'mercedesbenzg63morrlat.webp',
+          'mercedesbenzg63lat.webp',
+          'mercedesbenzg63esquina.webp',
+          'mercedesbenzg63esquinatrasera.webp',
+          'mercedesbenzg63piloto.webp',
+          'mercedesbenzg63puertatrasera.webp',
+          'mercedesbenzg63interiortrasero.webp',
+          'mercedesbenzg63maletero.webp',
+          'mercedesbenzg63maletero2.webp',
+          'mercedesbenzg63motor.webp',
+          'mercedesbenzg63pl.webp',
+          'g63motorplaca.webp',
+          'mercedesbenzg63(1).webp',
+          'mercedesbenzg63(2).webp',
+          'mercedesbenzg63(3).webp',
+          'mercedesbenzg63(4).webp',
+          'mercedesbenzg63(5).webp',
+          'mercedesbenzg63(6).webp',
+          'mercedesbenzg63(7).webp'
+        ]
+      },
+      {
+        id: 'mb-glc-300-gris',
+        name: 'Mercedes Benz GLC 300',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'SUV mediano premium. Equilibrio entre deportividad y elegancia urbana.',
+        description: 'El GLC 300 es el SUV polivalente por excelencia: motor 2.0L turbo eficiente, asistencias a la conducción de última generación, interior con sistema MBUX y todas las comodidades que esperas de Mercedes-Benz. Acabado en gris elegante, perfecto para uso diario y escapadas.',
+        price: 'Precio a consultar',
+        images: [
+          'mercedesbenzglcgris.webp',
+          'mercedesbenzglcgris2.webp',
+          'mercedesbenzglcgris3.webp',
+          'mercedesbenzglcgris4.webp',
+          'mercedesbenzglcgris5.webp',
+          'mercedesbenzglcgris6.webp',
+          'mercedesbenzglcgris7.webp',
+          'mercedesbenzglcgris8.webp'
+        ]
+      },
+      {
+        id: 'mb-glc-300-4matic',
+        name: 'Mercedes Benz GLC 300 4MATIC',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'SUV con tracción integral 4MATIC en acabado negro absoluto.',
+        description: 'La versión 4MATIC del GLC 300 añade tracción permanente a las cuatro ruedas, ofreciendo agarre y seguridad en cualquier condición de carretera. Acabado en negro elegante, equipamiento completo y la fiabilidad alemana de Mercedes-Benz en una unidad lista para entrega.',
+        price: 'Precio a consultar',
+        images: [
+          'mercedesglcnegro.webp',
+          'mercedesglcnegro2.webp',
+          'mercedesglcnegro3.webp',
+          'mercedesglcnegro4.webp',
+          'mercedesglcnegro5.webp',
+          'mercedesglcnegro6.webp',
+          'mercedesglcnegro7.webp'
+        ]
+      },
+      {
+        id: 'mb-gle',
+        name: 'Mercedes Benz GLE',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'SUV grande de lujo. Confort superlativo y la última tecnología premium.',
+        description: 'El GLE eleva el concepto de SUV de lujo con su silueta imponente, un interior espacioso de calidad excepcional y la última tecnología MBUX en una pantalla envolvente. Suspensión refinada, motorizaciones potentes y todo el equipamiento de seguridad y confort que distingue a la marca de la estrella.',
+        price: 'Precio a consultar',
+        images: [
+          'mercedesgle.webp',
+          'mercedesgleparrilla.webp',
+          'mercedesglecapo.webp',
+          'mercedesglerueda.webp',
+          'mercedesglemaletero.webp',
+          'mercedesglercopiloto.webp',
+          'mercedesglevolante.webp'
+        ]
+      },
+      {
+        id: 'mb-s63',
+        name: 'Mercedes Benz S 63',
+        category: 'sedan',
+        categoryLabel: 'Sedán',
+        short: 'La berlina más exclusiva. La cima absoluta del lujo y la potencia.',
+        description: 'El S 63 AMG es la representación máxima del lujo en cuatro puertas: motor V8 biturbo, interior bañado en cuero Nappa, suspensión activa, asientos con masaje y ventilación, y cada detalle pensado para una experiencia de conducción única. La referencia mundial del segmento de berlinas de alta gama.',
+        price: 'Precio a consultar',
+        images: [
+          'mercedess63.webp',
+          'mercedess63frontlateral.webp',
+          'mercedess63morro.webp',
+          'mercedess63morrolateral.webp',
+          'mercedess63morrolaterall.webp',
+          'mercedess63lateral.webp',
+          'mercedess63piloto.webp',
+          'mercedess63puerta.webp',
+          'mercedess63puertapiloto.webp',
+          'mercedess63trasero.webp',
+          'mercedess63escape.webp',
+          'mercedess63llanta.webp',
+          'mercedess63motor.webp',
+          'mercedess63interiortrasero.webp',
+          'mercedess63placas.webp'
+        ]
+      },
+      {
+        id: 'porshe-cayenne-negro',
+        name: 'Porshe Cayenne',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'SUV deportivo Porshe en acabado negro obsidiana.',
+        description: 'El Cayenne combina la pureza del ADN Porshe con la versatilidad de un SUV premium. Direcciones precisas, motorización potente, interior digno del crest de Stuttgart y materiales de primer nivel. Esta unidad luce un acabado en negro absoluto que realza sus líneas musculosas.',
+        price: 'Precio a consultar',
+        images: [
+          'porshecayennenegro.webp',
+          'porshecayennenegro2.webp',
+          'porshecayennenegro3.webp',
+          'porshecayennenegopiloto.webp'
+        ]
+      },
+      {
+        id: 'porshe-cayenne-blanco',
+        name: 'Porshe Cayenne',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: 'SUV deportivo Porshe en acabado blanco luminoso.',
+        description: 'La misma esencia Porshe del Cayenne, ahora en blanco luminoso. Líneas musculosas, conducción precisa heredada del 911, interior con materiales premium y todas las prestaciones que se esperan de la marca de Stuttgart. Una unidad impecable lista para sorprender.',
+        price: 'Precio a consultar',
+        images: [
+          'porshecaynneblanco.webp',
+          'porshecaynneblancofront.webp',
+          'porshecaynneblancoentr.webp',
+          'porshecaynneblancodetr.webp',
+          'porshecaynneblancorueda.webp',
+          'porshecaynneblancopuerta.webp',
+          'porshecaynneblancopiloto.webp',
+          'porshecaynneblancointeriorcentr.webp',
+          'porshecaynneblancomalet.webp',
+          'porshecaynneblancologo.webp'
+        ]
+      },
+      {
+        id: 'porshe-panamera',
+        name: 'Porshe Panamera',
+        category: 'gt',
+        categoryLabel: 'Gran Turismo',
+        short: 'Gran Turismo de cuatro puertas. Deportividad pura en formato lujo.',
+        description: 'El Panamera redefine el concepto de berlina deportiva: la conducción y precisión de un 911 con la habitabilidad y el refinamiento de un Gran Turismo de lujo. Una obra maestra de la ingeniería alemana, con todas las prestaciones para devorar carretera sin renunciar al confort.',
+        price: 'Precio a consultar',
+        images: [
+          'porshepanamera.webp',
+          'porshepanamera1.webp',
+          'porshepanamera2.webp',
+          'porshepanamera3.webp',
+          'porshepanamera4.webp',
+          'porshepanamera5.webp'
+        ]
+      }
+    ];
+
+    /* ══════════ RENDER GRID ══════════ */
+    const grid = document.getElementById('vehiclesGrid');
+    const cameraSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>';
+
+    function buildWaLink(carName) {
+      const msg = `Hola, me interesa el ${carName} que tienen en MT Lux Cars. ¿Podrían darme más información?`;
+      return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
+    }
+
+    cars.forEach(car => {
+      const article = document.createElement('article');
+      article.className = 'v-card';
+      article.dataset.category = car.category;
+      article.dataset.id = car.id;
+      article.innerHTML = `
+        <div class="v-card-img" data-action="open">
+          <span class="v-card-badge">${car.categoryLabel}</span>
+          <span class="v-card-count">${cameraSvg} ${car.images.length}</span>
+          <img src="images/${car.images[0]}" alt="${car.name}" loading="lazy">
+        </div>
+        <div class="v-card-body">
+          <h2 class="v-card-name">${car.name}</h2>
+          <p class="v-card-desc">${car.short}</p>
+          <p class="v-card-price">${car.price}</p>
+          <div class="v-card-actions">
+            <button type="button" class="cta-btn" data-action="open">Ver galería</button>
+            <a class="wa-btn" href="${buildWaLink(car.name)}" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp sobre ${car.name}">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(article);
+    });
+
+    /* ══════════ MODAL GALERÍA ══════════ */
+    const modal = document.getElementById('vehicleModal');
+    const modalClose = document.getElementById('modalClose');
+    const galleryMain = document.getElementById('galleryMain');
+    const galleryThumbs = document.getElementById('galleryThumbs');
+    const galleryCounter = document.getElementById('galleryCounter');
+    const galleryPrev = document.getElementById('galleryPrev');
+    const galleryNext = document.getElementById('galleryNext');
+    const modalCat = document.getElementById('modalCat');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalWa = document.getElementById('modalWa');
+
+    let currentCar = null;
+    let currentIndex = 0;
+    let lastFocused = null;
+
+    function openModal(carId, triggerEl) {
+      const car = cars.find(c => c.id === carId);
+      if (!car) return;
+      currentCar = car;
+      currentIndex = 0;
+      lastFocused = triggerEl || document.activeElement;
+
+      modalCat.textContent = car.categoryLabel;
+      modalTitle.textContent = car.name;
+      modalDesc.textContent = car.description;
+      modalPrice.textContent = car.price;
+      modalWa.href = buildWaLink(car.name);
+      modalWa.setAttribute('aria-label', `Contactar por WhatsApp sobre ${car.name}`);
+
+      // Build main images (preload the first, lazy others)
+      galleryMain.querySelectorAll('img').forEach(img => img.remove());
+      car.images.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = `images/${src}`;
+        img.alt = `${car.name} - imagen ${i + 1}`;
+        if (i === 0) img.classList.add('active');
+        img.loading = i === 0 ? 'eager' : 'lazy';
+        galleryMain.insertBefore(img, galleryPrev);
+      });
+
+      // Thumbs
+      galleryThumbs.innerHTML = '';
+      car.images.forEach((src, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-label', `Ver imagen ${i + 1}`);
+        if (i === 0) btn.classList.add('active');
+        btn.innerHTML = `<img src="images/${src}" alt="" loading="lazy">`;
+        btn.addEventListener('click', () => goTo(i));
+        galleryThumbs.appendChild(btn);
+      });
+
+      updateCounter();
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      currentCar = null;
+      if (lastFocused) lastFocused.focus();
+    }
+
+    function updateCounter() {
+      if (!currentCar) return;
+      galleryCounter.innerHTML = `<strong>${currentIndex + 1}</strong> / ${currentCar.images.length}`;
+    }
+
+    function goTo(i) {
+      if (!currentCar) return;
+      const total = currentCar.images.length;
+      currentIndex = (i + total) % total;
+      const imgs = galleryMain.querySelectorAll('img');
+      imgs.forEach((img, idx) => img.classList.toggle('active', idx === currentIndex));
+      const thumbs = galleryThumbs.querySelectorAll('button');
+      thumbs.forEach((t, idx) => t.classList.toggle('active', idx === currentIndex));
+      // Scroll active thumb into view
+      const activeThumb = thumbs[currentIndex];
+      if (activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+      updateCounter();
+    }
+
+    function nextImage() { goTo(currentIndex + 1); }
+    function prevImage() { goTo(currentIndex - 1); }
+
+    // Click delegation for opening modal
+    grid.addEventListener('click', e => {
+      const trigger = e.target.closest('[data-action="open"]');
+      if (!trigger) return;
+      const card = trigger.closest('.v-card');
+      if (!card) return;
+      openModal(card.dataset.id, trigger);
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    galleryPrev.addEventListener('click', prevImage);
+    galleryNext.addEventListener('click', nextImage);
+
+    // Close on backdrop click
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    });
+
+    // Touch swipe support on main image
+    let touchStartX = 0;
+    galleryMain.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    galleryMain.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) {
+        if (dx > 0) prevImage(); else nextImage();
+      }
+    }, { passive: true });
+
+    /* ══════════ NAV / CURSOR / FILTROS / REVEAL ══════════ */
+
+    /* Scroll navbar */
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    /* ── Hamburger ── */
+    /* Hamburger */
     const hamburger = document.querySelector('.hamburger');
     const overlay = document.querySelector('.mobile-overlay');
     hamburger.addEventListener('click', () => {
@@ -435,21 +1123,21 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
 
-    /* ── Filtros ── */
+    /* Filtros */
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.v-card');
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const f = btn.dataset.filter;
+        const cards = document.querySelectorAll('.v-card');
         cards.forEach(card => {
           if (f === 'all' || card.dataset.category === f) {
             card.style.display = '';
             card.style.opacity = '0';
             card.style.transform = 'translateY(16px)';
             requestAnimationFrame(() => {
-              card.style.transition = 'opacity .4s ease-out, transform .4s ease-out';
+              card.style.transition = 'opacity .45s ease-out, transform .45s ease-out';
               card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
             });
@@ -460,19 +1148,25 @@
       });
     });
 
-    /* ── Reveal ── */
+    /* Stagger reveal on cards */
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!prefersReduced) {
-      const reveals = document.querySelectorAll('.reveal');
+      const cards = document.querySelectorAll('.v-card');
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-      }, { threshold: 0.15 });
-      reveals.forEach(el => observer.observe(el));
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            const idx = Array.from(cards).indexOf(e.target);
+            setTimeout(() => e.target.classList.add('card-visible'), (idx % 3) * 120);
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      cards.forEach(el => observer.observe(el));
     } else {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      document.querySelectorAll('.v-card').forEach(el => el.classList.add('card-visible'));
     }
 
-    /* ── Cursor ── */
+    /* Cursor */
     if (window.matchMedia('(pointer: fine)').matches) {
       const dot = document.querySelector('.cursor-dot');
       const ring = document.querySelector('.cursor-ring');

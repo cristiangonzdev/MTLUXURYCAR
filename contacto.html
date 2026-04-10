@@ -7,7 +7,7 @@
   <meta name="description" content="Contacta con MT Lux Cars. Concesionario de lujo en Lanzarote, Canarias. Asesoramiento personalizado.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -20,8 +20,8 @@
       --cream: #F0EAD6;
       --cream-soft: #D4CCBA;
       --gray: #888880;
-      --font-display: 'Cormorant Garamond', serif;
-      --font-body: 'Raleway', sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -29,7 +29,7 @@
       background: var(--black);
       color: var(--cream);
       font-family: var(--font-body);
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -64,7 +64,7 @@
       padding: .9rem 2rem;
     }
     .nav-logo {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: 1.55rem; letter-spacing: .22em; text-transform: uppercase;
     }
     .nav-logo .mt { color: var(--cream); }
@@ -108,7 +108,7 @@
     .mobile-overlay.open { opacity: 1; visibility: visible; }
     .mobile-overlay a {
       font-family: var(--font-display); font-style: italic;
-      font-size: 2.2rem; font-weight: 300; color: var(--cream);
+      font-size: 2.2rem; font-weight: 400; color: var(--cream);
       letter-spacing: .06em; transition: color .3s ease;
     }
     .mobile-overlay a:hover { color: var(--gold); }
@@ -171,7 +171,7 @@
       position: relative; z-index: 2; text-align: center;
     }
     .hero-interior .hero-title {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--cream);
     }
 
@@ -192,83 +192,68 @@
     }
 
     /* ── Formulario ── */
-    .form-col h2 {
-      font-family: var(--font-display); font-weight: 300;
-      font-size: 2rem; color: var(--cream); margin-bottom: 2rem;
+    /* ── Mapa columna ── */
+    .map-col {
+      display: flex;
+      flex-direction: column;
     }
-    .form-group {
-      position: relative;
+    .map-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+    .map-col h2 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+    .map-line {
+      width: 50px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+    .map-desc {
+      font-size: .95rem;
+      color: var(--cream-soft);
+      line-height: 1.75;
       margin-bottom: 2rem;
     }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .map-embed {
+      position: relative;
       width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(201,168,76,.35);
-      padding: 1rem 0 .6rem;
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: .95rem;
-      color: var(--cream);
-      outline: none;
-      transition: border-color .3s ease;
-      min-height: 44px;
+      aspect-ratio: 4/3;
+      border: 1px solid rgba(201,168,76,.25);
+      overflow: hidden;
+      margin-bottom: 1.6rem;
+      background: #0a0a0a;
     }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-bottom-color: var(--gold);
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(.4) contrast(1.05);
+      transition: filter .4s ease;
     }
-    .form-group label {
-      position: absolute;
-      left: 0; top: 1rem;
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: .9rem;
-      color: var(--gray);
-      pointer-events: none;
-      transition: transform .25s ease, font-size .25s ease, color .25s ease;
+    .map-embed:hover iframe {
+      filter: grayscale(0) contrast(1);
     }
-    .form-group input:focus ~ label,
-    .form-group input:not(:placeholder-shown) ~ label,
-    .form-group textarea:focus ~ label,
-    .form-group textarea:not(:placeholder-shown) ~ label {
-      transform: translateY(-1.4rem);
-      font-size: .7rem;
-      color: var(--gold);
+    .map-cta {
+      align-self: flex-start;
     }
-    .form-group select ~ label {
-      transform: translateY(-1.4rem);
-      font-size: .7rem;
-      color: var(--gold);
-    }
-    .form-group select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C9A84C' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0 center;
-      padding-right: 20px;
-    }
-    .form-group select option {
-      background: var(--black-card);
-      color: var(--cream);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .form-submit {
-      margin-top: .5rem;
+    @media (max-width: 800px) {
+      .map-embed { aspect-ratio: 16/11; }
+      .map-cta { align-self: stretch; text-align: center; }
     }
 
     /* ── Info columna ── */
     .info-col h2 {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: 2rem; color: var(--cream); margin-bottom: 2rem;
     }
     .info-items {
@@ -293,29 +278,6 @@
     }
     .info-value {
       font-size: .92rem; color: var(--cream); line-height: 1.5;
-    }
-
-    /* Mapa placeholder */
-    .map-placeholder {
-      border: 1px solid rgba(201,168,76,.3);
-      padding: 3rem 2rem;
-      text-align: center;
-      margin-top: 1rem;
-    }
-    .map-placeholder p {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--cream-soft);
-    }
-    .map-placeholder span {
-      display: block;
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: .78rem;
-      color: var(--gray);
-      margin-top: .5rem;
-      letter-spacing: .08em;
     }
 
     /* ══════════ WHATSAPP FLOAT ══════════ */
@@ -359,7 +321,7 @@
       padding: 3.5rem 2rem 2rem; text-align: center;
     }
     .footer-logo {
-      font-family: var(--font-display); font-weight: 300;
+      font-family: var(--font-display); font-weight: 400;
       font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase;
       margin-bottom: 1rem;
     }
@@ -368,12 +330,42 @@
     .footer-logo .cars { color: var(--cream); }
     .footer-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
     .footer-tagline {
-      font-family: var(--font-body); font-weight: 200; font-size: .85rem;
+      font-family: var(--font-body); font-weight: 400; font-size: .85rem;
       color: var(--cream-soft); margin-bottom: 1.2rem; letter-spacing: .06em;
     }
     .footer-info { font-size: .78rem; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
     .footer-info span { margin: 0 .5rem; }
     .footer-copy { font-size: .68rem; color: var(--gray); opacity: .6; }
+    .footer-credit {
+      display: inline-block;
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(201,168,76,.12);
+      text-align: center;
+      transition: opacity .3s ease;
+    }
+    .footer-credit:hover { opacity: .85; }
+    .footer-credit-text {
+      display: block;
+      font-size: .88rem;
+      color: var(--cream-soft);
+      letter-spacing: .04em;
+      font-weight: 400;
+    }
+    .footer-credit-text strong {
+      color: var(--gold);
+      font-weight: 600;
+      margin-left: .25rem;
+    }
+    .footer-credit-sub {
+      display: block;
+      font-size: .68rem;
+      color: var(--gray);
+      letter-spacing: .08em;
+      margin-top: .35rem;
+      font-style: italic;
+    }
+    .footer-credit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
   </style>
 </head>
 <body>
@@ -416,42 +408,26 @@
   <section class="contacto-section">
     <div class="contacto-grid">
 
-      <!-- Formulario -->
-      <div class="form-col reveal">
-        <h2>Envíanos un mensaje</h2>
-        <form id="contactForm" novalidate>
-          <div class="form-group">
-            <input type="text" id="nombre" name="nombre" placeholder=" " required autocomplete="name">
-            <label for="nombre">Nombre</label>
-          </div>
-          <div class="form-group">
-            <input type="tel" id="telefono" name="telefono" placeholder=" " autocomplete="tel">
-            <label for="telefono">Teléfono</label>
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder=" " required autocomplete="email">
-            <label for="email">Email</label>
-          </div>
-          <div class="form-group">
-            <select id="vehiculo" name="vehiculo" required>
-              <option value="" disabled selected></option>
-              <option value="bmw-m5">BMW M5 Competition</option>
-              <option value="porsche-911">Porsche 911 GT3 RS</option>
-              <option value="mercedes-amg">Mercedes AMG GT 63</option>
-              <option value="aston-martin">Aston Martin DB11 Volante</option>
-              <option value="lamborghini-urus">Lamborghini Urus Performante</option>
-              <option value="otro">Otro vehículo</option>
-            </select>
-            <label for="vehiculo">Vehículo de interés</label>
-          </div>
-          <div class="form-group">
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder=" "></textarea>
-            <label for="mensaje">Mensaje</label>
-          </div>
-          <div class="form-submit">
-            <button type="submit" class="cta-btn">Enviar mensaje</button>
-          </div>
-        </form>
+      <!-- Mapa / ubicación -->
+      <div class="map-col reveal">
+        <p class="map-eyebrow">Visítanos</p>
+        <h2>Estamos aquí</h2>
+        <div class="map-line"></div>
+        <p class="map-desc">
+          Te esperamos en nuestro showroom de Lanzarote. Concierta tu visita y descubre en persona toda nuestra colección de vehículos exclusivos.
+        </p>
+        <div class="map-embed">
+          <iframe
+            src="https://maps.google.com/maps?q=Calle+Manolo+Millares+88,+35500+Arrecife,+Lanzarote,+Las+Palmas&z=17&output=embed"
+            title="Ubicación MT Lux Cars - Calle Manolo Millares 88, Arrecife"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Calle+Manolo+Millares+88,+35500+Arrecife,+Lanzarote,+Las+Palmas"
+           class="cta-btn map-cta" target="_blank" rel="noopener noreferrer">
+          Cómo llegar
+        </a>
       </div>
 
       <!-- Info -->
@@ -493,7 +469,7 @@
             </div>
             <div>
               <p class="info-label">Dirección</p>
-              <p class="info-value">Av. de las Playas, 35510<br>Lanzarote, Canarias</p>
+              <p class="info-value">Calle Manolo Millares, 88<br>35500 Arrecife, Las Palmas</p>
             </div>
           </div>
 
@@ -510,11 +486,6 @@
             </div>
           </div>
 
-        </div>
-
-        <div class="map-placeholder">
-          <p>Visítanos en Lanzarote</p>
-          <span>Islas Canarias, España</span>
         </div>
       </div>
 
@@ -538,9 +509,13 @@
     <div class="footer-line" aria-hidden="true"></div>
     <p class="footer-tagline">Exclusividad sobre ruedas en el corazón de Canarias</p>
     <p class="footer-info">
-      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Lanzarote, Canarias
+      +34 928 000 000<span>·</span>info@mtluxcars.com<span>·</span>Arrecife, Lanzarote
     </p>
     <p class="footer-copy">© 2024 MT Lux Cars. Todos los derechos reservados.</p>
+    <a class="footer-credit" href="https://www.logikateam.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed by Logika Digital - visitar web">
+      <span class="footer-credit-text">Designed by:<strong>Logika Digital</strong></span>
+      <span class="footer-credit-sub">(pincha para visitar web)</span>
+    </a>
   </footer>
 
   <script>
@@ -559,25 +534,6 @@
       hamburger.setAttribute('aria-expanded', open);
       overlay.setAttribute('aria-hidden', !open);
       document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    /* ── Form submit ── */
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const btn = this.querySelector('.cta-btn');
-      const original = btn.textContent;
-      btn.textContent = 'Enviando...';
-      btn.style.pointerEvents = 'none';
-      btn.style.opacity = '.6';
-      setTimeout(() => {
-        btn.textContent = 'Mensaje enviado';
-        btn.style.opacity = '1';
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.style.pointerEvents = '';
-          this.reset();
-        }, 2500);
-      }, 1500);
     });
 
     /* ── Reveal ── */
