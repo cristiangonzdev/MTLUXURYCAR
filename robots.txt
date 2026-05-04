@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /aviso-legal.html
+Disallow: /politica-privacidad.html
+Disallow: /politica-cookies.html
+Disallow: /terminos-condiciones.html
+
+Sitemap: https://www.mtluxcars.com/sitemap.xml
