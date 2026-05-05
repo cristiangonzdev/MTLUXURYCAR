@@ -1,0 +1,23 @@
+{
+  "name": "mtluxurycar",
+  "version": "1.0.0",
+  "description": "MT Lux Cars - Luxury Car Dealership Website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristiangonzdev/MTLUXURYCAR.git"
+  },
+  "keywords": ["luxury-cars", "dealership", "lanzarote"],
+  "author": "MT Lux Cars",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristiangonzdev/MTLUXURYCAR/issues"
+  },
+  "homepage": "https://github.com/cristiangonzdev/MTLUXURYCAR#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
