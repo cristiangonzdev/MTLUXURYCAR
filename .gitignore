@@ -11,3 +11,6 @@ Desktop.ini
 
 # Claude Code session state
 .claude/
+
+# Dependencies
+node_modules/
