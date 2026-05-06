@@ -10,6 +10,8 @@ function isAllowed(origin: string | null): string | null {
   if (ALLOWED_ORIGINS.has(origin)) return origin;
   // localhost con cualquier puerto
   if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return origin;
+  // Vercel preview/prod deploys del proyecto (cualquier hash + team logika-digital)
+  if (/^https:\/\/mtluxurycar[a-z0-9-]*\.vercel\.app$/.test(origin)) return origin;
   return null;
 }
 
