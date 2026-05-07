@@ -113,7 +113,7 @@
     const errBox = document.getElementById('errBox');
     const pwd = document.getElementById('password');
 
-    if (sessionStorage.getItem('mtlux_admin_token')) {
+    if (localStorage.getItem('mtlux_admin_token')) {
       window.location.replace('leads.html');
       return;
     }
@@ -142,8 +142,8 @@
           pwd.focus();
           return;
         }
-        sessionStorage.setItem('mtlux_admin_token', data.token);
-        sessionStorage.setItem('mtlux_admin_exp', String(data.expires_at));
+        localStorage.setItem('mtlux_admin_token', data.token);
+        localStorage.setItem('mtlux_admin_exp', String(data.expires_at));
         window.location.replace('leads.html');
       } catch (err) {
         errBox.textContent = 'No se ha podido conectar.';

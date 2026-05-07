@@ -35,7 +35,7 @@ function timingSafeEqual(a: Uint8Array, b: Uint8Array): boolean {
   return diff === 0;
 }
 
-export async function signAdminToken(secret: string, ttlSeconds = 60 * 60 * 24 * 7): Promise<{ token: string; expires_at: number }> {
+export async function signAdminToken(secret: string, ttlSeconds = 60 * 60 * 24 * 90): Promise<{ token: string; expires_at: number }> {
   const now = Math.floor(Date.now() / 1000);
   const exp = now + ttlSeconds;
   const payload = { sub: "admin", iat: now, exp };

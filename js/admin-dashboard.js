@@ -7,20 +7,20 @@
   const WA_PREFIX = "https://wa.me/";
 
   function getToken() {
-    const tok = sessionStorage.getItem(TOKEN_KEY);
-    const exp = parseInt(sessionStorage.getItem(EXP_KEY) ?? "0", 10);
+    const tok = localStorage.getItem(TOKEN_KEY);
+    const exp = parseInt(localStorage.getItem(EXP_KEY) ?? "0", 10);
     if (!tok || !exp) return null;
     if (Math.floor(Date.now() / 1000) >= exp) {
-      sessionStorage.removeItem(TOKEN_KEY);
-      sessionStorage.removeItem(EXP_KEY);
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(EXP_KEY);
       return null;
     }
     return tok;
   }
 
   function logout() {
-    sessionStorage.removeItem(TOKEN_KEY);
-    sessionStorage.removeItem(EXP_KEY);
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(EXP_KEY);
     window.location.replace("login.html");
   }
 
