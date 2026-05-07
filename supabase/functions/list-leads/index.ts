@@ -18,6 +18,7 @@ Deno.serve(async (req) => {
   const u = new URL(req.url);
   const status = u.searchParams.get("status");
   const intent = u.searchParams.get("intent");
+  const leadType = u.searchParams.get("lead_type");
   const q = u.searchParams.get("q");
   const fromIso = u.searchParams.get("from");
   const limit = Math.min(parseInt(u.searchParams.get("limit") ?? "50", 10) || 50, 200);
@@ -28,6 +29,7 @@ Deno.serve(async (req) => {
   let query = supabase.from("leads").select("*", { count: "exact" }).order("created_at", { ascending: false });
   if (status && status !== "all") query = query.eq("status", status);
   if (intent && intent !== "all") query = query.eq("intent", intent);
+  if (leadType && leadType !== "all") query = query.eq("lead_type", leadType);
   if (fromIso) query = query.gte("created_at", fromIso);
   if (q) query = query.or(`email.ilike.%${q}%,phone.ilike.%${q}%`);
   query = query.range(offset, offset + limit - 1);

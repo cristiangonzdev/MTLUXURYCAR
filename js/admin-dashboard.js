@@ -37,6 +37,7 @@
   const state = {
     status: "all",
     intent: "all",
+    leadType: "all",
     q: "",
     range: "all",
     offset: 0,
@@ -50,6 +51,7 @@
   const tbody = document.getElementById("leadsBody");
   const statusTabs = document.getElementById("statusTabs");
   const intentChips = document.getElementById("intentChips");
+  const typeChips = document.getElementById("typeChips");
   const searchInput = document.getElementById("searchInput");
   const rangeSelect = document.getElementById("rangeSelect");
   const refreshBtn = document.getElementById("refreshBtn");
@@ -83,12 +85,36 @@
     return new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
   }
 
-  function waLink(phone, vehicleName) {
+  function advisoryShort(d) {
+    if (!d) return "—";
+    const parts = [];
+    if (d.year) parts.push(`${d.year}`);
+    if (d.km_max) parts.push(`máx ${Number(d.km_max).toLocaleString("es-ES")} km`);
+    if (d.budget_max) parts.push(`hasta ${formatPrice(d.budget_max)}`);
+    return parts.join(" · ") || "Solicitud abierta";
+  }
+
+  function waLink(phone, lead) {
     const clean = String(phone ?? "").replace(/[^\d]/g, "");
     if (!clean) return null;
-    const msg = vehicleName
-      ? `Hola, te contactamos desde MT Lux Cars sobre el ${vehicleName}.`
-      : "Hola, te contactamos desde MT Lux Cars.";
+    let msg;
+    if (lead && typeof lead === "object") {
+      if (lead.lead_type === "advisory" && lead.request_details) {
+        const d = lead.request_details;
+        const parts = [`Hola, te contactamos desde MT Lux Cars sobre tu solicitud de ${d.brand} ${d.model}`];
+        if (d.year) parts.push(`del ${d.year}`);
+        if (d.km_max) parts.push(`con máx ${Number(d.km_max).toLocaleString("es-ES")} km`);
+        msg = parts.join(", ") + ". Tenemos opciones para enseñarte.";
+      } else {
+        msg = lead.vehicle_name
+          ? `Hola, te contactamos desde MT Lux Cars sobre el ${lead.vehicle_name}.`
+          : "Hola, te contactamos desde MT Lux Cars.";
+      }
+    } else {
+      msg = lead
+        ? `Hola, te contactamos desde MT Lux Cars sobre el ${lead}.`
+        : "Hola, te contactamos desde MT Lux Cars.";
+    }
     return `${WA_PREFIX}${clean}?text=${encodeURIComponent(msg)}`;
   }
 
@@ -110,6 +136,7 @@
     const params = new URLSearchParams();
     if (state.status !== "all") params.set("status", state.status);
     if (state.intent !== "all") params.set("intent", state.intent);
+    if (state.leadType !== "all") params.set("lead_type", state.leadType);
     if (state.q.trim()) params.set("q", state.q.trim());
     if (state.range !== "all") {
       const days = parseInt(state.range, 10);
@@ -154,16 +181,25 @@
       return;
     }
     const rows = state.leads.map((lead) => {
-      const wa = waLink(lead.phone, lead.vehicle_name);
+      const wa = waLink(lead.phone, lead);
       const intentBadge = `<span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`;
+      const typeBadge = lead.lead_type === "advisory"
+        ? '<span class="badge badge-type-advisory">Asesoramiento</span>'
+        : "";
+      const vehicleLabel = lead.lead_type === "advisory" && lead.request_details
+        ? `${lead.request_details.brand} ${lead.request_details.model}`
+        : (lead.vehicle_name ?? lead.vehicle_id);
+      const priceCell = lead.lead_type === "advisory"
+        ? advisoryShort(lead.request_details)
+        : formatPrice(lead.vehicle_price);
       const statusOptions = ["new", "contacted", "qualified", "closed", "lost"]
         .map((s) => `<option value="${s}"${s === lead.status ? " selected" : ""}>${statusLabel(s)}</option>`).join("");
       return `
         <tr data-id="${escapeHtml(lead.id)}">
           <td class="col-date">${escapeHtml(relativeTime(lead.created_at))}</td>
           <td class="col-vehicle">
-            <span class="vehicle-name">${escapeHtml(lead.vehicle_name ?? lead.vehicle_id)}</span>
-            <span class="vehicle-price">${escapeHtml(formatPrice(lead.vehicle_price))}</span>
+            <span class="vehicle-name">${escapeHtml(vehicleLabel)}${typeBadge}</span>
+            <span class="vehicle-price">${escapeHtml(priceCell)}</span>
           </td>
           <td class="col-contact">
             <a class="email" href="mailto:${escapeHtml(lead.email)}" data-stop>${escapeHtml(lead.email)}</a>
@@ -198,12 +234,35 @@
   function openDrawer(id) {
     const lead = state.leads.find((l) => l.id === id);
     if (!lead) return;
-    const wa = waLink(lead.phone, lead.vehicle_name);
+    const wa = waLink(lead.phone, lead);
+    const isAdvisory = lead.lead_type === "advisory";
+    const headerTitle = isAdvisory && lead.request_details
+      ? `${lead.request_details.brand} ${lead.request_details.model}`
+      : (lead.vehicle_name ?? lead.vehicle_id);
+    const headerMeta = isAdvisory
+      ? `<span class="badge badge-type-advisory">Asesoramiento</span> · <span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`
+      : `${escapeHtml(formatPrice(lead.vehicle_price))} · <span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`;
+
+    const requestSection = isAdvisory && lead.request_details ? `
+      <div class="drawer-section">
+        <h3>Solicitud del cliente</h3>
+        <div class="req-grid">
+          <div><span>Marca</span>${escapeHtml(lead.request_details.brand ?? "—")}</div>
+          <div><span>Modelo</span>${escapeHtml(lead.request_details.model ?? "—")}</div>
+          <div><span>Año</span>${escapeHtml(lead.request_details.year ?? "Cualquiera")}</div>
+          <div><span>Km máximo</span>${lead.request_details.km_max ? Number(lead.request_details.km_max).toLocaleString("es-ES") + " km" : "Sin límite"}</div>
+          <div><span>Color</span>${escapeHtml(lead.request_details.color ?? "Cualquiera")}</div>
+          <div><span>Presupuesto máx.</span>${lead.request_details.budget_max ? formatPrice(lead.request_details.budget_max) : "Sin límite"}</div>
+        </div>
+      </div>
+    ` : "";
+
     drawerContent.innerHTML = `
       <div class="drawer-section">
-        <h3>${escapeHtml(lead.vehicle_name ?? lead.vehicle_id)}</h3>
-        <p>${escapeHtml(formatPrice(lead.vehicle_price))} · <span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span></p>
+        <h3>${escapeHtml(headerTitle)}</h3>
+        <p>${headerMeta}</p>
       </div>
+      ${requestSection}
       <div class="drawer-section">
         <h3>Contacto</h3>
         <p><a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a></p>
@@ -312,6 +371,16 @@
     intentChips.querySelectorAll(".chip").forEach((b) => b.classList.remove("active"));
     t.classList.add("active");
     state.intent = t.dataset.intent;
+    state.offset = 0;
+    fetchLeads();
+  });
+
+  typeChips.addEventListener("click", (e) => {
+    const t = e.target.closest(".chip");
+    if (!t) return;
+    typeChips.querySelectorAll(".chip").forEach((b) => b.classList.remove("active"));
+    t.classList.add("active");
+    state.leadType = t.dataset.type;
     state.offset = 0;
     fetchLeads();
   });

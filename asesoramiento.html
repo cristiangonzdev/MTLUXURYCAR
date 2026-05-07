@@ -546,11 +546,8 @@
     </div>
   </section>
 
-  <!-- BANNER CTA -->
-  <section class="banner-cta reveal">
-    <h2>¿Listo para encontrar tu vehículo ideal?</h2>
-    <a href="https://wa.me/34622017410?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20asesoramiento%20de%20MT%20Lux%20Cars" target="_blank" rel="noopener noreferrer" class="cta-btn-dark">Contactar ahora</a>
-  </section>
+  <!-- ADVISORY LEAD FORM -->
+  <div id="advisoryFormHost" class="reveal"></div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -605,6 +602,13 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     }
 
+  </script>
+  <script src="js/config.js"></script>
+  <script src="js/advisory-form.js"></script>
+  <script>
+    if (window.MTLUXAdvisoryForm) {
+      window.MTLUXAdvisoryForm.mount(document.getElementById('advisoryFormHost'));
+    }
   </script>
   <script src="cookies.js" defer></script>
 </body>
