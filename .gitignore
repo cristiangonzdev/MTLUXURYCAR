@@ -11,3 +11,10 @@ Desktop.ini
 
 # Claude Code session state
 .claude/
+
+# Internal sales tool — not for public site
+cheatsheet-ventas.html
+
+# Supabase CLI working dir
+supabase/.temp/
+supabase/.branches/
