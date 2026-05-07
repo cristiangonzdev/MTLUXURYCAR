@@ -6,7 +6,61 @@
   const E164_RE = /^\+[1-9]\d{6,14}$/;
   const WA_PHONE = "34622017410";
 
-  const BRANDS = ["Mercedes-Benz", "BMW", "Porsche", "Audi", "Lamborghini", "Range Rover", "Ferrari"];
+  // Modelos por marca: solo los más demandados / habituales en mercado de lujo.
+  const BRAND_MODELS = {
+    "Mercedes-Benz": [
+      "Clase A", "Clase B", "Clase C", "Clase E", "Clase S",
+      "CLA", "CLS", "GLA", "GLB", "GLC", "GLE", "GLS", "Clase G",
+      "AMG GT", "SL", "EQE", "EQS",
+    ],
+    "BMW": [
+      "Serie 1", "Serie 2", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie 8",
+      "X1", "X2", "X3", "X4", "X5", "X6", "X7",
+      "Z4", "M2", "M3", "M4", "M5", "M8",
+      "i4", "i5", "i7", "iX",
+    ],
+    "Porsche": [
+      "911", "Taycan", "Panamera", "Macan", "Cayenne",
+      "718 Cayman", "718 Boxster",
+    ],
+    "Audi": [
+      "A3", "A4", "A5", "A6", "A7", "A8",
+      "Q2", "Q3", "Q5", "Q7", "Q8",
+      "TT", "R8", "e-tron", "e-tron GT",
+      "RS3", "RS6", "RS7", "RSQ8",
+    ],
+    "Lamborghini": ["Huracán", "Urus", "Revuelto", "Aventador"],
+    "Range Rover": [
+      "Range Rover", "Range Rover Sport", "Range Rover Velar", "Range Rover Evoque",
+      "Defender", "Discovery", "Discovery Sport",
+    ],
+    "Ferrari": [
+      "Roma", "Portofino M", "296 GTB", "F8 Tributo",
+      "SF90 Stradale", "812 Superfast", "Purosangue", "Daytona SP3",
+    ],
+  };
+
+  const YEARS = (() => {
+    const now = new Date().getFullYear();
+    const arr = [];
+    for (let y = now; y >= 2010; y--) arr.push(y);
+    return arr;
+  })();
+
+  const KM_OPTIONS = [50000, 100000, 150000, 200000, 250000];
+
+  const BUDGET_OPTIONS = (() => {
+    const arr = [];
+    for (let b = 20000; b <= 200000; b += 20000) arr.push(b);
+    [250000, 300000, 400000, 500000].forEach((b) => arr.push(b));
+    return arr;
+  })();
+
+  const COLOR_OPTIONS = [
+    "Negro", "Blanco", "Gris", "Plateado",
+    "Azul", "Rojo", "Verde", "Beige",
+    "Marrón", "Burdeos", "Amarillo", "Naranja",
+  ];
 
   const CSS = `
     .af-section { background: var(--black-soft, #0F0F0F); padding: 5rem 2rem; }
@@ -21,9 +75,12 @@
     .af-grid .af-full { grid-column: 1 / -1; }
     .af-label { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-soft, #D4CCBA); margin-bottom: .4rem; }
     .af-label .af-hint { color: var(--gray, #888880); font-size: .68rem; text-transform: none; letter-spacing: .04em; margin-left: .35rem; font-style: italic; }
-    .af-input { width: 100%; padding: .85rem 1rem; background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.18); color: var(--cream, #F0EAD6); font-family: inherit; font-size: .95rem; min-height: 44px; transition: border-color .25s ease, background .25s ease; }
-    .af-input:focus { outline: none; border-color: var(--gold, #C9A84C); background: rgba(255,255,255,.05); }
-    .af-input.af-invalid { border-color: #c25151; }
+    .af-input, .af-select { width: 100%; padding: .85rem 1rem; background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.18); color: var(--cream, #F0EAD6); font-family: inherit; font-size: .95rem; min-height: 44px; transition: border-color .25s ease, background .25s ease; }
+    .af-select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23C9A84C' d='M6 8L0 0h12z'/></svg>"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.4rem; cursor: pointer; }
+    .af-select:disabled { opacity: .5; cursor: not-allowed; }
+    .af-select option { background: var(--black-card, #141414); color: var(--cream, #F0EAD6); }
+    .af-input:focus, .af-select:focus { outline: none; border-color: var(--gold, #C9A84C); background: rgba(255,255,255,.05); }
+    .af-input.af-invalid, .af-select.af-invalid { border-color: #c25151; }
     .af-input::placeholder { color: rgba(255,255,255,.25); }
     .af-error-msg { display: none; font-size: .72rem; color: #e08585; margin-top: .3rem; }
     .af-error-msg.show { display: block; }
@@ -72,19 +129,54 @@
     return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
+  function fmtKm(n) { return `${n.toLocaleString("es-ES")} km`; }
+  function fmtEur(n) { return new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n); }
+
   function buildWaMessage(details) {
     const parts = [`Hola, busco un ${details.brand} ${details.model}`];
     if (details.year) parts.push(`del ${details.year}`);
-    if (details.km_max) parts.push(`con máximo ${details.km_max.toLocaleString("es-ES")} km`);
-    if (details.budget_max) parts.push(`presupuesto hasta ${details.budget_max.toLocaleString("es-ES")} €`);
+    if (details.km_max) parts.push(`con máximo ${fmtKm(details.km_max)}`);
+    if (details.budget_max) parts.push(`presupuesto hasta ${fmtEur(details.budget_max)}`);
     let msg = parts.join(", ") + ".";
     if (!details.color) msg += " ¿Qué colores tenéis disponibles?";
     else msg += ` Color preferido: ${details.color}.`;
     return msg;
   }
 
+  function brandOptionsHtml() {
+    return Object.keys(BRAND_MODELS)
+      .map((b) => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join("");
+  }
+
+  function modelOptionsHtml(brand) {
+    const models = BRAND_MODELS[brand];
+    if (!models) return `<option value="">Selecciona primero la marca</option>`;
+    return `<option value="">Cualquier modelo</option>` +
+      models.map((m) => `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
+  }
+
+  function yearOptionsHtml() {
+    return `<option value="">Cualquier año</option>` +
+      YEARS.map((y) => `<option value="${y}">${y}</option>`).join("") +
+      `<option value="2009">Anterior a 2010</option>`;
+  }
+
+  function kmOptionsHtml() {
+    return `<option value="">Sin límite</option>` +
+      KM_OPTIONS.map((k) => `<option value="${k}">Hasta ${fmtKm(k)}</option>`).join("");
+  }
+
+  function budgetOptionsHtml() {
+    return `<option value="">Sin tope</option>` +
+      BUDGET_OPTIONS.map((b) => `<option value="${b}">Hasta ${fmtEur(b)}</option>`).join("");
+  }
+
+  function colorOptionsHtml() {
+    return `<option value="">Cualquier color</option>` +
+      COLOR_OPTIONS.map((c) => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+  }
+
   function render(container) {
-    const datalistOptions = BRANDS.map((b) => `<option value="${escapeHtml(b)}"></option>`).join("");
     container.innerHTML = `
       <section class="af-section">
         <div class="af-wrap">
@@ -94,36 +186,44 @@
           <div class="af-card">
             <div class="af-error-banner" hidden></div>
             <form novalidate>
-              <datalist id="af-brands">${datalistOptions}</datalist>
               <div class="af-grid">
                 <div>
                   <label class="af-label" for="af-brand">Marca</label>
-                  <input class="af-input" id="af-brand" name="brand" type="text" list="af-brands" autocomplete="off" placeholder="Mercedes-Benz, BMW, Porsche..." required maxlength="60" />
-                  <span class="af-error-msg" data-error-for="brand">Indica la marca</span>
+                  <select class="af-select" id="af-brand" name="brand" required>
+                    <option value="">Selecciona marca</option>
+                    ${brandOptionsHtml()}
+                  </select>
+                  <span class="af-error-msg" data-error-for="brand">Selecciona la marca</span>
                 </div>
                 <div>
                   <label class="af-label" for="af-model">Modelo</label>
-                  <input class="af-input" id="af-model" name="model" type="text" autocomplete="off" placeholder="X5, GLE, Cayenne..." required maxlength="80" />
-                  <span class="af-error-msg" data-error-for="model">Indica el modelo</span>
+                  <select class="af-select" id="af-model" name="model" disabled>
+                    <option value="">Selecciona primero la marca</option>
+                  </select>
                 </div>
                 <div>
                   <label class="af-label" for="af-year">Año <span class="af-hint">opcional</span></label>
-                  <input class="af-input" id="af-year" name="year" type="number" inputmode="numeric" placeholder="2022" min="1980" max="2030" />
-                  <span class="af-error-msg" data-error-for="year">Año entre 1980 y 2030</span>
+                  <select class="af-select" id="af-year" name="year">
+                    ${yearOptionsHtml()}
+                  </select>
                 </div>
                 <div>
                   <label class="af-label" for="af-km">Km máximo <span class="af-hint">opcional</span></label>
-                  <input class="af-input" id="af-km" name="km_max" type="number" inputmode="numeric" placeholder="100000" min="0" max="1000000" />
-                  <span class="af-error-msg" data-error-for="km_max">Km no válido</span>
+                  <select class="af-select" id="af-km" name="km_max">
+                    ${kmOptionsHtml()}
+                  </select>
                 </div>
                 <div>
                   <label class="af-label" for="af-color">Color <span class="af-hint">opcional</span></label>
-                  <input class="af-input" id="af-color" name="color" type="text" placeholder="Negro, blanco, gris..." maxlength="40" />
+                  <select class="af-select" id="af-color" name="color">
+                    ${colorOptionsHtml()}
+                  </select>
                 </div>
                 <div>
                   <label class="af-label" for="af-budget">Presupuesto máx. <span class="af-hint">opcional</span></label>
-                  <input class="af-input" id="af-budget" name="budget_max" type="number" inputmode="numeric" placeholder="60000" min="0" max="99999999" />
-                  <span class="af-error-msg" data-error-for="budget_max">Presupuesto no válido</span>
+                  <select class="af-select" id="af-budget" name="budget_max">
+                    ${budgetOptionsHtml()}
+                  </select>
                 </div>
                 <div class="af-full">
                   <label class="af-label" for="af-email">Email</label>
@@ -164,7 +264,7 @@
     const form = container.querySelector("form");
     const submitBtn = form.querySelector(".af-submit");
     const errorBanner = container.querySelector(".af-error-banner");
-    const inputs = {
+    const fields = {
       brand: form.querySelector("#af-brand"),
       model: form.querySelector("#af-model"),
       year: form.querySelector("#af-year"),
@@ -177,66 +277,27 @@
     const intents = container.querySelectorAll(".af-intent");
     let selectedIntent = null;
 
-    function setError(field, show) {
-      const el = container.querySelector(`[data-error-for="${field}"]`);
+    function setError(name, show) {
+      const el = container.querySelector(`[data-error-for="${name}"]`);
       if (el) el.classList.toggle("show", show);
-      if (inputs[field]) inputs[field].classList.toggle("af-invalid", show);
+      if (fields[name]) fields[name].classList.toggle("af-invalid", show);
     }
 
-    function readNumber(el, min, max) {
-      const v = el.value.trim();
-      if (v === "") return { ok: true, value: null };
-      const n = Number(v);
-      if (!Number.isFinite(n) || n < min || n > max) return { ok: false, value: null };
-      return { ok: true, value: n };
-    }
-
-    function validate() {
-      let ok = true;
-      const brand = inputs.brand.value.trim();
+    fields.brand.addEventListener("change", () => {
+      const brand = fields.brand.value;
+      fields.model.innerHTML = modelOptionsHtml(brand);
+      fields.model.disabled = !brand;
       setError("brand", !brand);
-      if (!brand) ok = false;
+    });
 
-      const model = inputs.model.value.trim();
-      setError("model", !model);
-      if (!model) ok = false;
-
-      const year = readNumber(inputs.year, 1980, 2030);
-      setError("year", !year.ok);
-      if (!year.ok) ok = false;
-
-      const km = readNumber(inputs.km_max, 0, 1_000_000);
-      setError("km_max", !km.ok);
-      if (!km.ok) ok = false;
-
-      const budget = readNumber(inputs.budget_max, 0, 99_999_999);
-      setError("budget_max", !budget.ok);
-      if (!budget.ok) ok = false;
-
-      const email = inputs.email.value.trim();
-      const emailOk = EMAIL_RE.test(email) && email.length <= 254;
-      setError("email", !emailOk);
-      if (!emailOk) ok = false;
-
-      const phone = inputs.phone.value.trim().replace(/\s/g, "");
-      if (phone.length > 0 && !E164_RE.test(phone)) {
-        setError("phone", true);
-        ok = false;
-      } else {
-        setError("phone", false);
-      }
-
-      const intentEl = container.querySelector('[data-error-for="intent"]');
-      if (intentEl) intentEl.classList.toggle("show", !selectedIntent);
-      if (!selectedIntent) ok = false;
-
-      return ok ? {
-        brand, model,
-        year: year.value, km_max: km.value, budget_max: budget.value,
-        color: inputs.color.value.trim() || null,
-        email, phone: phone || null,
-      } : null;
-    }
+    fields.email.addEventListener("blur", () => {
+      const v = fields.email.value.trim();
+      if (v.length > 0) setError("email", !EMAIL_RE.test(v));
+    });
+    fields.phone.addEventListener("blur", () => {
+      const v = fields.phone.value.trim().replace(/\s/g, "");
+      if (v.length > 0) setError("phone", !E164_RE.test(v));
+    });
 
     intents.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -249,14 +310,42 @@
       });
     });
 
-    inputs.email.addEventListener("blur", () => {
-      const v = inputs.email.value.trim();
-      if (v.length > 0) setError("email", !EMAIL_RE.test(v));
-    });
-    inputs.phone.addEventListener("blur", () => {
-      const v = inputs.phone.value.trim().replace(/\s/g, "");
-      if (v.length > 0) setError("phone", !E164_RE.test(v));
-    });
+    function validate() {
+      let ok = true;
+
+      const brand = fields.brand.value;
+      setError("brand", !brand);
+      if (!brand) ok = false;
+
+      const email = fields.email.value.trim();
+      const emailOk = EMAIL_RE.test(email) && email.length <= 254;
+      setError("email", !emailOk);
+      if (!emailOk) ok = false;
+
+      const phone = fields.phone.value.trim().replace(/\s/g, "");
+      if (phone.length > 0 && !E164_RE.test(phone)) {
+        setError("phone", true);
+        ok = false;
+      } else {
+        setError("phone", false);
+      }
+
+      const intentEl = container.querySelector('[data-error-for="intent"]');
+      if (intentEl) intentEl.classList.toggle("show", !selectedIntent);
+      if (!selectedIntent) ok = false;
+
+      if (!ok) return null;
+      return {
+        brand,
+        model: fields.model.value || "",
+        year: fields.year.value ? Number(fields.year.value) : null,
+        km_max: fields.km_max.value ? Number(fields.km_max.value) : null,
+        color: fields.color.value || null,
+        budget_max: fields.budget_max.value ? Number(fields.budget_max.value) : null,
+        email,
+        phone: phone || null,
+      };
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -276,7 +365,7 @@
         lead_type: "advisory",
         request_details: {
           brand: data.brand,
-          model: data.model,
+          model: data.model || "Cualquier modelo",
           year: data.year,
           km_max: data.km_max,
           color: data.color,
