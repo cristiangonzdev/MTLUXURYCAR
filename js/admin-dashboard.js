@@ -182,16 +182,25 @@
     }
     const rows = state.leads.map((lead) => {
       const wa = waLink(lead.phone, lead);
-      const intentBadge = `<span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`;
+      const isNewsletter = lead.lead_type === "newsletter";
+      const intentBadge = isNewsletter
+        ? ""
+        : `<span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`;
       const typeBadge = lead.lead_type === "advisory"
         ? '<span class="badge badge-type-advisory">Asesoramiento</span>'
-        : "";
+        : isNewsletter
+          ? '<span class="badge badge-type-newsletter">Newsletter</span>'
+          : "";
       const vehicleLabel = lead.lead_type === "advisory" && lead.request_details
         ? `${lead.request_details.brand} ${lead.request_details.model}`
-        : (lead.vehicle_name ?? lead.vehicle_id);
+        : isNewsletter
+          ? "Suscripción"
+          : (lead.vehicle_name ?? lead.vehicle_id);
       const priceCell = lead.lead_type === "advisory"
         ? advisoryShort(lead.request_details)
-        : formatPrice(lead.vehicle_price);
+        : isNewsletter
+          ? "—"
+          : formatPrice(lead.vehicle_price);
       const statusOptions = ["new", "contacted", "qualified", "closed", "lost"]
         .map((s) => `<option value="${s}"${s === lead.status ? " selected" : ""}>${statusLabel(s)}</option>`).join("");
       return `
@@ -236,12 +245,17 @@
     if (!lead) return;
     const wa = waLink(lead.phone, lead);
     const isAdvisory = lead.lead_type === "advisory";
+    const isNewsletter = lead.lead_type === "newsletter";
     const headerTitle = isAdvisory && lead.request_details
       ? `${lead.request_details.brand} ${lead.request_details.model}`
-      : (lead.vehicle_name ?? lead.vehicle_id);
+      : isNewsletter
+        ? "Suscripción · Garaje Privado"
+        : (lead.vehicle_name ?? lead.vehicle_id);
     const headerMeta = isAdvisory
       ? `<span class="badge badge-type-advisory">Asesoramiento</span> · <span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`
-      : `${escapeHtml(formatPrice(lead.vehicle_price))} · <span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`;
+      : isNewsletter
+        ? `<span class="badge badge-type-newsletter">Newsletter</span>`
+        : `${escapeHtml(formatPrice(lead.vehicle_price))} · <span class="badge badge-${lead.intent}">${intentLabel(lead.intent)}</span>`;
 
     const requestSection = isAdvisory && lead.request_details ? `
       <div class="drawer-section">

@@ -4,7 +4,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const E164_RE = /^\+[1-9]\d{6,14}$/;
 const INTENT_VALUES = new Set(["immediate", "short_term", "exploring"]);
 const STATUS_VALUES = new Set(["new", "contacted", "qualified", "closed", "lost"]);
-const LEAD_TYPE_VALUES = new Set(["inventory", "advisory"]);
+const LEAD_TYPE_VALUES = new Set(["inventory", "advisory", "newsletter"]);
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -93,22 +93,29 @@ export function validateLeadInput(raw: unknown): { ok: true; data: LeadInput } |
     return { ok: false, error: "phone must be E.164 (+34...)" };
   }
 
-  const leadType_pre = trimOrNull(r.lead_type) ?? "inventory";
-  if (phone === null) {
-    return { ok: false, error: "phone required" };
-  }
-
-  const intent = trimOrNull(r.intent);
-  if (!intent || !INTENT_VALUES.has(intent)) {
-    return { ok: false, error: "invalid intent" };
-  }
-
-  const leadType = leadType_pre;
+  const leadType = trimOrNull(r.lead_type) ?? "inventory";
   if (!LEAD_TYPE_VALUES.has(leadType)) {
     return { ok: false, error: "invalid lead_type" };
   }
 
-  const newsletterOptIn = r.newsletter_opt_in === true;
+  // Newsletter only requires email; no phone, no intent, no vehicle.
+  if (leadType !== "newsletter" && phone === null) {
+    return { ok: false, error: "phone required" };
+  }
+
+  const intentRaw = trimOrNull(r.intent);
+  let intent: string;
+  if (leadType === "newsletter") {
+    intent = intentRaw && INTENT_VALUES.has(intentRaw) ? intentRaw : "exploring";
+  } else {
+    if (!intentRaw || !INTENT_VALUES.has(intentRaw)) {
+      return { ok: false, error: "invalid intent" };
+    }
+    intent = intentRaw;
+  }
+
+  // Newsletter signups always implicitly opt-in to newsletter.
+  const newsletterOptIn = leadType === "newsletter" ? true : r.newsletter_opt_in === true;
 
   let vehicle_id: string | null;
   let vehicle_name: string | null;
@@ -121,6 +128,9 @@ export function validateLeadInput(raw: unknown): { ok: true; data: LeadInput } |
     request_details = adv.data;
     vehicle_id = `advisory:${slugify(adv.data.brand)}-${slugify(adv.data.model)}`;
     vehicle_name = `${adv.data.brand} ${adv.data.model} (asesoramiento)`;
+  } else if (leadType === "newsletter") {
+    vehicle_id = "newsletter";
+    vehicle_name = "Suscripción Garaje Privado";
   } else {
     vehicle_id = trimOrNull(r.vehicle_id);
     if (!vehicle_id || vehicle_id.length > 100) {
