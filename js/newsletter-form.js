@@ -54,14 +54,14 @@
       <section class="nf-section">
         <div class="nf-wrap">
           <p class="nf-eyebrow">Garaje Privado</p>
-          <h2 class="nf-title">Lo que pasa <em>dentro</em> de un concesionario de lujo</h2>
-          <p class="nf-copy">Una vez por semana, una historia real desde MT Lux Cars. Importaciones que salen mal, clientes que cambian de idea a última hora, errores caros del sector. Sin ofertas. Sin spam. Para los que un coche es algo más que cuatro ruedas.</p>
+          <h2 class="nf-title">Hay <em>tres errores</em> que veo cometer a casi todos los que compran su primer coche de lujo</h2>
+          <p class="nf-copy">Te los cuento en el primer email. Después, una historia real del sector cada lunes. Si no te aporta, te das de baja en un click.</p>
           <form class="nf-form" novalidate>
             <input class="nf-input" type="email" name="email" placeholder="tu@email.com" autocomplete="email" required maxlength="254" aria-label="Email" />
-            <button type="submit" class="nf-submit">Quiero leerlo</button>
+            <button type="submit" class="nf-submit">Sí, mándamelos</button>
           </form>
           <p class="nf-error-msg" data-error-for="email">Introduce un email válido</p>
-          <p class="nf-fineprint">1 email a la semana · te das de baja en 1 click · <a href="politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a></p>
+          <p class="nf-fineprint">5 minutos de lectura · <a href="politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a></p>
         </div>
       </section>
     `;
@@ -129,7 +129,7 @@
           <p class="nf-eyebrow">Garaje Privado</p>
           <div class="nf-success">
             <p class="nf-success-title">Estás dentro</p>
-            <p class="nf-success-text">El próximo lunes te llega el primer email. Si no ves nada, revisa la carpeta de promociones de Gmail y muévelo a "Principal" para que no se pierda ninguno.</p>
+            <p class="nf-success-text">El primer email con los tres errores te llega en breve. Si no lo ves, mira la pestaña "Promociones" de Gmail y muévelo a "Principal" — así no se te pierde ninguno.</p>
           </div>
         </div>
       </section>
