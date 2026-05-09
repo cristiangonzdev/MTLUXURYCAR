@@ -33,6 +33,11 @@
     .lf-success-text { font-size: .9rem; color: var(--cream-soft, #D4CCBA); margin-bottom: 1rem; line-height: 1.55; }
     .lf-success-link { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold, #C9A84C); border-bottom: 1px solid var(--gold, #C9A84C); padding-bottom: 2px; }
     .lf-error-banner { padding: .8rem 1rem; background: rgba(194,81,81,.1); border: 1px solid rgba(194,81,81,.4); color: #e8a4a4; font-size: .82rem; margin-bottom: 1rem; }
+    .lf-consent { display: flex; align-items: flex-start; gap: .55rem; margin: .6rem 0; cursor: pointer; user-select: none; padding: .65rem; border: 1px solid rgba(201,168,76,.1); background: rgba(255,255,255,.015); transition: border-color .25s ease; }
+    .lf-consent:hover { border-color: rgba(201,168,76,.25); }
+    .lf-consent input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--gold, #C9A84C); cursor: pointer; flex-shrink: 0; }
+    .lf-consent-text { font-size: .76rem; color: var(--cream-soft, #D4CCBA); line-height: 1.45; }
+    .lf-consent-text a { color: var(--gold, #C9A84C); text-decoration: underline; }
     .lf-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: lf-spin .7s linear infinite; vertical-align: middle; margin-right: .5rem; }
     @keyframes lf-spin { to { transform: rotate(360deg); } }
   `;
@@ -102,6 +107,13 @@
             </div>
             <span class="lf-error-msg" data-error-for="intent">Selecciona una opción</span>
           </div>
+          <label class="lf-consent">
+            <input type="checkbox" id="lf-newsletter" name="newsletter_opt_in" />
+            <span class="lf-consent-text">
+              Quiero recibir por email novedades sobre vehículos exclusivos de MT Lux Cars.
+              <a href="politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.
+            </span>
+          </label>
           <button type="submit" class="lf-submit">Recibir informe completo</button>
         </form>
       </div>
@@ -114,6 +126,7 @@
       email: form.querySelector('input[name="email"]'),
       phone: form.querySelector('input[name="phone"]'),
     };
+    const newsletterEl = form.querySelector('#lf-newsletter');
     const intents = container.querySelectorAll(".lf-intent");
     let selectedIntent = null;
 
@@ -187,6 +200,7 @@
         vehicle_id: vehicle.id,
         vehicle_name: vehicle.name ?? null,
         vehicle_price: parseEuroPrice(vehicle.price),
+        newsletter_opt_in: newsletterEl ? newsletterEl.checked : false,
         source: window.location.pathname,
         ...utms,
       };
