@@ -85,9 +85,9 @@
             <span class="lf-error-msg" data-error-for="email">Introduce un email válido</span>
           </label>
           <label class="lf-field">
-            <span class="lf-label">Teléfono <span class="lf-hint">recomendado para respuesta rápida</span></span>
-            <input class="lf-input" type="tel" name="phone" autocomplete="tel" placeholder="+34 600 000 000" />
-            <span class="lf-error-msg" data-error-for="phone">Formato internacional, ej: +34600000000</span>
+            <span class="lf-label">Teléfono</span>
+            <input class="lf-input" type="tel" name="phone" autocomplete="tel" placeholder="+34 600 000 000" required />
+            <span class="lf-error-msg" data-error-for="phone">Introduce un teléfono válido en formato internacional, ej: +34600000000</span>
           </label>
           <div class="lf-field">
             <span class="lf-label">¿Cuándo te lo planteas?</span>
@@ -143,14 +143,10 @@
       setError("email", !emailOk);
       if (!emailOk) ok = false;
 
-      const phone = inputs.phone.value.trim();
-      if (phone.length > 0) {
-        const phoneOk = E164_RE.test(phone.replace(/\s/g, ""));
-        setError("phone", !phoneOk);
-        if (!phoneOk) ok = false;
-      } else {
-        setError("phone", false);
-      }
+      const phone = inputs.phone.value.trim().replace(/\s/g, "");
+      const phoneOk = phone.length > 0 && E164_RE.test(phone);
+      setError("phone", !phoneOk);
+      if (!phoneOk) ok = false;
 
       const intentOk = !!selectedIntent;
       const intentErr = container.querySelector('[data-error-for="intent"]');

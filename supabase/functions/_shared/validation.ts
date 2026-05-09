@@ -94,8 +94,8 @@ export function validateLeadInput(raw: unknown): { ok: true; data: LeadInput } |
   }
 
   const leadType_pre = trimOrNull(r.lead_type) ?? "inventory";
-  if (leadType_pre === "advisory" && phone === null) {
-    return { ok: false, error: "phone required for advisory" };
+  if (phone === null) {
+    return { ok: false, error: "phone required" };
   }
 
   const intent = trimOrNull(r.intent);
