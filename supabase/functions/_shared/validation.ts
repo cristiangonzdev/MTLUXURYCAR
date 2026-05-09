@@ -30,6 +30,7 @@ export type LeadInput = {
   utm_campaign?: string | null;
   lead_type: string;
   request_details?: RequestDetails | null;
+  newsletter_opt_in: boolean;
 };
 
 function trimOrNull(v: unknown): string | null {
@@ -92,15 +93,22 @@ export function validateLeadInput(raw: unknown): { ok: true; data: LeadInput } |
     return { ok: false, error: "phone must be E.164 (+34...)" };
   }
 
+  const leadType_pre = trimOrNull(r.lead_type) ?? "inventory";
+  if (leadType_pre === "advisory" && phone === null) {
+    return { ok: false, error: "phone required for advisory" };
+  }
+
   const intent = trimOrNull(r.intent);
   if (!intent || !INTENT_VALUES.has(intent)) {
     return { ok: false, error: "invalid intent" };
   }
 
-  const leadType = trimOrNull(r.lead_type) ?? "inventory";
+  const leadType = leadType_pre;
   if (!LEAD_TYPE_VALUES.has(leadType)) {
     return { ok: false, error: "invalid lead_type" };
   }
+
+  const newsletterOptIn = r.newsletter_opt_in === true;
 
   let vehicle_id: string | null;
   let vehicle_name: string | null;
@@ -143,6 +151,7 @@ export function validateLeadInput(raw: unknown): { ok: true; data: LeadInput } |
       utm_campaign: trimOrNull(r.utm_campaign),
       lead_type: leadType,
       request_details,
+      newsletter_opt_in: newsletterOptIn,
     },
   };
 }

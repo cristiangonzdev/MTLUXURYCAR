@@ -104,6 +104,11 @@
     .af-success-actions a.wa { border-color: #25d366; color: #25d366; }
     .af-success-actions a.wa:hover { background: #25d366; color: var(--black, #060606); }
     .af-error-banner { padding: .8rem 1rem; background: rgba(194,81,81,.1); border: 1px solid rgba(194,81,81,.4); color: #e8a4a4; font-size: .82rem; margin-bottom: 1rem; }
+    .af-consent { display: flex; align-items: flex-start; gap: .65rem; margin-top: .5rem; cursor: pointer; user-select: none; padding: .8rem; border: 1px solid rgba(201,168,76,.1); background: rgba(255,255,255,.015); transition: border-color .25s ease; }
+    .af-consent:hover { border-color: rgba(201,168,76,.25); }
+    .af-consent input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold, #C9A84C); cursor: pointer; flex-shrink: 0; }
+    .af-consent-text { font-size: .82rem; color: var(--cream-soft, #D4CCBA); line-height: 1.5; }
+    .af-consent-text a { color: var(--gold, #C9A84C); text-decoration: underline; }
     .af-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: af-spin .7s linear infinite; vertical-align: middle; margin-right: .5rem; }
     @keyframes af-spin { to { transform: rotate(360deg); } }
   `;
@@ -231,9 +236,9 @@
                   <span class="af-error-msg" data-error-for="email">Introduce un email válido</span>
                 </div>
                 <div class="af-full">
-                  <label class="af-label" for="af-phone">Teléfono <span class="af-hint">recomendado para respuesta más rápida</span></label>
-                  <input class="af-input" id="af-phone" name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000" />
-                  <span class="af-error-msg" data-error-for="phone">Formato internacional, ej: +34600000000</span>
+                  <label class="af-label" for="af-phone">Teléfono</label>
+                  <input class="af-input" id="af-phone" name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000" required />
+                  <span class="af-error-msg" data-error-for="phone">Introduce un teléfono válido en formato internacional, ej: +34600000000</span>
                 </div>
                 <div class="af-full">
                   <span class="af-label">¿Cuándo lo necesitas?</span>
@@ -253,6 +258,13 @@
                   </div>
                   <span class="af-error-msg" data-error-for="intent">Selecciona una opción</span>
                 </div>
+                <label class="af-consent af-full">
+                  <input type="checkbox" id="af-newsletter" name="newsletter_opt_in" />
+                  <span class="af-consent-text">
+                    Quiero recibir por email novedades sobre vehículos exclusivos y servicios de MT Lux Cars.
+                    Puedo darme de baja en cualquier momento. Consulta nuestra <a href="politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.
+                  </span>
+                </label>
               </div>
               <button type="submit" class="af-submit">Buscarme unidades</button>
             </form>
@@ -273,6 +285,7 @@
       budget_max: form.querySelector("#af-budget"),
       email: form.querySelector("#af-email"),
       phone: form.querySelector("#af-phone"),
+      newsletter: form.querySelector("#af-newsletter"),
     };
     const intents = container.querySelectorAll(".af-intent");
     let selectedIntent = null;
@@ -323,12 +336,9 @@
       if (!emailOk) ok = false;
 
       const phone = fields.phone.value.trim().replace(/\s/g, "");
-      if (phone.length > 0 && !E164_RE.test(phone)) {
-        setError("phone", true);
-        ok = false;
-      } else {
-        setError("phone", false);
-      }
+      const phoneOk = phone.length > 0 && E164_RE.test(phone);
+      setError("phone", !phoneOk);
+      if (!phoneOk) ok = false;
 
       const intentEl = container.querySelector('[data-error-for="intent"]');
       if (intentEl) intentEl.classList.toggle("show", !selectedIntent);
@@ -343,7 +353,8 @@
         color: fields.color.value || null,
         budget_max: fields.budget_max.value ? Number(fields.budget_max.value) : null,
         email,
-        phone: phone || null,
+        phone,
+        newsletter_opt_in: fields.newsletter.checked,
       };
     }
 
@@ -363,6 +374,7 @@
         phone: data.phone,
         intent: selectedIntent,
         lead_type: "advisory",
+        newsletter_opt_in: data.newsletter_opt_in,
         request_details: {
           brand: data.brand,
           model: data.model || "Cualquier modelo",

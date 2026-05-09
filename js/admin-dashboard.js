@@ -265,7 +265,7 @@
       ${requestSection}
       <div class="drawer-section">
         <h3>Contacto</h3>
-        <p><a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a></p>
+        <p><a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a>${lead.newsletter_opt_in ? ' <span class="badge badge-newsletter">📧 Newsletter</span>' : ""}</p>
         ${lead.phone ? `<p class="muted">${escapeHtml(lead.phone)}</p>` : ""}
       </div>
       <div class="drawer-actions">
