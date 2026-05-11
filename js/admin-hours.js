@@ -33,6 +33,7 @@
   const monthHoursEl = document.getElementById("monthHours");
   const yearHoursEl = document.getElementById("yearHours");
   const weekSub = document.getElementById("weekSub");
+  const monthSub = document.getElementById("monthSub");
   const tbody = document.getElementById("entriesBody");
   const addForm = document.getElementById("addForm");
   const qaDate = document.getElementById("qaDate");
@@ -92,12 +93,18 @@
     weekHoursEl.innerHTML = `${formatHoursVal(stats.week_hours)}<span class="unit">h</span>`;
     monthHoursEl.innerHTML = `${formatHoursVal(stats.month_hours)}<span class="unit">h</span>`;
     yearHoursEl.innerHTML = `${formatHoursVal(stats.year_hours)}<span class="unit">h</span>`;
-    if (stats.week_hours > 20) {
-      weekHoursEl.classList.add("warn");
-      weekSub.textContent = `desde ${formatDate(stats.week_start)} · superas las 20h`;
+
+    weekHoursEl.classList.remove("warn");
+    weekSub.textContent = `desde ${formatDate(stats.week_start)}`;
+
+    if (stats.month_hours > 80) {
+      monthHoursEl.classList.add("warn");
+      const exceso = Number((stats.month_hours - 80).toFixed(2));
+      monthSub.textContent = `superas las 80h · +${formatHoursVal(exceso)}h por encima`;
     } else {
-      weekHoursEl.classList.remove("warn");
-      weekSub.textContent = `desde ${formatDate(stats.week_start)}`;
+      monthHoursEl.classList.remove("warn");
+      const restantes = Number((80 - stats.month_hours).toFixed(2));
+      monthSub.textContent = `${formatHoursVal(restantes)}h hasta el tope de 80h`;
     }
   }
 
