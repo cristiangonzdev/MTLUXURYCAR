@@ -55,6 +55,8 @@
     font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
   }
   .btn-link:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-link.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,.08); }
+  .btn-link.active:disabled { cursor: default; opacity: 1; }
 
   /* Main */
   main { padding: 1.5rem; max-width: 1500px; margin: 0 auto; }
@@ -234,6 +236,8 @@
     <span class="brand-sub">Panel de leads</span>
   </div>
   <div class="topbar-actions">
+    <button class="btn-link active" disabled>Leads</button>
+    <a class="btn-link" href="horas.html">Horas</a>
     <button class="btn-link" id="refreshBtn">Actualizar</button>
     <button class="btn-link" id="logoutBtn">Salir</button>
   </div>

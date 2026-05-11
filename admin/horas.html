@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Horas trabajadas · MT Lux Cars Admin</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #060606;
+    --black-soft: #0F0F0F;
+    --black-card: #141414;
+    --gold: #C9A84C;
+    --gold-light: #E4C97A;
+    --cream: #F0EAD6;
+    --cream-soft: #D4CCBA;
+    --gray: #888880;
+    --line: rgba(201,168,76,.15);
+    --line-strong: rgba(201,168,76,.3);
+    --red: #c25151;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-light); }
+  button { font-family: inherit; cursor: pointer; }
+
+  header.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; border-bottom: 1px solid var(--line);
+    background: var(--black-soft);
+  }
+  .brand { display: flex; flex-direction: column; }
+  .brand-name { font-family: Georgia, serif; font-size: 1.1rem; color: var(--gold); letter-spacing: .04em; }
+  .brand-sub { font-size: .65rem; color: var(--gray); letter-spacing: .2em; text-transform: uppercase; }
+  .topbar-actions { display: flex; gap: .8rem; align-items: center; }
+  .btn-link { background: none; border: 1px solid var(--line); color: var(--cream-soft); padding: .5rem .9rem; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+  .btn-link:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-link.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,.08); }
+
+  main { padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+  .stats {
+    display: grid; gap: .8rem; margin-bottom: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr; } }
+  .stat-card { background: var(--black-card); border: 1px solid var(--line); padding: 1.1rem 1.2rem; }
+  .stat-label { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gray); margin-bottom: .35rem; }
+  .stat-value { font-family: Georgia, serif; font-size: 2rem; color: var(--cream); line-height: 1.05; }
+  .stat-value .unit { font-size: .85rem; color: var(--gray); margin-left: .25rem; letter-spacing: .04em; font-family: 'Inter', sans-serif; }
+  .stat-sub { font-size: .72rem; color: var(--gray); margin-top: .25rem; font-style: italic; }
+  .stat-value.warn { color: var(--red); }
+
+  .quick-add {
+    background: var(--black-soft); border: 1px solid var(--line);
+    padding: 1.1rem 1.2rem; margin-bottom: 1.4rem;
+  }
+  .qa-title { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+  .qa-grid {
+    display: grid; gap: .6rem;
+    grid-template-columns: 160px 110px 1fr auto;
+  }
+  @media (max-width: 640px) { .qa-grid { grid-template-columns: 1fr; } }
+  .qa-grid input, .qa-grid button {
+    padding: .65rem .9rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--line);
+    color: var(--cream);
+    font-family: inherit; font-size: .9rem;
+    min-height: 42px;
+  }
+  .qa-grid input:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,.05); }
+  .qa-grid input::placeholder { color: rgba(255,255,255,.25); }
+  .qa-grid input.invalid { border-color: var(--red); }
+  .qa-grid button.save {
+    background: var(--gold); color: var(--black); border-color: var(--gold);
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+    padding: .65rem 1.4rem; white-space: nowrap;
+  }
+  .qa-grid button.save:hover:not(:disabled) { background: var(--gold-light); border-color: var(--gold-light); }
+  .qa-grid button.save:disabled { opacity: .55; cursor: not-allowed; }
+  .qa-err { color: #e08585; font-size: .78rem; margin-top: .5rem; display: none; }
+  .qa-err.show { display: block; }
+
+  .table-wrap { background: var(--black-soft); border: 1px solid var(--line); }
+  table.entries { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  table.entries th { text-align: left; padding: .7rem .8rem; background: var(--black-card); color: var(--cream-soft); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(--line); }
+  table.entries td { padding: .7rem .8rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.entries tr:hover td { background: rgba(255,255,255,.02); }
+  table.entries td.hours { color: var(--gold); font-weight: 500; }
+  table.entries td.actions { text-align: right; white-space: nowrap; }
+  table.entries td.actions button {
+    background: transparent; border: 1px solid var(--line);
+    color: var(--cream-soft); padding: .35rem .6rem;
+    font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; margin-left: .3rem;
+  }
+  table.entries td.actions button:hover { border-color: var(--gold); color: var(--gold); }
+  table.entries td.actions button.danger:hover { border-color: var(--red); color: var(--red); }
+  table.entries td input { background: rgba(255,255,255,.05); border: 1px solid var(--gold); color: var(--cream); padding: .35rem .5rem; font-family: inherit; font-size: .85rem; width: 100%; }
+  table.entries td input:focus { outline: none; }
+  .empty { padding: 2.5rem 1rem; text-align: center; color: var(--gray); font-style: italic; }
+  .loader { padding: 2.5rem; text-align: center; color: var(--gray); }
+  .loader-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin: 0 3px; animation: pulse 1s infinite ease-in-out; }
+  .loader-dot:nth-child(2) { animation-delay: .15s; }
+  .loader-dot:nth-child(3) { animation-delay: .3s; }
+  @keyframes pulse { 0%, 80%, 100% { opacity: .3; } 40% { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-name">MT Lux Cars</span>
+    <span class="brand-sub">Horas trabajadas</span>
+  </div>
+  <div class="topbar-actions">
+    <a class="btn-link" href="leads.html">Leads</a>
+    <button class="btn-link active" disabled>Horas</button>
+    <button class="btn-link" id="logoutBtn">Salir</button>
+  </div>
+</header>
+
+<main>
+  <section class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Esta semana</div>
+      <div class="stat-value" id="weekHours">—<span class="unit">h</span></div>
+      <div class="stat-sub" id="weekSub"></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Este mes</div>
+      <div class="stat-value" id="monthHours">—<span class="unit">h</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Este año</div>
+      <div class="stat-value" id="yearHours">—<span class="unit">h</span></div>
+    </div>
+  </section>
+
+  <section class="quick-add">
+    <div class="qa-title">Añadir horas</div>
+    <form id="addForm">
+      <div class="qa-grid">
+        <input type="date" id="qaDate" required />
+        <input type="number" id="qaHours" placeholder="Horas" step="0.25" min="0.25" max="24" required />
+        <input type="text" id="qaNote" placeholder="Nota (opcional, ej: atención a cliente del G63)" maxlength="500" />
+        <button type="submit" class="save">Guardar</button>
+      </div>
+      <p class="qa-err" id="qaErr"></p>
+    </form>
+  </section>
+
+  <div class="table-wrap">
+    <table class="entries">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Horas</th>
+          <th>Nota</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="entriesBody">
+        <tr><td colspan="4" class="loader"><span class="loader-dot"></span><span class="loader-dot"></span><span class="loader-dot"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script src="../js/config.js"></script>
+<script src="../js/admin-hours.js"></script>
+</body>
+</html>

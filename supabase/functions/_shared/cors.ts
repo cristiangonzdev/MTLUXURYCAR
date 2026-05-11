@@ -19,7 +19,7 @@ export function corsHeaders(req: Request): HeadersInit {
   const origin = isAllowed(req.headers.get("origin"));
   return {
     "Access-Control-Allow-Origin": origin ?? "https://www.mtluxcars.com",
-    "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Authorization, Content-Type",
     "Access-Control-Max-Age": "86400",
     "Vary": "Origin",
