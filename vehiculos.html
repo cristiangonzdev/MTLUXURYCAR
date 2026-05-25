@@ -838,7 +838,6 @@
         <div class="modal-line"></div>
         <p class="modal-desc" id="modalDesc"></p>
         <p class="modal-price" id="modalPrice"></p>
-        <div id="modalLeadForm"></div>
         <div class="modal-actions">
           <a class="wa-btn" id="modalWa" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1371,11 +1370,6 @@
       modalWa.href = buildWaLink(car.name);
       modalWa.setAttribute('aria-label', `Contactar por WhatsApp sobre ${car.name}`);
 
-      const leadFormHost = document.getElementById('modalLeadForm');
-      if (leadFormHost && window.MTLUXLeadForm) {
-        window.MTLUXLeadForm.mount(leadFormHost, { id: car.id, name: car.name, price: car.price });
-      }
-
       // Build main images — only load first 3 eagerly, rest on demand
       galleryMain.querySelectorAll('img').forEach(img => img.remove());
       car.images.forEach((src, i) => {
@@ -1441,8 +1435,6 @@
         img.remove();
       });
       galleryThumbs.innerHTML = '';
-      const leadFormHost = document.getElementById('modalLeadForm');
-      if (leadFormHost) leadFormHost.innerHTML = '';
       currentCar = null;
       if (lastFocused) lastFocused.focus();
     }
@@ -1584,8 +1576,6 @@
     }
 
   </script>
-  <script src="js/config.js"></script>
-  <script src="js/lead-form.js"></script>
   <script src="js/track-credit.js" defer></script>
   <script src="cookies.js" defer></script>
 </body>
