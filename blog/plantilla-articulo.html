@@ -203,15 +203,22 @@
       font-stretch: 125%;
       font-weight: 800;
       text-transform: uppercase;
-      font-size: 2.4rem;
+      font-size: clamp(1.7rem, 8vw, 2.4rem);
       color: var(--cal);
-      line-height: 1;
+      line-height: 1.15;
+      overflow-wrap: break-word;
       transition: color .3s ease;
     }
     .mobile-overlay a:hover,
     .mobile-overlay a.active { color: var(--lava); }
     .mobile-overlay a:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }
     .mobile-overlay .mono { color: var(--piedra); margin-bottom: .5rem; }
+
+    /* En pantallas muy estrechas, reduce el ancho expandido de la tipografía
+       display en vez de forzar un corte de palabra feo a mitad de letra */
+    @media (max-width: 480px) {
+      .display, .mobile-overlay a { font-stretch: 100%; }
+    }
 
     @media (max-width: 720px) {
       .nav-links { display: none; }
