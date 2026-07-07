@@ -111,6 +111,9 @@
       text-transform: uppercase;
       letter-spacing: -.01em;
       line-height: .92;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .mono {
       font-family: var(--font-mono);
@@ -203,11 +206,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
-      padding: 0 2rem;
-      gap: 1.6rem;
+      justify-content: flex-start;
+      padding: 6rem 2rem 2rem;
+      gap: 1.4rem;
       opacity: 0;
       visibility: hidden;
+      overflow-y: auto;
       transition: opacity .4s ease, visibility .4s ease;
     }
     .mobile-overlay.open { opacity: 1; visibility: visible; }
@@ -305,7 +309,7 @@
       background: var(--lava);
     }
     .page-title {
-      font-size: clamp(2.8rem, 9vw, 7.5rem);
+      font-size: clamp(2.3rem, 9vw, 7.5rem);
       letter-spacing: -.015em;
     }
     .page-title em {
@@ -582,6 +586,15 @@
     @media (max-width: 720px) {
       .footer-top, .footer-mid { flex-direction: column; align-items: flex-start; }
       .footer-top .mono { text-align: left; }
+    }
+
+    /* ══════════ MÓVILES MUY ESTRECHOS (≤400px) ══════════ */
+    @media (max-width: 400px) {
+      .page-head, .portada, .proceso, .servicios, .encargo {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .paso, .serv-card { padding-left: 1.25rem; padding-right: 1.25rem; }
     }
 
     /* ══════════ REDUCED MOTION ══════════ */

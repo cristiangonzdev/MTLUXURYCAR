@@ -199,6 +199,9 @@
       text-transform: uppercase;
       letter-spacing: -.01em;
       line-height: .92;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .mono {
       font-family: var(--font-mono);
@@ -291,11 +294,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
-      padding: 0 2rem;
-      gap: 1.6rem;
+      justify-content: flex-start;
+      padding: 6rem 2rem 2rem;
+      gap: 1.4rem;
       opacity: 0;
       visibility: hidden;
+      overflow-y: auto;
       transition: opacity .4s ease, visibility .4s ease;
     }
     .mobile-overlay.open { opacity: 1; visibility: visible; }
@@ -405,6 +409,8 @@
       line-height: .88;
       font-size: clamp(3.4rem, 12.5vw, 11rem);
       color: var(--cal);
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .hero-title .line {
       display: block;
@@ -708,6 +714,8 @@
       font-size: 1.25rem;
       color: var(--cal);
       transition: color .3s ease;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .encargo-dato a:hover { color: var(--lava); }
     .encargo-dato a:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }
@@ -896,14 +904,6 @@
         <div class="ficha-head mono">
           <span>Ficha — MT Lux Cars</span>
           <span>EST. Arrecife</span>
-        </div>
-        <div class="ficha-row">
-          <span class="dato">50+</span>
-          <span class="concepto mono">Vehículos en colección</span>
-        </div>
-        <div class="ficha-row">
-          <span class="dato">12</span>
-          <span class="concepto mono">Marcas premium</span>
         </div>
         <div class="ficha-row">
           <span class="dato">100%</span>

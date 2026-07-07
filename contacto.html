@@ -127,6 +127,9 @@
       text-transform: uppercase;
       letter-spacing: -.01em;
       line-height: .92;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .mono {
       font-family: var(--font-mono);
@@ -219,11 +222,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
-      padding: 0 2rem;
-      gap: 1.6rem;
+      justify-content: flex-start;
+      padding: 6rem 2rem 2rem;
+      gap: 1.4rem;
       opacity: 0;
       visibility: hidden;
+      overflow-y: auto;
       transition: opacity .4s ease, visibility .4s ease;
     }
     .mobile-overlay.open { opacity: 1; visibility: visible; }
@@ -415,7 +419,7 @@
       align-self: flex-start;
     }
     @media (max-width: 900px) {
-      .map-embed { aspect-ratio: 16/11; }
+      .map-embed { aspect-ratio: 16/11; min-height: 280px; }
       .map-cta { align-self: stretch; text-align: center; }
     }
 
@@ -439,6 +443,11 @@
       font-size: 1.25rem;
       color: var(--basalto);
       transition: color .3s ease;
+    }
+    .encargo-dato a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
     .encargo-dato a:hover { color: var(--lava); }
     .encargo-dato a:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }

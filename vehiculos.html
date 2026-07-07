@@ -114,6 +114,9 @@
       text-transform: uppercase;
       letter-spacing: -.01em;
       line-height: .92;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .mono {
       font-family: var(--font-mono);
@@ -206,11 +209,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
-      padding: 0 2rem;
-      gap: 1.6rem;
+      justify-content: flex-start;
+      padding: 6rem 2rem 2rem;
+      gap: 1.4rem;
       opacity: 0;
       visibility: hidden;
+      overflow-y: auto;
       transition: opacity .4s ease, visibility .4s ease;
     }
     .mobile-overlay.open { opacity: 1; visibility: visible; }
@@ -773,7 +777,7 @@
       .gallery-counter { top: .8rem; left: .8rem; padding: .35rem .8rem; font-size: .65rem; }
       .modal-close { top: .8rem; right: .8rem; width: 44px; height: 44px; }
       .gallery-thumbs { padding: .5rem; }
-      .gallery-thumbs button { width: 60px; height: 42px; }
+      .gallery-thumbs button { width: 63px; height: 44px; }
     }
 
     /* ══════════ FOOTER ══════════ */

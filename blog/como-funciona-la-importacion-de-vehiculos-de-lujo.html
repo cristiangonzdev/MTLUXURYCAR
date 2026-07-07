@@ -80,6 +80,9 @@
       text-transform: uppercase;
       letter-spacing: -.01em;
       line-height: .92;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .mono {
       font-family: var(--font-mono);
@@ -172,11 +175,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
-      padding: 0 2rem;
-      gap: 1.6rem;
+      justify-content: flex-start;
+      padding: 6rem 2rem 2rem;
+      gap: 1.4rem;
       opacity: 0;
       visibility: hidden;
+      overflow-y: auto;
       transition: opacity .4s ease, visibility .4s ease;
     }
     .mobile-overlay.open { opacity: 1; visibility: visible; }
@@ -277,6 +281,7 @@
       display: inline-flex;
       align-items: center;
       gap: .6rem;
+      min-height: 44px;
       color: rgba(247,246,241,.65);
       margin-bottom: 2rem;
       transition: color .3s ease;
