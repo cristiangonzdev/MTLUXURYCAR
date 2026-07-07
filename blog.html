@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aviso Legal — MT Lux Cars</title>
-  <meta name="description" content="Aviso legal de MT Lux Cars. Información legal del titular del sitio web según la LSSI-CE.">
-  <meta name="robots" content="noindex, follow">
+  <title>Blog — MT Lux Cars</title>
+  <meta name="description" content="Blog de MT Lux Cars: guías, novedades y consejos sobre importación de vehículos de lujo desde Europa, financiación y vida en Lanzarote.">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
@@ -179,129 +178,250 @@
       .hamburger { display: flex; }
     }
 
-    /* ══════════ CABECERA LEGAL ══════════ */
-    .legal-hero {
+    /* ══════════ BOTONES ══════════ */
+    .btn {
+      display: inline-block;
+      position: relative;
+      padding: 1rem 2.2rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      min-height: 44px;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
+    }
+    .btn-lava {
+      background: var(--lava);
+      color: var(--cal);
+    }
+    .btn-lava:hover { background: var(--lava-oscura); }
+    .btn-ghost {
+      border: 1px solid currentColor;
+      background: transparent;
+    }
+    .btn-ghost:hover { background: var(--basalto); color: var(--cal); border-color: var(--basalto); }
+    .btn:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }
+
+    /* ══════════ REVEAL ══════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════ CABECERA DE PÁGINA ══════════ */
+    .page-head {
       background: var(--basalto);
       color: var(--cal);
-      padding: 9.5rem 2rem 3.5rem;
-      border-bottom: 1px solid var(--linea-clara);
+      padding: 9.5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
     }
-    .legal-hero-inner { max-width: 760px; margin: 0 auto; }
-    .legal-label {
+    .page-head::before {
+      content: 'MT';
+      position: absolute;
+      right: -4rem;
+      bottom: -6rem;
+      font-family: var(--font-sans);
+      font-stretch: 125%;
+      font-weight: 900;
+      font-size: 24rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(247,246,241,.07);
+      pointer-events: none;
+    }
+    .page-head-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page-eyebrow {
       color: var(--lava);
       margin-bottom: 1.4rem;
       display: flex;
       align-items: center;
       gap: .8rem;
     }
-    .legal-label::after {
+    .page-eyebrow::after {
       content: '';
       height: 1px;
       width: 60px;
       background: var(--lava);
     }
-    .legal-title {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      color: var(--cal);
+    .page-title {
+      font-size: clamp(2.8rem, 9vw, 7.5rem);
+      letter-spacing: -.015em;
+    }
+    .page-title em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--cal);
+    }
+    .page-head-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--linea-clara);
+      margin-top: 2.4rem;
+      padding-top: 1.2rem;
+    }
+    .page-head-foot .mono { color: rgba(247,246,241,.75); }
+    .page-head-foot .mono b { color: var(--lava); font-weight: 500; }
+
+    @media (max-width: 900px) {
+      .page-head::before { font-size: 14rem; right: -3rem; bottom: -4rem; }
     }
 
-    /* ══════════ CONTENIDO LEGAL ══════════ */
-    .legal-content {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 3.5rem 2rem 5.5rem;
+    /* ══════════ LISTADO DE ENTRADAS ══════════ */
+    .blog-listado {
+      background: var(--cal);
+      padding: 6rem 2rem 7rem;
     }
-    .legal-content h2 {
-      font-size: clamp(1.3rem, 2.4vw, 1.55rem);
-      border-top: 1px solid var(--linea);
-      padding-top: 1.4rem;
-      margin: 2.6rem 0 1rem;
-      color: var(--basalto);
+    .blog-listado-inner { max-width: 1400px; margin: 0 auto; }
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--basalto);
+      padding-top: 1.2rem;
+      margin-bottom: 3.5rem;
     }
-    .legal-content h2:first-child { margin-top: 0; }
-    .legal-content p {
-      font-size: .98rem;
-      color: #3E3F3A;
-      margin-bottom: 1.1rem;
-      line-height: 1.75;
-    }
-    .legal-content ul {
-      margin: 0 0 1.4rem 1.2rem;
-      color: #3E3F3A;
-    }
-    .legal-content ul li {
-      font-size: .96rem;
-      line-height: 1.75;
-      margin-bottom: .4rem;
-      padding-left: .4rem;
-    }
-    .legal-content ul li::marker { color: var(--lava); }
-    .legal-content strong { color: var(--basalto); font-weight: 700; }
-    .legal-content a {
-      color: var(--basalto);
-      border-bottom: 1px solid var(--lava);
-      transition: color .3s ease;
-      word-break: break-word;
-    }
-    .legal-content a:hover { color: var(--lava); }
-    .legal-content a:focus-visible { outline: 2px solid var(--lava); outline-offset: 3px; }
+    .blog-header .mono { color: var(--piedra); }
+    .blog-title { font-size: clamp(2rem, 4.5vw, 3.6rem); }
 
-    /* Bloque de datos, estilo hoja de taller */
-    .legal-content .data-block {
-      background: #FFFFFF;
-      border: 1px solid var(--linea);
-      border-left: 3px solid var(--lava);
-      padding: 1.5rem 1.6rem;
-      margin: 1.4rem 0;
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
     }
-    .legal-content .data-block p {
-      margin-bottom: .4rem;
-      font-size: .94rem;
-    }
-    .legal-content .data-block p:last-child { margin-bottom: 0; }
-
-    /* Tabla de cookies */
-    .cookies-table-wrap {
-      overflow-x: auto;
-      margin: 1.5rem 0 1.8rem;
+    .entrada {
+      display: flex;
+      flex-direction: column;
       border: 1px solid var(--linea);
       background: #FFFFFF;
+      transition: border-color .3s ease;
     }
-    .cookies-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .9rem;
-      color: #3E3F3A;
-      min-width: 540px;
+    .entrada:hover { border-color: var(--lava); }
+    .entrada-img {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--ceniza);
     }
-    .cookies-table th, .cookies-table td {
-      padding: .9rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--linea);
-      vertical-align: top;
+    .entrada-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .8s cubic-bezier(.16,1,.3,1);
     }
-    .cookies-table th {
+    .entrada:hover .entrada-img img { transform: scale(1.05); }
+    .entrada-fecha {
+      position: absolute;
+      top: 1rem; left: 1rem;
       background: var(--basalto);
       color: var(--cal);
+      padding: .35rem .7rem;
       font-family: var(--font-mono);
-      font-weight: 500;
       font-size: .65rem;
       letter-spacing: .14em;
       text-transform: uppercase;
     }
-    .cookies-table tr:last-child td { border-bottom: none; }
-    .cookies-table td strong { color: var(--basalto); font-weight: 700; }
-
-    .legal-content .updated {
-      margin-top: 3.5rem;
-      padding-top: 1.5rem;
+    .entrada-body {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1;
+    }
+    .entrada-cat { color: var(--piedra); }
+    .entrada-titulo {
+      font-size: 1.35rem;
+      line-height: 1.05;
+    }
+    .entrada-desc {
+      font-size: .9rem;
+      color: #3E3F3A;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .entrada-foot {
       border-top: 1px solid var(--linea);
+      padding-top: 1.2rem;
+      margin-top: .4rem;
+    }
+    .entrada-foot a {
       font-family: var(--font-mono);
       font-size: .68rem;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--piedra);
+      color: var(--basalto);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: color .3s ease, gap .3s ease;
+    }
+    .entrada-foot a:hover { color: var(--lava); gap: .8rem; }
+
+    .blog-vacio {
+      grid-column: 1 / -1;
+      border: 1px dashed var(--linea);
+      padding: 3rem 2rem;
       text-align: center;
+      color: var(--piedra);
+    }
+
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════ CTA FINAL ══════════ */
+    .encargo {
+      background: var(--basalto);
+      color: var(--cal);
+      padding: 7rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .encargo::before {
+      content: 'MT';
+      position: absolute;
+      right: -4rem;
+      bottom: -6rem;
+      font-family: var(--font-sans);
+      font-stretch: 125%;
+      font-weight: 900;
+      font-size: 28rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(247,246,241,.07);
+      pointer-events: none;
+    }
+    .encargo-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .encargo .page-eyebrow { color: var(--lava); }
+    .encargo-title { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 1.4rem; }
+    .encargo-text {
+      color: rgba(247,246,241,.78);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+    @media (max-width: 900px) {
+      .encargo::before { font-size: 16rem; right: -3rem; bottom: -4rem; }
     }
 
     /* ══════════ FOOTER ══════════ */
@@ -388,6 +508,8 @@
     /* ══════════ REDUCED MOTION ══════════ */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .entrada:hover .entrada-img img { transform: none; }
     }
   </style>
 </head>
@@ -402,7 +524,7 @@
       <li><a href="index.html">Inicio</a></li>
       <li><a href="vehiculos.html">Vehículos</a></li>
       <li><a href="asesoramiento.html">Asesoramiento</a></li>
-      <li><a href="blog.html">Blog</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -416,66 +538,62 @@
     <a href="index.html">Inicio</a>
     <a href="vehiculos.html">Vehículos</a>
     <a href="asesoramiento.html">Asesoramiento</a>
-    <a href="blog.html">Blog</a>
+    <a href="blog.html" class="active">Blog</a>
     <a href="contacto.html">Contacto</a>
   </div>
 
   <!-- CABECERA -->
-  <header class="legal-hero">
-    <div class="legal-hero-inner">
-      <p class="mono legal-label">Legal</p>
-      <h1 class="display legal-title">Aviso Legal</h1>
+  <header class="page-head">
+    <div class="page-head-inner">
+      <p class="mono page-eyebrow">Revista MT Lux Cars</p>
+      <h1 class="display page-title">Blog<br><em>& actualidad</em></h1>
+      <div class="page-head-foot">
+        <p class="mono"><b>●</b>&nbsp; Artículos nuevos cada semana</p>
+        <p class="mono">Arrecife · Lanzarote — 28.96° N, 13.55° O</p>
+      </div>
     </div>
   </header>
 
-  <!-- CONTENIDO -->
-  <main class="legal-content">
+  <!-- LISTADO -->
+  <section class="blog-listado">
+    <div class="blog-listado-inner">
+      <div class="blog-header reveal">
+        <h2 class="display blog-title">Últimas entradas</h2>
+        <p class="mono">01 artículo publicado</p>
+      </div>
 
-    <h2 class="display">1. Datos identificativos del titular</h2>
-    <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de los siguientes datos del titular del sitio web:</p>
-    <div class="data-block">
-      <p><strong>Titular:</strong> María Teresa Sanvicens De la Rosa</p>
-      <p><strong>NIF:</strong> 78589660V</p>
-      <p><strong>Actividad:</strong> Comercialización de vehículos de lujo</p>
-      <p><strong>Domicilio:</strong> Calle Manolo Millares, 88 — 35500 Arrecife, Las Palmas (Lanzarote)</p>
-      <p><strong>Email:</strong> info@mtluxcars.com</p>
-      <p><strong>Teléfono:</strong> +34 622 017 410</p>
+      <div class="blog-grid">
+
+        <article class="entrada reveal">
+          <div class="entrada-img">
+            <span class="entrada-fecha">Jul 2026</span>
+            <img src="images/mercedesbenzg63morro.webp" alt="Importación de vehículos de lujo desde Europa" loading="lazy">
+          </div>
+          <div class="entrada-body">
+            <p class="mono entrada-cat">Importación</p>
+            <h3 class="display entrada-titulo">Así funciona la importación de tu vehículo de lujo</h3>
+            <p class="entrada-desc">Buscamos tu coche en el mercado europeo, te lo mostramos con fotos reales y en semanas lo tienes en Lanzarote, con todo tramitado.</p>
+            <div class="entrada-foot">
+              <a href="blog/como-funciona-la-importacion-de-vehiculos-de-lujo.html">Leer artículo →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
+  </section>
 
-    <h2 class="display">2. Objeto</h2>
-    <p>El presente Aviso Legal regula el uso del sitio web MT Lux Cars (en adelante, "el Sitio Web"), titularidad de María Teresa Sanvicens De la Rosa.</p>
-    <p>La navegación por el Sitio Web atribuye la condición de Usuario del mismo e implica la aceptación plena y sin reservas de todas y cada una de las condiciones publicadas en este Aviso Legal. En consecuencia, el Usuario debe leer atentamente el presente Aviso Legal en cada una de las ocasiones en que se proponga utilizar el Sitio Web, ya que su contenido podrá sufrir modificaciones.</p>
-
-    <h2 class="display">3. Condiciones de uso</h2>
-    <p>El Usuario se compromete a hacer un uso adecuado y lícito del Sitio Web, así como de los contenidos y servicios, de conformidad con la legislación aplicable, el presente Aviso Legal, la moral, las buenas costumbres y el orden público.</p>
-    <p>Queda prohibido emplear el Sitio Web con cualquiera de las siguientes finalidades:</p>
-    <ul>
-      <li>Realizar actividades ilícitas, ilegales o contrarias a la buena fe y al orden público.</li>
-      <li>Difundir contenidos o propaganda de carácter racista, xenófobo, pornográfico, ilegal, de apología del terrorismo o atentatorio contra los derechos humanos.</li>
-      <li>Provocar daños en los sistemas físicos y lógicos del titular o de terceras personas.</li>
-      <li>Introducir o difundir virus informáticos o cualquier otro sistema físico o lógico susceptible de provocar daños.</li>
-      <li>Intentar acceder y, en su caso, utilizar las cuentas de correo electrónico de otros usuarios.</li>
-    </ul>
-
-    <h2 class="display">4. Propiedad intelectual e industrial</h2>
-    <p>Todos los contenidos del Sitio Web (incluyendo, a título enunciativo y no limitativo, textos, fotografías, gráficos, imágenes, iconos, tecnología, software, enlaces, marcas, nombres comerciales y demás contenidos audiovisuales o sonoros) son propiedad de María Teresa Sanvicens De la Rosa o de terceros que han autorizado su uso.</p>
-    <p>Queda expresamente prohibida la reproducción, distribución, comunicación pública o transformación, total o parcial, de cualquiera de los contenidos sin autorización expresa y por escrito del titular.</p>
-
-    <h2 class="display">5. Exclusión de garantías y responsabilidad</h2>
-    <p>El titular no se responsabiliza, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del Sitio Web o la transmisión de virus o programas maliciosos en los contenidos, a pesar de haber adoptado todas las medidas tecnológicas necesarias para evitarlo.</p>
-    <p>Los precios, características técnicas, equipamientos y disponibilidad de los vehículos mostrados en el Sitio Web son <strong>orientativos</strong> y pueden variar sin previo aviso. La información definitiva y vinculante sobre cualquier vehículo se proporcionará exclusivamente en el momento de la consulta directa con el titular.</p>
-
-    <h2 class="display">6. Enlaces a sitios de terceros</h2>
-    <p>El Sitio Web puede contener enlaces a sitios web de terceros, sobre los que el titular no tiene ningún tipo de control. En consecuencia, no asume responsabilidad alguna por los contenidos, servicios o información que se pueda obtener a través de dichos enlaces.</p>
-
-    <h2 class="display">7. Modificaciones</h2>
-    <p>El titular se reserva el derecho de efectuar, sin previo aviso, las modificaciones que considere oportunas en el Sitio Web, pudiendo cambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través del mismo como la forma en la que estos aparezcan presentados o localizados.</p>
-
-    <h2 class="display">8. Legislación aplicable y jurisdicción</h2>
-    <p>La relación entre el titular y el Usuario se regirá por la legislación española vigente. Para la resolución de cualquier controversia que pudiera surgir en relación con el Sitio Web o las actividades que en él se desarrollen, ambas partes se someten expresamente a la competencia de los Juzgados y Tribunales de Arrecife (Lanzarote), con renuncia expresa a cualquier otro fuero que pudiera corresponderles.</p>
-
-    <p class="updated">Última actualización: abril de 2026</p>
-  </main>
+  <!-- CTA FINAL -->
+  <section class="encargo">
+    <div class="encargo-inner reveal">
+      <p class="mono page-eyebrow">Empieza hoy</p>
+      <h2 class="display encargo-title">¿Listo para encontrar<br>tu vehículo ideal?</h2>
+      <p class="encargo-text">
+        Cuéntanos qué buscas y nos encargamos del resto. Asesoramiento directo, sin intermediarios.
+      </p>
+      <a href="https://wa.me/34622017410?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20asesoramiento%20de%20MT%20Lux%20Cars" target="_blank" rel="noopener noreferrer" class="btn btn-lava">Contactar ahora</a>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -517,6 +635,24 @@
       overlay.setAttribute('aria-hidden', !open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── IntersectionObserver reveal ── */
+    if (!prefersReduced) {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
   </script>
   <script src="cookies.js" defer></script>
 </body>
