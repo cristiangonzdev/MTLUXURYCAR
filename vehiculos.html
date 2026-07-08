@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#060606">
 
   <title>Vehículos de Lujo en Lanzarote — MT Lux Cars</title>
-  <meta name="description" content="Colección de coches de lujo en Lanzarote: Mercedes-Benz G63, S63, GLE, GLC, BMW X5, Porsche Cayenne, Panamera y más. Stock actualizado en Arrecife.">
-  <meta name="keywords" content="vehículos de lujo Lanzarote, Mercedes G63 Lanzarote, BMW X5 Lanzarote, Porsche Cayenne Lanzarote, Panamera Canarias, coches premium Arrecife">
+  <meta name="description" content="Colección de coches de lujo en Lanzarote: BMW XM 50e, Mercedes-Benz G63, S63, GLE, GLC, BMW X5, Porsche Cayenne, Panamera y más. Stock actualizado en Arrecife.">
+  <meta name="keywords" content="vehículos de lujo Lanzarote, BMW XM Lanzarote, Mercedes G63 Lanzarote, BMW X5 Lanzarote, Porsche Cayenne Lanzarote, Panamera Canarias, coches premium Arrecife">
   <meta name="author" content="MT Lux Cars">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="googlebot" content="index, follow">
@@ -109,11 +109,10 @@
     /* Voces tipográficas */
     .display {
       font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: -.01em;
-      line-height: .92;
+      font-stretch: 85%;
+      font-weight: 600;
+      letter-spacing: -.005em;
+      line-height: 1.08;
       overflow-wrap: break-word;
       word-break: break-word;
       hyphens: auto;
@@ -220,9 +219,10 @@
     .mobile-overlay.open { opacity: 1; visibility: visible; }
     .mobile-overlay a {
       font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 800;
+      font-stretch: 90%;
+      font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: .01em;
       font-size: clamp(1.7rem, 8vw, 2.4rem);
       color: var(--cal);
       line-height: 1.15;
@@ -234,10 +234,11 @@
     .mobile-overlay a:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }
     .mobile-overlay .mono { color: var(--piedra); margin-bottom: .5rem; }
 
-    /* En pantallas muy estrechas, reduce el ancho expandido de la tipografía
+    /* En pantallas muy estrechas, reduce aún más el ancho de la tipografía
        display en vez de forzar un corte de palabra feo a mitad de letra */
     @media (max-width: 480px) {
-      .display, .mobile-overlay a { font-stretch: 100%; }
+      .display { font-stretch: 75%; }
+      .mobile-overlay a { font-stretch: 80%; }
     }
 
     @media (max-width: 720px) {
@@ -322,9 +323,9 @@
       color: var(--cal);
     }
     .page-title em {
-      font-style: normal;
-      color: transparent;
-      -webkit-text-stroke: 2px var(--cal);
+      font-style: italic;
+      font-weight: 500;
+      color: var(--lava);
     }
     .page-meta {
       display: flex;
@@ -913,7 +914,7 @@
       <p class="mono page-eyebrow reveal">Colección — Arrecife · Lanzarote</p>
       <h1 class="display page-title reveal">La <em>colección</em></h1>
       <div class="page-meta reveal">
-        <p class="mono"><b>●</b>&nbsp; 10 piezas en exposición</p>
+        <p class="mono"><b>●</b>&nbsp; 11 piezas en exposición</p>
         <p class="mono">Historial verificado · Entrega en Canarias</p>
       </div>
     </div>
@@ -1003,6 +1004,99 @@
     const WA_PHONE = '34622017410';
 
     const cars = [
+      {
+        id: 'bmw-xm-50e',
+        name: 'BMW XM 50e',
+        category: 'suv',
+        categoryLabel: 'SUV',
+        short: '2026 · 600 km · 476 CV · Híbrido enchufable (PHEV) · Automático',
+        description: `
+          <div class="spec-grid">
+            <div class="spec-item"><span class="spec-label">Año</span><span class="spec-value">2026</span></div>
+            <div class="spec-item"><span class="spec-label">Kilómetros</span><span class="spec-value">600 km</span></div>
+            <div class="spec-item"><span class="spec-label">Motor</span><span class="spec-value">Híbrido enchufable (PHEV)</span></div>
+            <div class="spec-item"><span class="spec-label">Potencia</span><span class="spec-value">476 CV</span></div>
+          </div>
+          <div class="desc-section">
+            <p class="desc-section-title">Diseño y Acabados</p>
+            <p class="desc-text">Acabado exterior en Black Sapphire Metalizado combinado con tapicería de cuero BMW Individual Merino en Sakhir Orange, una unidad prácticamente a estrenar (600 km) con la configuración más exclusiva del XM.</p>
+          </div>
+          <div class="desc-section">
+            <p class="desc-section-title">Infotainment y Conectividad</p>
+            <ul class="desc-list">
+              <li>BMW Live Cockpit Professional</li>
+              <li>Sistema de navegación profesional</li>
+              <li>Connected Package Professional</li>
+              <li>Wireless Charging para smartphone</li>
+              <li>eSIM personal integrada</li>
+              <li>Servicios BMW ConnectedDrive</li>
+              <li>Radio Digital DAB+</li>
+              <li>Harman Kardon Surround Sound System</li>
+              <li>Apple CarPlay y Android Auto</li>
+              <li>Servicios TeleServices y llamada</li>
+            </ul>
+          </div>
+          <div class="desc-section">
+            <p class="desc-section-title">Iluminación y Diseño</p>
+            <ul class="desc-list">
+              <li>Parrilla iluminada BMW Iconic Glow</li>
+              <li>Shadow Line ampliado en negro brillo</li>
+              <li>Llantas BMW M de 23" estilo 923M Jet Black</li>
+              <li>Cristales traseros tintados</li>
+              <li>Frenos M Sport en negro brillo</li>
+              <li>Molduras interiores de fibra de carbono</li>
+              <li>Iluminación ambiental</li>
+              <li>BMW IconicSounds Electric</li>
+            </ul>
+          </div>
+          <div class="desc-section">
+            <p class="desc-section-title">Asistencia y Seguridad</p>
+            <ul class="desc-list">
+              <li>Parking Assistant Plus</li>
+              <li>Cámara 360° (Surround View)</li>
+              <li>Active Guard</li>
+              <li>Asistente de luces largas</li>
+              <li>Sistema de protección activa para pasajeros</li>
+              <li>Control de presión de neumáticos</li>
+              <li>Alarma antirrobo</li>
+              <li>Tornillos antirrobo para llantas</li>
+              <li>Cierre centralizado automático</li>
+              <li>Sistema de reparación de neumáticos</li>
+            </ul>
+          </div>
+          <div class="desc-section">
+            <p class="desc-section-title">Confort y Extras</p>
+            <ul class="desc-list">
+              <li>Acceso confort (Keyless)</li>
+              <li>Soft-Close (cierre suave de puertas)</li>
+              <li>Asientos M multifunción</li>
+              <li>Asientos ventilados delanteros</li>
+              <li>Asientos calefactables delanteros y traseros</li>
+              <li>Función masaje conductor y acompañante</li>
+              <li>Portabebidas con función frío/calor</li>
+              <li>Travel & Comfort System</li>
+              <li>Chasis M Adaptivo Professional</li>
+              <li>Cambio automático deportivo</li>
+              <li>Cable de carga profesional hasta 22 kW</li>
+              <li>Carga rápida en corriente alterna</li>
+            </ul>
+          </div>
+          <p class="desc-highlight"><span class="original-price">PVP 135.520 €</span> Ahora por solo 118.900 €</p>
+        `,
+        price: '118.900 €',
+        images: [
+          'bmwxm.webp',
+          'bmwxmlateral.webp',
+          'bmwxmtraserolateral.webp',
+          'bmwxmtrasero.webp',
+          'bmwxmrueda.webp',
+          'bmwxminterior.webp',
+          'bmwxminteriorentero.webp',
+          'bmwxmvolante.webp',
+          'bmwxmconsola.webp',
+          'bmwxmdetalle.webp'
+        ]
+      },
       {
         id: 'bmw-x5',
         name: 'BMW X5 Híbrido Enchufable',

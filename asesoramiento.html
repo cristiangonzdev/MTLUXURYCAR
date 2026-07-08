@@ -106,11 +106,10 @@
     /* Voces tipográficas */
     .display {
       font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: -.01em;
-      line-height: .92;
+      font-stretch: 85%;
+      font-weight: 600;
+      letter-spacing: -.005em;
+      line-height: 1.08;
       overflow-wrap: break-word;
       word-break: break-word;
       hyphens: auto;
@@ -217,9 +216,10 @@
     .mobile-overlay.open { opacity: 1; visibility: visible; }
     .mobile-overlay a {
       font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 800;
+      font-stretch: 90%;
+      font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: .01em;
       font-size: clamp(1.7rem, 8vw, 2.4rem);
       color: var(--cal);
       line-height: 1.15;
@@ -231,10 +231,11 @@
     .mobile-overlay a:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }
     .mobile-overlay .mono { color: var(--piedra); margin-bottom: .5rem; }
 
-    /* En pantallas muy estrechas, reduce el ancho expandido de la tipografía
+    /* En pantallas muy estrechas, reduce aún más el ancho de la tipografía
        display en vez de forzar un corte de palabra feo a mitad de letra */
     @media (max-width: 480px) {
-      .display, .mobile-overlay a { font-stretch: 100%; }
+      .display { font-stretch: 75%; }
+      .mobile-overlay a { font-stretch: 80%; }
     }
 
     @media (max-width: 720px) {
@@ -320,9 +321,9 @@
       letter-spacing: -.015em;
     }
     .page-title em {
-      font-style: normal;
-      color: transparent;
-      -webkit-text-stroke: 2px var(--cal);
+      font-style: italic;
+      font-weight: 500;
+      color: var(--lava);
     }
     .page-head-foot {
       display: flex;
