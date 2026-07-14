@@ -1,20 +1,3 @@
-<!--
-  PLANTILLA PARA NUEVOS ARTÍCULOS DEL BLOG — MT Lux Cars
-  ========================================================
-  Cómo usar esta plantilla cada semana:
-  1. Duplica este archivo y renómbralo con el slug del artículo,
-     por ejemplo: blog/como-elegir-tu-suv-de-lujo.html
-  2. Sustituye todos los textos marcados entre [CORCHETES], incluidos
-     los del bloque JSON-LD del <head> (BlogPosting + BreadcrumbList) —
-     no lo borres, es lo que permite que Google entienda el artículo.
-  3. Cambia la imagen de portada y, si quieres, añade más <p> o
-     bloques .paso / .callout dentro de la sección .articulo.
-  4. Añade una tarjeta nueva en blog.html (sección .blog-grid)
-     apuntando al nuevo archivo, y actualiza el contador
-     "0X artículos publicados" del blog-header.
-  5. Añade la URL del artículo a sitemap.xml.
-  6. Sube los cambios con git — el despliegue en Vercel es automático.
--->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,19 +6,19 @@
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#060606">
 
-  <title>[TÍTULO DEL ARTÍCULO] — Blog MT Lux Cars</title>
-  <meta name="description" content="[DESCRIPCIÓN CORTA DEL ARTÍCULO, 1-2 frases, para SEO]">
+  <title>Fiscalidad al comprar un coche de lujo en Canarias: lo que debes saber — Blog MT Lux Cars</title>
+  <meta name="description" content="Canarias tiene un régimen fiscal propio: IGIC en lugar de IVA e impuesto de matriculación ligado a las emisiones. Te explicamos los conceptos clave y por qué cada vehículo se calcula caso por caso.">
   <meta name="author" content="MT Lux Cars">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html">
+  <link rel="canonical" href="https://www.mtluxcars.com/blog/fiscalidad-comprar-coche-lujo-canarias.html">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="MT Lux Cars">
   <meta property="og:locale" content="es_ES">
-  <meta property="og:title" content="[TÍTULO DEL ARTÍCULO] — Blog MT Lux Cars">
-  <meta property="og:description" content="[DESCRIPCIÓN CORTA DEL ARTÍCULO, 1-2 frases, para redes sociales]">
-  <meta property="og:url" content="https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html">
+  <meta property="og:title" content="Fiscalidad al comprar un coche de lujo en Canarias: lo que debes saber — Blog MT Lux Cars">
+  <meta property="og:description" content="IGIC en lugar de IVA, impuesto de matriculación ligado a emisiones y por qué cada vehículo se calcula caso por caso.">
+  <meta property="og:url" content="https://www.mtluxcars.com/blog/fiscalidad-comprar-coche-lujo-canarias.html">
   <meta property="og:image" content="https://www.mtluxcars.com/images/og-image.jpg">
 
   <script type="application/ld+json">
@@ -44,18 +27,18 @@
     "@graph": [
       {
         "@type": "BlogPosting",
-        "@id": "https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html#article",
-        "headline": "[TÍTULO DEL ARTÍCULO]",
-        "description": "[DESCRIPCIÓN CORTA DEL ARTÍCULO, 1-2 frases, para SEO]",
-        "image": "https://www.mtluxcars.com/images/[IMAGEN-DE-PORTADA].webp",
-        "datePublished": "[AAAA-MM-DD]",
-        "dateModified": "[AAAA-MM-DD]",
+        "@id": "https://www.mtluxcars.com/blog/fiscalidad-comprar-coche-lujo-canarias.html#article",
+        "headline": "Fiscalidad al comprar un coche de lujo en Canarias: lo que debes saber",
+        "description": "Canarias tiene un régimen fiscal propio: IGIC en lugar de IVA e impuesto de matriculación ligado a las emisiones. Te explicamos los conceptos clave y por qué cada vehículo se calcula caso por caso.",
+        "image": "https://www.mtluxcars.com/images/porshepanamera.webp",
+        "datePublished": "2026-07-10",
+        "dateModified": "2026-07-10",
         "inLanguage": "es-ES",
         "author": { "@id": "https://www.mtluxcars.com/#organization" },
         "publisher": { "@id": "https://www.mtluxcars.com/#organization" },
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html"
+          "@id": "https://www.mtluxcars.com/blog/fiscalidad-comprar-coche-lujo-canarias.html"
         }
       },
       {
@@ -63,7 +46,7 @@
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mtluxcars.com/" },
           { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.mtluxcars.com/blog.html" },
-          { "@type": "ListItem", "position": 3, "name": "[TÍTULO DEL ARTÍCULO]", "item": "https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html" }
+          { "@type": "ListItem", "position": 3, "name": "Fiscalidad al comprar un coche de lujo en Canarias: lo que debes saber", "item": "https://www.mtluxcars.com/blog/fiscalidad-comprar-coche-lujo-canarias.html" }
         ]
       }
     ]
@@ -334,10 +317,10 @@
   <header class="page-head">
     <div class="page-head-inner">
       <a href="../blog.html" class="mono volver">← Volver al blog</a>
-      <p class="mono page-eyebrow">Blog — [CATEGORÍA: Importación / Financiación / Lanzarote / Marcas...]</p>
-      <h1 class="display page-title">[TÍTULO DEL ARTÍCULO]</h1>
+      <p class="mono page-eyebrow">Blog — Fiscalidad Canaria</p>
+      <h1 class="display page-title">Fiscalidad al comprar un coche de lujo en Canarias: lo que debes saber</h1>
       <div class="page-head-foot">
-        <p class="mono"><b>●</b>&nbsp; [Mes Año] — Lectura de [X] min</p>
+        <p class="mono"><b>●</b>&nbsp; Julio 2026 — Lectura de 5 min</p>
         <p class="mono">MT Lux Cars — Arrecife, Lanzarote</p>
       </div>
     </div>
@@ -346,8 +329,8 @@
   <!-- PORTADA -->
   <section class="portada">
     <div class="portada-inner">
-      <span class="portada-ref">Ref. Blog — [Nº]</span>
-      <img src="../images/[IMAGEN-DE-PORTADA].webp" alt="[TEXTO ALTERNATIVO DESCRIPTIVO]">
+      <span class="portada-ref">Ref. Blog — 02</span>
+      <img src="../images/porshepanamera.webp" alt="Porsche Panamera en la exposición de MT Lux Cars en Arrecife, Lanzarote">
     </div>
   </section>
 
@@ -355,31 +338,31 @@
   <section class="articulo">
     <div class="articulo-inner">
 
-      <p class="reveal articulo-lead">[PÁRRAFO DE ENTRADA — una o dos frases que enganchen y resuman el tema del artículo.]</p>
+      <p class="reveal articulo-lead">Comprar un coche en Canarias no es lo mismo que comprarlo en la península, y la diferencia empieza en los impuestos. Las islas tienen un régimen fiscal propio que conviene entender antes de firmar nada, especialmente cuando hablamos de vehículos de alta gama.</p>
 
-      <p class="reveal">[Párrafo de desarrollo. Escribe en primera persona del plural ("en MT Lux Cars..."), tono directo y profesional, sin tecnicismos innecesarios.]</p>
+      <p class="reveal">En MT Lux Cars gestionamos operaciones desde Arrecife todas las semanas, y una parte importante de nuestro trabajo consiste precisamente en explicar esta parte: qué impuestos intervienen en la compra, por qué aquí funcionan distinto y qué significa eso para el precio final de tu vehículo. En este artículo te contamos los conceptos clave. Sin cifras cerradas, porque —como verás— los tipos exactos dependen de cada vehículo concreto y de la normativa vigente en cada momento.</p>
 
-      <h2 class="display reveal">[Subtítulo de sección]</h2>
-      <p class="reveal">[Más contenido. Añade tantos &lt;h2&gt; y &lt;p&gt; como necesite el artículo.]</p>
+      <h2 class="display reveal">El punto de partida: <em>el régimen fiscal canario</em></h2>
+      <p class="reveal">Canarias cuenta con un Régimen Económico y Fiscal propio, conocido como REF, reconocido tanto en la legislación española como en el marco europeo. Es la razón por la que las islas no aplican el IVA que rige en la península, sino un impuesto indirecto distinto: el IGIC, el Impuesto General Indirecto Canario.</p>
+      <p class="reveal">¿Qué implica esto en la práctica? En términos generales, la fiscalidad indirecta canaria resulta más favorable que la peninsular. Es uno de los motivos por los que comprar un vehículo en Canarias puede tener sentido económico, también en el segmento de alta gama. Ahora bien, conviene expresarlo con la cautela que merece: el tipo de IGIC que se aplica a un vehículo no es único ni fijo, sino que depende de las características del propio coche y de la normativa en vigor en el momento de la operación.</p>
 
-      <!-- Bloque opcional de pasos numerados (bórralo si no aplica) -->
-      <div class="reveal">
-        <article class="paso">
-          <p class="paso-num">01</p>
-          <div>
-            <h3 class="display paso-nombre">[Nombre del paso]</h3>
-            <p class="paso-desc">[Descripción breve.]</p>
-          </div>
-        </article>
-      </div>
+      <h2 class="display reveal">IGIC frente a IVA: <em>la misma función, reglas distintas</em></h2>
+      <p class="reveal">El IGIC cumple en Canarias el papel que el IVA cumple en el resto de España: grava el consumo. Pero lo hace con su propia estructura de tipos, definida por la normativa canaria, y en el caso de los vehículos esa estructura tiene en cuenta factores como la motorización o las características del modelo. Dos coches de precio similar pueden tributar de forma diferente.</p>
+      <p class="reveal">Por eso no vas a encontrar en este artículo una tabla de porcentajes. No porque no existan, sino porque publicarlos como si fueran datos fijos sería hacerte un flaco favor: los tipos se revisan, cambian con las leyes de presupuestos y varían según el vehículo. La cifra que hoy es correcta para un modelo puede no serlo para otro, ni para el mismo modelo dentro de un año. Lo honesto es decirte que el cálculo se hace vehículo a vehículo, con la normativa del día de la operación delante.</p>
 
-      <!-- Bloque opcional destacado (bórralo si no aplica) -->
+      <h2 class="display reveal">El impuesto de matriculación: <em>las emisiones importan</em></h2>
+      <p class="reveal">Además del impuesto indirecto, matricular un vehículo en España conlleva un impuesto especial propio: el Impuesto Especial sobre Determinados Medios de Transporte, conocido comúnmente como impuesto de matriculación. Su característica principal es que está vinculado a las emisiones oficiales de CO2 del vehículo: a mayor nivel de emisiones, mayor tramo impositivo.</p>
+      <p class="reveal">En el segmento que trabajamos —motorizaciones potentes, SUV de gran tamaño, berlinas deportivas— este impuesto puede tener un peso relevante en el coste final, y es un factor que hay que mirar antes de decidir, no después. También aquí los tramos y sus condiciones dependen de la normativa vigente y de la ficha técnica concreta del coche: sus emisiones homologadas, su motor, su año. No hay dos operaciones iguales.</p>
+
       <div class="reveal callout">
-        <span class="mono">[Etiqueta del destacado]</span>
-        <p>[Texto del destacado, por ejemplo una cifra, garantía o condición importante.]</p>
+        <span class="mono">Cada vehículo es un caso distinto</span>
+        <p>Antes de que decidas, te calculamos la fiscalidad completa de tu operación con los datos reales del vehículo concreto y la normativa en vigor. Y para cifras exactas con validez fiscal, te recomendamos siempre contrastarlas con un asesor fiscal profesional. Preferimos que compres sabiendo exactamente lo que vas a pagar.</p>
       </div>
 
-      <p class="reveal">[Párrafo de cierre, con una invitación suave a contactar.]</p>
+      <h2 class="display reveal">Qué hacemos nosotros <em>en cada operación</em></h2>
+      <p class="reveal">Cuando gestionamos la compra o la importación de un vehículo, la parte fiscal no se queda en manos del cliente: revisamos la ficha técnica, las emisiones homologadas y la situación del coche —nuevo, de ocasión, procedente de la península o de otro país europeo, porque cada escenario tributa de forma distinta— y te presentamos el coste total de la operación antes de que tomes ninguna decisión. Sin sorpresas en la matriculación ni partidas que aparecen al final.</p>
+
+      <p class="reveal">Si estás valorando comprar un vehículo de alta gama en Lanzarote y quieres saber qué fiscalidad se aplicaría a tu caso concreto, escríbenos. Te lo calculamos con datos reales, te lo explicamos sin letra pequeña y decides con todo sobre la mesa.</p>
 
     </div>
   </section>

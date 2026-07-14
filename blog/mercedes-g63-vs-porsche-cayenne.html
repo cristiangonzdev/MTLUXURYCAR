@@ -1,20 +1,3 @@
-<!--
-  PLANTILLA PARA NUEVOS ARTÍCULOS DEL BLOG — MT Lux Cars
-  ========================================================
-  Cómo usar esta plantilla cada semana:
-  1. Duplica este archivo y renómbralo con el slug del artículo,
-     por ejemplo: blog/como-elegir-tu-suv-de-lujo.html
-  2. Sustituye todos los textos marcados entre [CORCHETES], incluidos
-     los del bloque JSON-LD del <head> (BlogPosting + BreadcrumbList) —
-     no lo borres, es lo que permite que Google entienda el artículo.
-  3. Cambia la imagen de portada y, si quieres, añade más <p> o
-     bloques .paso / .callout dentro de la sección .articulo.
-  4. Añade una tarjeta nueva en blog.html (sección .blog-grid)
-     apuntando al nuevo archivo, y actualiza el contador
-     "0X artículos publicados" del blog-header.
-  5. Añade la URL del artículo a sitemap.xml.
-  6. Sube los cambios con git — el despliegue en Vercel es automático.
--->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,19 +6,19 @@
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#060606">
 
-  <title>[TÍTULO DEL ARTÍCULO] — Blog MT Lux Cars</title>
-  <meta name="description" content="[DESCRIPCIÓN CORTA DEL ARTÍCULO, 1-2 frases, para SEO]">
+  <title>Mercedes-AMG G63 vs Porsche Cayenne: cuál elegir — Blog MT Lux Cars</title>
+  <meta name="description" content="Comparamos dos formas distintas de entender el SUV de lujo: la presencia y el V8 biturbo del Mercedes-AMG G63 frente al equilibrio híbrido y la garantía Porsche Approved del Cayenne. Ambos, en nuestro showroom de Arrecife.">
   <meta name="author" content="MT Lux Cars">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html">
+  <link rel="canonical" href="https://www.mtluxcars.com/blog/mercedes-g63-vs-porsche-cayenne.html">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="MT Lux Cars">
   <meta property="og:locale" content="es_ES">
-  <meta property="og:title" content="[TÍTULO DEL ARTÍCULO] — Blog MT Lux Cars">
-  <meta property="og:description" content="[DESCRIPCIÓN CORTA DEL ARTÍCULO, 1-2 frases, para redes sociales]">
-  <meta property="og:url" content="https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html">
+  <meta property="og:title" content="Mercedes-AMG G63 vs Porsche Cayenne: cuál elegir — Blog MT Lux Cars">
+  <meta property="og:description" content="Presencia y V8 biturbo frente a equilibrio híbrido con garantía Porsche Approved. Dos piezas, dos maneras de entender el SUV de lujo.">
+  <meta property="og:url" content="https://www.mtluxcars.com/blog/mercedes-g63-vs-porsche-cayenne.html">
   <meta property="og:image" content="https://www.mtluxcars.com/images/og-image.jpg">
 
   <script type="application/ld+json">
@@ -44,18 +27,18 @@
     "@graph": [
       {
         "@type": "BlogPosting",
-        "@id": "https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html#article",
-        "headline": "[TÍTULO DEL ARTÍCULO]",
-        "description": "[DESCRIPCIÓN CORTA DEL ARTÍCULO, 1-2 frases, para SEO]",
-        "image": "https://www.mtluxcars.com/images/[IMAGEN-DE-PORTADA].webp",
-        "datePublished": "[AAAA-MM-DD]",
-        "dateModified": "[AAAA-MM-DD]",
+        "@id": "https://www.mtluxcars.com/blog/mercedes-g63-vs-porsche-cayenne.html#article",
+        "headline": "Mercedes-AMG G63 vs Porsche Cayenne: cuál elegir",
+        "description": "Comparamos dos formas distintas de entender el SUV de lujo: la presencia y el V8 biturbo del Mercedes-AMG G63 frente al equilibrio híbrido y la garantía Porsche Approved del Cayenne. Ambos, en nuestro showroom de Arrecife.",
+        "image": "https://www.mtluxcars.com/images/mercedesbenzg63morro.webp",
+        "datePublished": "2026-07-12",
+        "dateModified": "2026-07-12",
         "inLanguage": "es-ES",
         "author": { "@id": "https://www.mtluxcars.com/#organization" },
         "publisher": { "@id": "https://www.mtluxcars.com/#organization" },
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html"
+          "@id": "https://www.mtluxcars.com/blog/mercedes-g63-vs-porsche-cayenne.html"
         }
       },
       {
@@ -63,7 +46,7 @@
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mtluxcars.com/" },
           { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.mtluxcars.com/blog.html" },
-          { "@type": "ListItem", "position": 3, "name": "[TÍTULO DEL ARTÍCULO]", "item": "https://www.mtluxcars.com/blog/[SLUG-DEL-ARTICULO].html" }
+          { "@type": "ListItem", "position": 3, "name": "Mercedes-AMG G63 vs Porsche Cayenne: cuál elegir", "item": "https://www.mtluxcars.com/blog/mercedes-g63-vs-porsche-cayenne.html" }
         ]
       }
     ]
@@ -334,10 +317,10 @@
   <header class="page-head">
     <div class="page-head-inner">
       <a href="../blog.html" class="mono volver">← Volver al blog</a>
-      <p class="mono page-eyebrow">Blog — [CATEGORÍA: Importación / Financiación / Lanzarote / Marcas...]</p>
-      <h1 class="display page-title">[TÍTULO DEL ARTÍCULO]</h1>
+      <p class="mono page-eyebrow">Blog — Comparativas</p>
+      <h1 class="display page-title">Mercedes-AMG G63 vs Porsche Cayenne: cuál elegir</h1>
       <div class="page-head-foot">
-        <p class="mono"><b>●</b>&nbsp; [Mes Año] — Lectura de [X] min</p>
+        <p class="mono"><b>●</b>&nbsp; Julio 2026 — Lectura de 5 min</p>
         <p class="mono">MT Lux Cars — Arrecife, Lanzarote</p>
       </div>
     </div>
@@ -346,8 +329,8 @@
   <!-- PORTADA -->
   <section class="portada">
     <div class="portada-inner">
-      <span class="portada-ref">Ref. Blog — [Nº]</span>
-      <img src="../images/[IMAGEN-DE-PORTADA].webp" alt="[TEXTO ALTERNATIVO DESCRIPTIVO]">
+      <span class="portada-ref">Ref. Blog — 02</span>
+      <img src="../images/mercedesbenzg63morro.webp" alt="Frontal del Mercedes-AMG G63 en el showroom de MT Lux Cars">
     </div>
   </section>
 
@@ -355,31 +338,47 @@
   <section class="articulo">
     <div class="articulo-inner">
 
-      <p class="reveal articulo-lead">[PÁRRAFO DE ENTRADA — una o dos frases que enganchen y resuman el tema del artículo.]</p>
+      <p class="reveal articulo-lead">Dos SUV de lujo, dos filosofías opuestas. El Mercedes-AMG G63 representa la presencia bruta y el carácter sin filtros; el Porsche Cayenne, el equilibrio técnico y el uso racional del día a día. En nuestra exposición de Arrecife conviven los dos, y esta es la comparación que hacemos cuando alguien nos pregunta cuál elegir.</p>
 
-      <p class="reveal">[Párrafo de desarrollo. Escribe en primera persona del plural ("en MT Lux Cars..."), tono directo y profesional, sin tecnicismos innecesarios.]</p>
+      <p class="reveal">No es una comparativa de cifras: son dos piezas que responden a preguntas distintas. La decisión no depende de cuál es «mejor», sino de qué relación quieres tener con tu coche. Aquí te contamos, con los datos de nuestras propias fichas, cómo lo vemos nosotros.</p>
 
-      <h2 class="display reveal">[Subtítulo de sección]</h2>
-      <p class="reveal">[Más contenido. Añade tantos &lt;h2&gt; y &lt;p&gt; como necesite el artículo.]</p>
+      <h2 class="display reveal">Carácter y motor: <em>V8 AMG frente a híbrido Porsche</em></h2>
 
-      <!-- Bloque opcional de pasos numerados (bórralo si no aplica) -->
+      <p class="reveal">El <a href="../vehiculos/mb-g63.html">Mercedes-AMG G63</a> hereda directamente la tradición todoterreno del Clase G y la lleva al extremo con un motor 4.0L V8 biturbo AMG de 585 CV. Su sonido, canalizado por los escapes laterales, forma parte de la experiencia tanto como el interior en cuero Nappa. Es un coche que no pasa desapercibido en ningún contexto: prioriza presencia, potencia y sonido por encima de cualquier otra consideración.</p>
+
+      <p class="reveal">El <a href="../vehiculos/porshe-cayenne-negro.html">Porsche Cayenne Híbrido</a> plantea lo contrario. Su motor híbrido apuesta por la eficiencia sin renunciar al carácter deportivo de la marca: suspensión neumática PASM, escape deportivo y una carrocería en negro, por dentro y por fuera. Es una unidad de 2022 con 120.000 km y, sobre todo, con garantía oficial Porsche Approved, lo que en un vehículo usado marca una diferencia real de tranquilidad.</p>
+
       <div class="reveal">
         <article class="paso">
-          <p class="paso-num">01</p>
+          <p class="paso-num">G63</p>
           <div>
-            <h3 class="display paso-nombre">[Nombre del paso]</h3>
-            <p class="paso-desc">[Descripción breve.]</p>
+            <h3 class="display paso-nombre">Presencia y potencia pura</h3>
+            <p class="paso-desc">Herencia todoterreno del Clase G, V8 biturbo AMG de 585 CV, cuero Nappa y escapes laterales. Una pieza para quien quiere que el coche sea una declaración. Precio bajo consulta privada.</p>
+          </div>
+        </article>
+        <article class="paso">
+          <p class="paso-num">Cayenne</p>
+          <div>
+            <h3 class="display paso-nombre">Equilibrio técnico y garantía oficial</h3>
+            <p class="paso-desc">Motor híbrido, suspensión neumática PASM, escape deportivo y garantía Porsche Approved. Año 2022, 120.000 km, exterior e interior en negro. 66.900 €.</p>
           </div>
         </article>
       </div>
 
-      <!-- Bloque opcional destacado (bórralo si no aplica) -->
+      <h2 class="display reveal">Para quién es <em>cada uno</em></h2>
+
+      <p class="reveal">El G63 es para quien busca la experiencia completa: presencia muy marcada, sonido de V8 y la sensación de conducir un icono. No pretende ser racional, y ahí está precisamente su valor como pieza de colección. Si el coche tiene que emocionar cada vez que lo arrancas, la respuesta es el G63.</p>
+
+      <p class="reveal">El Cayenne es para quien quiere un SUV de lujo que además tenga sentido en el uso diario: la eficiencia del sistema híbrido, el respaldo de una garantía oficial de fábrica y un precio cerrado de 66.900 €. Es la opción más racional sin dejar de ser un Porsche, con todo lo que eso implica en dinámica y acabados.</p>
+
+      <p class="reveal">En términos de conducción, la diferencia es de filosofía: el G63 prioriza presencia y sonido; el Cayenne prioriza equilibrio y eficiencia. Ninguno de los dos es un término medio, y eso es lo que los hace interesantes.</p>
+
       <div class="reveal callout">
-        <span class="mono">[Etiqueta del destacado]</span>
-        <p>[Texto del destacado, por ejemplo una cifra, garantía o condición importante.]</p>
+        <span class="mono">Velos en persona</span>
+        <p>Los dos vehículos están en nuestro showroom de Arrecife. La mejor manera de decidir entre dos caracteres tan distintos es sentarse en ambos: escríbenos y te los enseñamos sin compromiso, con toda la documentación sobre la mesa.</p>
       </div>
 
-      <p class="reveal">[Párrafo de cierre, con una invitación suave a contactar.]</p>
+      <p class="reveal">Si dudas entre los dos, o buscas algo diferente, cuéntanoslo. En MT Lux Cars preferimos que la elección sea la correcta a que sea rápida, y el primer paso siempre es una conversación.</p>
 
     </div>
   </section>
