@@ -61,7 +61,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -71,100 +71,25 @@
 
   <link rel="stylesheet" href="css/base.css">
   <style>
-    /* ══════════ CABECERA DE PÁGINA (variante con marca de agua) ══════════ */
-    .page-head {
-      position: relative;
-      overflow: hidden;
-    }
-    .page-head::before {
-      content: 'MT';
-      position: absolute;
-      right: -4rem;
-      bottom: -6rem;
-      font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 900;
-      font-size: 24rem;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(247,246,241,.07);
-      pointer-events: none;
-    }
-    .page-head-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .page-title {
-      letter-spacing: -.015em;
-    }
-    .page-head-foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-top: 1px solid var(--linea-clara);
-      margin-top: 2.4rem;
-      padding-top: 1.2rem;
-    }
-    .page-head-foot .mono { color: rgba(247,246,241,.75); }
-    .page-head-foot .mono b { color: var(--lava); font-weight: 500; }
-
-    @media (max-width: 900px) {
-      .page-head::before { font-size: 14rem; right: -3rem; bottom: -4rem; }
-    }
-
-    /* ══════════ IMAGEN DE PORTADA ══════════ */
-    .portada {
-      background: var(--basalto);
-      padding: 0 2rem 5rem;
-    }
-    .portada-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      border: 1px solid var(--linea-clara);
-      overflow: hidden;
-      aspect-ratio: 21/9;
-      background: var(--basalto-2);
-    }
-    .portada-inner img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .portada-ref {
-      position: absolute;
-      top: 1rem; left: 1rem;
-      background: var(--basalto);
-      color: var(--cal);
-      padding: .35rem .7rem;
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    @media (max-width: 720px) {
-      .portada-inner { aspect-ratio: 4/3; }
-    }
-
     /* ══════════ PROCESO ══════════ */
     .proceso {
-      background: var(--cal);
+      background: var(--basalto);
       padding: 6rem 2rem;
     }
     .proceso-inner { max-width: 1400px; margin: 0 auto; }
     .proceso-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-top: 1px solid var(--basalto);
-      padding-top: 1.2rem;
+      text-align: center;
       margin-bottom: 3.5rem;
     }
-    .proceso-header .mono { color: var(--piedra); }
-    .proceso-title { font-size: clamp(2rem, 4.5vw, 3.6rem); }
+    .proceso-header .mono {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--arena-dorada);
+    }
+    .proceso-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--cal); }
 
     .paso {
       display: grid;
@@ -172,23 +97,23 @@
       gap: 2rem;
       align-items: start;
       border: 1px solid var(--linea);
-      background: #FFFFFF;
+      background: var(--basalto-2);
       padding: 2.2rem;
       margin-bottom: 1rem;
       transition: border-color .3s ease;
     }
-    .paso:hover { border-color: var(--lava); }
+    .paso:hover { border-color: var(--linea-clara); }
     .paso-num {
-      font-family: var(--font-mono);
+      font-family: var(--font-sans);
       font-size: .78rem;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--lava);
+      color: var(--arena-dorada);
     }
-    .paso-nombre { font-size: clamp(1.4rem, 2.4vw, 2rem); }
+    .paso-nombre { font-size: clamp(1.4rem, 2.4vw, 2rem); color: var(--cal); }
     .paso-desc {
       font-size: .95rem;
-      color: #3E3F3A;
+      color: var(--ceniza);
       line-height: 1.7;
       max-width: 52ch;
     }
@@ -198,47 +123,49 @@
 
     /* ══════════ SERVICIOS ══════════ */
     .servicios {
-      background: var(--cal);
+      background: var(--basalto);
       padding: 0 2rem 7rem;
     }
     .servicios-inner { max-width: 1400px; margin: 0 auto; }
     .servicios-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-top: 1px solid var(--basalto);
-      padding-top: 1.2rem;
+      text-align: center;
       margin-bottom: 3.5rem;
     }
-    .servicios-header .mono { color: var(--piedra); }
-    .servicios-title { font-size: clamp(2rem, 4.5vw, 3.6rem); }
+    .servicios-header .mono {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--arena-dorada);
+    }
+    .servicios-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--cal); }
     .servicios-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
     }
     .serv-card {
-      background: #FFFFFF;
+      background: var(--basalto-2);
       border: 1px solid var(--linea);
       padding: 2.2rem;
-      transition: border-color .3s ease;
+      transition: border-color .3s ease, transform .3s ease;
     }
-    .serv-card:hover { border-color: var(--lava); }
+    .serv-card:hover { border-color: var(--linea-clara); transform: translateY(-3px); }
     .serv-icon {
       width: 36px; height: 36px;
       margin-bottom: 1.4rem;
-      color: var(--lava);
+      color: var(--arena-dorada);
     }
     .serv-icon svg { width: 100%; height: 100%; }
     .serv-card h3 {
       font-size: 1.15rem;
+      color: var(--cal);
       margin-bottom: .7rem;
     }
     .serv-card p {
       font-size: .9rem;
-      color: #3E3F3A;
+      color: var(--ceniza);
       line-height: 1.7;
     }
     @media (max-width: 720px) {
@@ -246,55 +173,40 @@
       .serv-card { padding: 1.6rem; }
     }
 
-    /* ══════════ CTA FINAL ══════════ */
+    /* ══════════ BANNER CTA — única sección dorada sólida ══════════ */
     .encargo {
-      background: var(--basalto);
-      color: var(--cal);
-      padding: 7rem 2rem;
-      position: relative;
-      overflow: hidden;
+      background: var(--arena-dorada);
+      padding: 4.5rem 2rem;
+      text-align: center;
     }
-    .encargo::before {
-      content: 'MT';
-      position: absolute;
-      right: -4rem;
-      bottom: -6rem;
-      font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 900;
-      font-size: 28rem;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(247,246,241,.07);
-      pointer-events: none;
+    .encargo-inner { max-width: 640px; margin: 0 auto; }
+    .encargo .page-eyebrow {
+      color: var(--basalto);
+      justify-content: center;
+      opacity: .75;
     }
-    .encargo-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
+    .encargo .page-eyebrow::after { background: var(--basalto); }
+    .encargo-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      color: var(--basalto);
+      margin-bottom: 1.4rem;
     }
-    .encargo .page-eyebrow { color: var(--lava); }
-    .encargo-title { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 1.4rem; }
     .encargo-text {
-      color: rgba(247,246,241,.78);
+      color: rgba(6,6,6,.75);
       font-size: 1rem;
       line-height: 1.7;
-      max-width: 480px;
-      margin-bottom: 2.2rem;
+      max-width: 460px;
+      margin: 0 auto 1.8rem;
     }
-    @media (max-width: 900px) {
-      .encargo::before { font-size: 16rem; right: -3rem; bottom: -4rem; }
+    .encargo .btn-primario {
+      border-color: var(--basalto);
+      color: var(--basalto);
     }
-
-    /* ══════════ MÓVILES MUY ESTRECHOS (≤400px) ══════════ */
-    @media (max-width: 400px) {
-      .page-head, .portada, .proceso, .servicios, .encargo {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-      .paso, .serv-card { padding-left: 1.25rem; padding-right: 1.25rem; }
-    }
+    .encargo .btn-primario::before { background: var(--basalto); }
+    .encargo .btn-primario:hover { color: var(--arena-dorada); }
+    .encargo .btn-primario:focus-visible { outline: 2px solid var(--basalto); outline-offset: 4px; }
   </style>
 </head>
 <body>
@@ -327,22 +239,12 @@
   </div>
 
   <!-- CABECERA -->
-  <header class="page-head">
-    <div class="page-head-inner">
-      <p class="mono page-eyebrow">Servicio a medida</p>
-      <h1 class="display page-title">Asesora&shy;miento<br><em>a tu medida</em></h1>
-      <div class="page-head-foot">
-        <p class="mono"><b>●</b>&nbsp; Proceso en cuatro pasos</p>
-        <p class="mono">Arrecife · Lanzarote — 28.96° N, 13.55° O</p>
-      </div>
-    </div>
-  </header>
-
-  <!-- PORTADA -->
-  <section class="portada">
-    <div class="portada-inner">
-      <span class="portada-ref">Ref. Asesoramiento</span>
-      <img src="images/asesoramientomtluxcar.webp" alt="Asesoramiento personalizado MT Lux Cars">
+  <section class="hero-interior">
+    <div class="hero-bg" style="background-image:url('images/asesoramientomtluxcar.webp')" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Servicio a medida</p>
+      <h1 class="hero-title">Asesoramiento a tu medida</h1>
     </div>
   </section>
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#131512">
+  <meta name="theme-color" content="#060606">
 
   <title>Mercedes-Benz GLC 300e AMG Line en venta en Lanzarote — MT Lux Cars</title>
   <meta name="description" content="Mercedes-Benz GLC 300e AMG Line 2021 en MT Lux Cars: 320 CV, híbrido enchufable, 4MATIC, 84.400 km. En exposición en Arrecife, Lanzarote, por 42.990 €.">
@@ -95,7 +95,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -104,36 +104,64 @@
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="../css/base.css">
   <style>
-    /* ══════════ CABECERA (variante ficha de vehículo) ══════════ */
+    /* ══════════ CABECERA (variante ficha de vehículo — foto + Ken Burns) ══════════ */
+    .ficha-hero {
+      position: relative;
+      padding: 9rem 1.5rem 3.5rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 55vh;
+    }
+    .ficha-hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      animation: kenburns 20s ease-in-out infinite alternate;
+    }
+    @media (prefers-reduced-motion: reduce) { .ficha-hero-bg { animation: none !important; } }
+    .ficha-hero .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(6,6,6,.6) 0%, rgba(6,6,6,.82) 100%);
+    }
+    .ficha-hero-content { position: relative; z-index: 2; text-align: center; max-width: 720px; margin: 0 auto; }
     .volver {
       display: inline-flex;
       align-items: center;
       gap: .6rem;
       min-height: 44px;
-      color: rgba(247,246,241,.65);
-      margin-bottom: 2rem;
+      color: var(--ceniza);
+      margin-bottom: 1.4rem;
       transition: color .3s ease;
     }
     .volver:hover { color: var(--arena-dorada); }
-    .page-title.ficha-title { max-width: 20ch; }
+    .ficha-hero .hero-eyebrow { margin-bottom: .8rem; }
+    .ficha-page-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      color: var(--cal);
+      line-height: 1.1;
+    }
     .ficha-tagline {
       font-size: 1.05rem;
-      color: rgba(247,246,241,.75);
+      color: var(--ceniza);
       max-width: 55ch;
-      margin-top: 1rem;
+      margin: 1rem auto 0;
       line-height: 1.6;
     }
     .page-head-foot {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
-      border-top: 1px solid var(--linea-clara);
-      margin-top: 2.4rem;
+      gap: .5rem 1.4rem;
+      margin-top: 1.8rem;
       padding-top: 1.2rem;
+      border-top: 1px solid var(--linea-clara);
     }
-    .page-head-foot .mono { color: rgba(247,246,241,.75); }
+    .page-head-foot .mono { color: var(--ceniza); }
     .page-head-foot .mono b { color: var(--arena-dorada); font-weight: 500; }
 
     /* ══════════ GALERÍA DE PÁGINA ══════════ */
@@ -259,7 +287,7 @@
     .desc-list { list-style: none; padding: 0; margin: 0; }
     .desc-list li {
       font-size: .95rem;
-      color: #3E3F3A;
+      color: rgba(6,6,6,.8);
       line-height: 1.7;
       padding-left: 1.2rem;
       position: relative;
@@ -269,7 +297,7 @@
       content: ''; position: absolute; left: 0; top: .6em;
       width: 5px; height: 5px; background: var(--arena-dorada);
     }
-    .desc-text { font-size: .95rem; color: #3E3F3A; line-height: 1.7; max-width: 65ch; }
+    .desc-text { font-size: .95rem; color: rgba(6,6,6,.8); line-height: 1.7; max-width: 65ch; }
     .desc-highlight {
       font-size: 1rem; color: var(--basalto); font-weight: 500; line-height: 1.6;
       margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--linea); max-width: 65ch;
@@ -315,17 +343,17 @@
       gap: 1.6rem;
     }
     .rel-card { display: block; border: 1px solid var(--linea); background: #FFFFFF; transition: border-color .3s ease; }
-    .rel-card:hover { border-color: rgba(19,21,18,.4); }
-    .rel-card-img { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--ceniza); }
+    .rel-card:hover { border-color: rgba(6,6,6,.35); }
+    .rel-card-img { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #000; }
     .rel-card-img::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 60%, rgba(19,21,18,.5));
+      background: linear-gradient(180deg, transparent 60%, rgba(6,6,6,.5));
     }
     .rel-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-    .rel-card:hover .rel-card-img img { transform: scale(1.05); }
+    .rel-card:hover .rel-card-img img { transform: scale(1.06); }
     .rel-card-body { padding: 1.1rem 1.2rem 1.3rem; }
-    .rel-card-name { font-size: 1.1rem; margin-bottom: .4rem; }
-    .rel-card-price { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--piedra); }
+    .rel-card-name { font-size: 1.1rem; color: var(--basalto); margin-bottom: .4rem; }
+    .rel-card-price { font-family: var(--font-display); font-weight: 600; font-size: .95rem; color: var(--arena-dorada); }
     @media (max-width: 900px) {
       .relacionados-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -335,33 +363,16 @@
 
     /* ══════════ CTA FINAL ══════════ */
     .encargo {
-      background: var(--basalto);
+      background: var(--basalto-2);
       color: var(--cal);
-      padding: 7rem 2rem;
-      position: relative;
-      overflow: hidden;
+      padding: 6rem 2rem;
+      text-align: center;
     }
-    .encargo::before {
-      content: 'MT';
-      position: absolute;
-      right: -4rem; bottom: -6rem;
-      font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 900;
-      font-size: 28rem;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(247,246,241,.07);
-      pointer-events: none;
-    }
-    .encargo-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
-    .encargo .page-eyebrow { color: var(--arena-dorada); }
+    .encargo-inner { max-width: 700px; margin: 0 auto; }
+    .encargo .page-eyebrow { color: var(--arena-dorada); justify-content: center; }
     .encargo .page-eyebrow::after { background: var(--arena-dorada); }
-    .encargo-title { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 1.4rem; }
-    .encargo-text { color: rgba(247,246,241,.78); font-size: 1rem; line-height: 1.7; max-width: 480px; margin-bottom: 2.2rem; }
-    @media (max-width: 900px) {
-      .encargo::before { font-size: 16rem; right: -3rem; bottom: -4rem; }
-    }
+    .encargo-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.4rem; }
+    .encargo-text { color: var(--ceniza); font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto 2.2rem; }
   </style>
 </head>
 <body>
@@ -394,18 +405,20 @@
   </div>
 
   <!-- CABECERA -->
-  <header class="page-head">
-    <div class="page-head-inner">
+  <section class="ficha-hero">
+    <div class="ficha-hero-bg" id="fichaHeroBg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="ficha-hero-content">
       <a href="../vehiculos.html" class="mono volver">← Volver a la colección</a>
-      <p class="mono page-eyebrow">SUV — Mercedes-Benz</p>
-      <h1 class="display page-title ficha-title">Mercedes-Benz GLC 300e AMG Line</h1>
+      <p class="mono hero-eyebrow">SUV — Mercedes-Benz</p>
+      <h1 class="ficha-page-title">Mercedes-Benz GLC 300e AMG Line</h1>
       <p class="ficha-tagline">Híbrido enchufable de 320 CV con tracción 4MATIC y acabado AMG Line, en carrocería gris.</p>
       <div class="page-head-foot">
         <p class="mono"><b>●</b>&nbsp; En exposición — Arrecife, Lanzarote</p>
         <p class="mono">MT Lux Cars — Colección privada</p>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- GALERÍA -->
   <section class="ficha-gallery">
@@ -560,6 +573,7 @@
     ];
 
     document.getElementById('ctaWa').href = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(`Hola, me interesa el ${CAR_NAME} que tienen en MT Lux Cars. ¿Podrían darme más información?`)}`;
+    document.getElementById('fichaHeroBg').style.backgroundImage = `url(../images/${images[0]})`;
 
     /* ══════════ GALERÍA ══════════ */
     const galleryMain = document.getElementById('galleryMain');

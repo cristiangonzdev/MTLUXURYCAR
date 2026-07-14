@@ -77,7 +77,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -87,53 +87,10 @@
 
   <link rel="stylesheet" href="css/base.css">
   <style>
-    /* ══════════ CABECERA DE PÁGINA (variante con marca de agua) ══════════ */
-    .page-head {
-      position: relative;
-      overflow: hidden;
-    }
-    .page-head::before {
-      content: 'MT';
-      position: absolute;
-      right: -4rem;
-      bottom: -6rem;
-      font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 900;
-      font-size: 24rem;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(247,246,241,.07);
-      pointer-events: none;
-    }
-    .page-head-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .page-title {
-      letter-spacing: -.015em;
-    }
-    .page-head-foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-top: 1px solid var(--linea-clara);
-      margin-top: 2.4rem;
-      padding-top: 1.2rem;
-    }
-    .page-head-foot .mono { color: rgba(247,246,241,.75); }
-    .page-head-foot .mono b { color: var(--lava); font-weight: 500; }
-
-    @media (max-width: 900px) {
-      .page-head::before { font-size: 14rem; right: -3rem; bottom: -4rem; }
-    }
-
     /* ══════════ CONTACTO LAYOUT ══════════ */
     .contacto-section {
       padding: 6rem 2rem 7rem;
-      background: var(--cal);
+      background: var(--basalto-2);
     }
     .contacto-grid {
       display: grid;
@@ -153,8 +110,13 @@
       flex-direction: column;
     }
     .map-eyebrow {
-      color: var(--lava);
-      margin-bottom: 1.4rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--arena-dorada);
+      margin-bottom: .8rem;
       display: flex;
       align-items: center;
       gap: .8rem;
@@ -163,15 +125,16 @@
       content: '';
       height: 1px;
       width: 60px;
-      background: var(--lava);
+      background: var(--arena-dorada);
     }
     .map-col h2 {
-      font-size: clamp(2rem, 4.5vw, 3.6rem);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--cal);
       margin-bottom: 1.4rem;
     }
     .map-desc {
       font-size: 1rem;
-      color: #3E3F3A;
+      color: var(--ceniza);
       line-height: 1.75;
       max-width: 52ch;
       margin-bottom: 2rem;
@@ -180,10 +143,10 @@
       position: relative;
       width: 100%;
       aspect-ratio: 4/3;
-      border: 1px solid var(--linea);
+      border: 1px solid var(--linea-clara);
       overflow: hidden;
       margin-bottom: 1.6rem;
-      background: #FFFFFF;
+      background: #000;
     }
     .map-embed iframe {
       width: 100%;
@@ -205,23 +168,23 @@
 
     /* ── Datos columna (patrón encargo-datos) ── */
     .encargo-datos {
-      border-left: 1px solid var(--linea);
+      border-left: 1px solid var(--linea-clara);
       padding-left: 2.5rem;
       display: flex;
       flex-direction: column;
       gap: 1.8rem;
     }
     .encargo-datos-title {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--cal);
       margin-bottom: .4rem;
     }
     .encargo-dato .mono { color: var(--piedra); margin-bottom: .3rem; }
     .encargo-dato a, .encargo-dato p {
-      font-family: var(--font-sans);
-      font-stretch: 118%;
+      font-family: var(--font-display);
       font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--basalto);
+      font-size: 1.2rem;
+      color: var(--cal);
       transition: color .3s ease;
     }
     .encargo-dato a {
@@ -229,8 +192,8 @@
       align-items: center;
       min-height: 44px;
     }
-    .encargo-dato a:hover { color: var(--lava); }
-    .encargo-dato a:focus-visible { outline: 2px solid var(--lava); outline-offset: 4px; }
+    .encargo-dato a:hover { color: var(--arena-dorada); }
+    .encargo-dato a:focus-visible { outline: 2px solid var(--arena-dorada); outline-offset: 4px; }
 
     @media (max-width: 900px) {
       .encargo-datos { padding-left: 1.5rem; }
@@ -305,16 +268,14 @@
   </div>
 
   <!-- CABECERA -->
-  <header class="page-head">
-    <div class="page-head-inner">
-      <p class="mono page-eyebrow">Contacto</p>
-      <h1 class="display page-title">Hablemos<em>.</em></h1>
-      <div class="page-head-foot">
-        <p class="mono"><b>●</b>&nbsp; Trato directo, sin intermediarios</p>
-        <p class="mono">Arrecife · Lanzarote — 28.96° N, 13.55° O</p>
-      </div>
+  <section class="hero-interior">
+    <div class="hero-bg" style="background-image:url('images/lamborgini_urus.png')" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Contacto</p>
+      <h1 class="hero-title">Hablemos</h1>
     </div>
-  </header>
+  </section>
 
   <!-- CONTACTO -->
   <section class="contacto-section">

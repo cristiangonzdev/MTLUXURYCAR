@@ -63,7 +63,7 @@
   <link rel="manifest" href="../site.webmanifest?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -73,59 +73,34 @@
   <link rel="stylesheet" href="../css/base.css">
   <style>
     /* ══════════ CABECERA DE PÁGINA (variante artículo) ══════════ */
-    .page-head {
-      position: relative;
-      overflow: hidden;
-    }
-    .page-head::before {
-      content: 'MT';
-      position: absolute;
-      right: -4rem;
-      bottom: -6rem;
-      font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 900;
-      font-size: 24rem;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(247,246,241,.07);
-      pointer-events: none;
-    }
-    .page-head-inner {
-      position: relative;
-      z-index: 1;
-    }
     .volver {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: .6rem;
       min-height: 44px;
-      color: rgba(247,246,241,.65);
-      margin-bottom: 2rem;
+      color: var(--ceniza);
+      margin-bottom: 1.4rem;
       transition: color .3s ease;
     }
-    .volver:hover { color: var(--lava); }
+    .volver:hover { color: var(--arena-dorada); }
     .page-title {
-      font-size: clamp(2.2rem, 6vw, 4.6rem);
-      letter-spacing: -.015em;
+      font-size: clamp(2rem, 5vw, 3.2rem);
       max-width: 18ch;
+      margin: 0 auto;
     }
     .page-head-foot {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
-      border-top: 1px solid var(--linea-clara);
-      margin-top: 2.4rem;
+      gap: .5rem 1.4rem;
+      margin-top: 1.8rem;
       padding-top: 1.2rem;
+      border-top: 1px solid var(--linea-clara);
     }
-    .page-head-foot .mono { color: rgba(247,246,241,.75); }
-    .page-head-foot .mono b { color: var(--lava); font-weight: 500; }
-
-    @media (max-width: 900px) {
-      .page-head::before { font-size: 14rem; right: -3rem; bottom: -4rem; }
-    }
+    .page-head-foot .mono { color: var(--ceniza); }
+    .page-head-foot .mono b { color: var(--arena-dorada); font-weight: 500; }
 
     /* ══════════ IMAGEN DE PORTADA ══════════ */
     .portada {
@@ -148,13 +123,15 @@
     .portada-ref {
       position: absolute;
       top: 1rem; left: 1rem;
-      background: var(--basalto);
-      color: var(--cal);
+      background: rgba(6,6,6,.7);
+      backdrop-filter: blur(8px);
+      color: var(--arena-dorada);
       padding: .35rem .7rem;
-      font-family: var(--font-mono);
+      font-family: var(--font-sans);
       font-size: .65rem;
       letter-spacing: .14em;
       text-transform: uppercase;
+      border: 1px solid var(--linea-clara);
     }
     @media (max-width: 720px) {
       .portada-inner { aspect-ratio: 4/3; }
@@ -171,7 +148,7 @@
     }
     .articulo-inner p {
       font-size: 1.02rem;
-      color: #3E3F3A;
+      color: rgba(6,6,6,.8);
       line-height: 1.8;
       margin-bottom: 1.4rem;
     }
@@ -211,7 +188,7 @@
     .paso-nombre { font-size: 1.15rem; margin-bottom: .5rem; }
     .paso-desc {
       font-size: .92rem;
-      color: #3E3F3A;
+      color: rgba(6,6,6,.8);
       line-height: 1.65;
     }
     @media (max-width: 640px) {
@@ -243,43 +220,20 @@
 
     /* ══════════ CTA FINAL ══════════ */
     .encargo {
-      background: var(--basalto);
+      background: var(--basalto-2);
       color: var(--cal);
-      padding: 7rem 2rem;
-      position: relative;
-      overflow: hidden;
+      padding: 6rem 2rem;
+      text-align: center;
     }
-    .encargo::before {
-      content: 'MT';
-      position: absolute;
-      right: -4rem;
-      bottom: -6rem;
-      font-family: var(--font-sans);
-      font-stretch: 125%;
-      font-weight: 900;
-      font-size: 28rem;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(247,246,241,.07);
-      pointer-events: none;
-    }
-    .encargo-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-    .encargo .page-eyebrow { color: var(--lava); }
-    .encargo-title { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-bottom: 1.4rem; }
+    .encargo-inner { max-width: 700px; margin: 0 auto; }
+    .encargo .page-eyebrow { color: var(--arena-dorada); justify-content: center; }
+    .encargo-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.4rem; }
     .encargo-text {
-      color: rgba(247,246,241,.78);
+      color: var(--ceniza);
       font-size: 1rem;
       line-height: 1.7;
       max-width: 480px;
-      margin-bottom: 2.2rem;
-    }
-    @media (max-width: 900px) {
-      .encargo::before { font-size: 16rem; right: -3rem; bottom: -4rem; }
+      margin: 0 auto 2.2rem;
     }
 
   </style>
